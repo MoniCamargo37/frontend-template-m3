@@ -1,0 +1,95 @@
+/* Estilos para el contenedor del formulario */
+.planning-card {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box; 
+  }
+  
+  /* Estilos para el formulario */
+  .formTrip-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;;
+  }
+  
+  /* Estilos para las etiquetas de texto */
+  .formTrip-card label {
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+  }
+  
+  /* Estilos para los inputs de texto y número */
+  .formTrip-card input[type="text"],
+  .formTrip-card input[type="number"] {
+    width: calc(20% - 5px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilos para el input de rango */
+.formTrip-card input[type="range"] {
+  width: 100%;
+  height: 10px;
+  margin-top: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  /* -webkit-appearance: none; */
+}
+
+.formTrip-card input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #ff6347;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Estilos para el input de texto del presupuesto */
+.budget-input {
+  width: calc(50% - 5px);
+  margin-left: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 16px;
+  color: rgb(60, 59, 59);
+  font-weight: bold;
+}
+
+.budget-input:focus {
+  background-color: #ddd;
+}
+
+  
+  /* Estilos para el botón */
+  .formTrip-card button {
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    background: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+  }
+  
+
+  .formTrip-card select option:checked {
+    background: #ff6347;
+    color: #fff;
+  }
+  
+    

@@ -29,7 +29,7 @@ export default function Login() {
       if (response.authToken) {
         storeToken(response.authToken);
         authenticateUser();
-        navigate('/');
+        navigate('/profile');
         toast.success('Welcome back!')
       } else {
         setErrorMessage('Unable to authenticate user')
@@ -42,20 +42,20 @@ export default function Login() {
   useEffect(() => {
     // When the component first renders, check if user is already logged in and redirects
     if (isLoggedIn) {
-      navigate('/')
+      navigate('/user/profile')
     }
     // eslint-disable-next-line
   }, [isLoggedIn])
 
   return (
-    <div>
+    <div className='auth-card'>
       <form onSubmit={handleSubmit}>
         <label>Email</label>
         <input required type="email" name="email" value={user.email} onChange={handleChange} />
         <label>Password</label>
         <input required type="password" name="password" value={user.password} onChange={handleChange} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Log in </button>
+        <button type="submit"class="register-button">Log in </button>
       </form>
     </div>
   )

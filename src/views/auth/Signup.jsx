@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
+import Auth from './Auth.css';
 
 export default function Signup() {
   const [user, setUser] = useState({
@@ -41,7 +42,7 @@ export default function Signup() {
   }
 
   return (
-    <div>
+    <div className='auth-card'>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input required type="text" name="username" value={user.username} onChange={handleChange} />
@@ -52,7 +53,7 @@ export default function Signup() {
         <label>Repeat the password</label>
         <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Register</button>
+        <button type="submit" class="register-button">Register</button>
       </form>
     </div>
   )

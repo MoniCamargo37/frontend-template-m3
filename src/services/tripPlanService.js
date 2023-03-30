@@ -1,0 +1,38 @@
+import axios from 'axios';
+
+class TripPlanService {
+  constructor() {
+    this.api = axios.create({
+      baseURL: `${process.env.REACT_APP_BACKEND_URL}/trip`,
+    });
+  }
+
+  // Get all trips
+  getAllTrips() {
+    return this.api.get('/').then(({ data }) => data).catch(err => console.error(err));
+  }
+
+  // Get trip by ID
+  getTrip(tripId) {
+    return this.api.get(`/${tripId}`).then(({ data }) => data).catch(err => console.error(err));
+  }
+
+  // Create a new trip
+  createTrip(body) {
+    return this.api.post('/', body).then(({ data }) => data).catch(err => console.error(err))
+  }
+
+  // Edit a trip
+  editTrip(tripId, body) {
+    return this.api.put(`/${tripId}`, body).then(({ data }) => data).catch(err => console.error(err))
+  }
+
+  // Delete a trip
+  deleteTrip(tripId) {
+    return this.api.delete(`/${tripId}`).then(({ data }) => data).catch(err => console.error(err))
+  }
+}
+
+const tripPlanService = new TripPlanService();
+
+export default tripPlanService;
