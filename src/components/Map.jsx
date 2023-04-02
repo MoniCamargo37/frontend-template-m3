@@ -10,8 +10,8 @@ export const searchALocation = async (citySearched) => {
 }
 
 const Map = (props) => {
-  const [city, setCity] = useState(props.city);
-  const [formattedCity, setFormattedCity] = useState('');
+  const city = props.city;
+  const [finishedSearch, setFinishedSearch] = useState(false);
   const [location, setLocation] = useState({
     latitude: 41.360081,
     longitude: -71.058884,
@@ -23,14 +23,18 @@ const Map = (props) => {
     );
     const data = await response.json();
     console.log("La ciudad buscada en el mapa: ", city);
-    setFormattedCity(data.resourceSets[0].resources[0].address.formattedAddress);
-    const myCoordinates = data.resourceSets[0].resources[0].geocodePoints[0].coordinates;
+    const myCoordinates =
+data.resourceSets[0].resources[0].geocodePoints[0].coordinates;
     setLocation({latitude: myCoordinates[0], longitude: myCoordinates[1]});
   }
 
   useEffect(() => {
-    getCoordinates();
-  }, [city]);
+    if(!finishedSearch){
+      getCoordinates();
+      setFinishedSearch(true);
+    }
+    console.log('Las coordenadas: ', location);
+  },[finishedSearch, location]);
 
   return (
     <BingMapsReact

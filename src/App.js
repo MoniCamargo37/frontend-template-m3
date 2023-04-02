@@ -22,6 +22,7 @@ import './DestinationCard.css';
 import './PopularDestination.css';
 import './views/user/profile.css';
 import './views/trippo/planning.css';
+import'./home.css';
 
 function App() {
   return (

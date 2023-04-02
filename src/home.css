@@ -1,0 +1,77 @@
+
+  
+  .mostSearchedCities {
+    margin-top: 3rem;
+    max-width: 1024px;
+    margin: 3rem auto;
+  }
+  
+  .slick-slider {
+    margin: 0 auto;
+    max-width: 1024px;
+  }
+  
+  .slick-slide {
+    margin: 0 10px;
+  }
+  
+  .mostSearchedCity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  .mostSearchedCity h2 {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .mostSearchedCity img {
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+   margin-bottom: 10px;
+   border-radius: 10px;
+  }
+
+  .slider-arrow-left,
+.slider-arrow-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slider-arrow-left {
+  left: 20px;
+}
+
+.slider-arrow-right {
+  right: 20px;
+}
+
+.slider-arrow-left svg,
+.slider-arrow-right svg {
+  width: 24px;
+  height: 24px;
+}
+  
+  @media only screen and (max-width: 768px) {
+    .mostSearchedCities {
+      margin-top: 2rem;
+    }
+  
+    .slick-slider {
+      max-width: 600px;
+    }
+  
+    .mostSearchedCity img {
+      height: 150px;
+    }
+  }
