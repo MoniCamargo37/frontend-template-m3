@@ -8,6 +8,7 @@ export default function CityOverview() {
   const navigate = useNavigate();
   const [searchedCity, setSearchedCity] = useState();
 //  const [cityName, setCityName] = useState();
+const [finishedSearch, setFinishedSearch] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const location = useLocation();
@@ -47,8 +48,10 @@ export default function CityOverview() {
   };
 
   useEffect(() => {
-    checkCity();
-  }, [checkCity]);
+    if (!finishedSearch) {
+      setFinishedSearch(true);
+    checkCity()}
+  });
 
   const handleContinue = () => {
     if (searchedCity) {
