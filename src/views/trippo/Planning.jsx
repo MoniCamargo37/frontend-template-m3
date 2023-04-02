@@ -1,17 +1,26 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState, useEffect  } from 'react';
+import { useNavigate, useLocation} from 'react-router-dom';
 
 // import tripPlanService from '../services/tripPlanService';
 // import axios from 'axios';
 
 export default function Planning() {
-  const [destino, setDestino] = useState('');
   const [numPasajeros, setNumPasajeros] = useState(1);
-  const [presupuesto, setPresupuesto] = useState(300);
+  const [presupuesto, setPresupuesto] = useState(200);
   const [diasViaje, setDiasViaje] = useState(1);
-  const [mesViaje, setMesViaje] = useState('');
+  const [mesViaje, setMesViaje] = useState('1');
   const [tipoViaje, setTipoViaje] = useState('amigos');
+  const [setCityName] = useState('');
   const navigate = useNavigate();
+  const [selectedCityName, setSelectedCityName] = useState('');
+  const location = useLocation();
+  const { cityName } = location.state;
+
+  useEffect(() => {
+    if (location.state && location.state.cityName) {
+      setSelectedCityName(location.state.cityName);
+    }
+  }, [location.state]);
 
   const handleNumPasajerosChange = (event) => {
     setNumPasajeros(event.target.value);
@@ -21,9 +30,11 @@ export default function Planning() {
     setDiasViaje(event.target.value);
   };
 
-  const handleMesViajeChange = (event) => {
-    setMesViaje(event.target.value);
-  };
+
+  function handleMesViajeChange(event) {
+    const mesSeleccionado = event.target.value.toString();
+    setMesViaje(mesSeleccionado);
+  }
 
   const handlePresupuestoChange = (event) => {
     setPresupuesto(event.target.value);
@@ -36,12 +47,13 @@ export default function Planning() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!destino || numPasajeros <= 0 || diasViaje <= 0 || diasViaje > 7 || presupuesto < 100) {
+    if (!selectedCityName || !selectedCityName.trim() || numPasajeros <= 0 || diasViaje <= 0 || diasViaje > 7 || presupuesto < 100) {
       return;
+      //Show error popup
     }
-
+    
     const formData = {
-      city: destino,
+      city: selectedCityName,
       tripDuration: diasViaje,
       numTravellers: numPasajeros,
       monthOfTrip: mesViaje,
@@ -49,33 +61,18 @@ export default function Planning() {
       budget: presupuesto
     };
 
-    try {
-      const response = await fetch('/api/trip-plan', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to save trip plan.');
-      }
-
-      const data = await response.json();
-
-      navigate('/trip-results', { state: { tripPlan: data } });
-    } catch (error) {
-      console.error(error);
-    }
+    navigate('/plan-de-viaje', { state: {tripPlan: formData}});
   };
 
   return (
    <div className='planning-card'>
     <form className='formTrip-card' onSubmit={handleSubmit}>
-      <label htmlFor="destino">¿Dónde quieres viajar?</label>
-      <input type="text" value={destino} onChange={(event) => setDestino(event.target.value)} className="destino-input"/>
-      <br />
+      <label >¿Ciudad Seleccionada</label>
+      {/* <p>Ciudad Seleccionada: {cityName}</p> */}
+      {/* <input type="text" value={cityName} onChange={(event) => setDestino(event.target.value)} className="destino-input"/> */}
+      <input type="text" value={cityName} onChange={(event) => setCityName(event.target.value)}
+className="destino-input" />
+<br />
       <label>
         ¿Cuántas viajeros?
         <input type="number" value={numPasajeros} onChange={handleNumPasajerosChange} className="daysTrip-input" />
@@ -114,10 +111,10 @@ export default function Planning() {
 </label>
 <label>
   ¿Cuál es tu Presupuesto?
-  <input type="range" min="300" max="20000" value={presupuesto} onChange={handlePresupuestoChange} className="slider-input" />
+  <input type="range" min="200" max="10000" value={presupuesto} onChange={handlePresupuestoChange} className="slider-input" />
   <input type="text" value={presupuesto} onChange={(event) => {
     const value = parseInt(event.target.value);
-    if (!isNaN(value) && value >= 300 && value <= 20000) {
+    if (!isNaN(value) && value >= 100 && value <= 10000) {
       setPresupuesto(value);
     }
   }} onBlur={(event) => {
@@ -127,7 +124,7 @@ export default function Planning() {
     }
   }} className="budget-input" />
 </label>
-<Link to="/plan-de-viaje"><button>Planificar viaje</button></Link>
+<button onClick={handleSubmit}>Planificar viaje</button>
 </form>
 </div> 
 );

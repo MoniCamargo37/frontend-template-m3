@@ -17,7 +17,11 @@ class CityOverviewService {
   getMostSearchedCities() {
     return this.api.get('/mostSearched').then(({ data }) => data).catch(err => console.error(err));
   }
-
+  
+  getCityById(id) {
+    return this.api.get(`/${id}`).then(({ data }) => data).catch(err => console.error(err));
+  }
+  
   createCity(body) {
     return this.api.post('/',body).then(({ data }) => data).catch(err => console.error(err))
   }

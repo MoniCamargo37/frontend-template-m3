@@ -9,10 +9,13 @@ export default function CityOverview() {
   const [cityName, setCityName] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
   const location = useLocation();
-  const { city } = location.state;
-  
+  const { cityParams } = useParams();
+  let city;
+  if( location.state)
+    city = location.state.city;
+  else
+  city = cityParams;
 
   const getCity = async () => {
     try {
@@ -33,7 +36,7 @@ export default function CityOverview() {
 
   const handleContinue = () => {
     if (searchedCity) {
-      navigate('/planning');
+      navigate(`/planning/${searchedCity.cityName}`, { state: { cityName: searchedCity.cityName }});
     }
   };
 
@@ -59,10 +62,12 @@ export default function CityOverview() {
       {!loading && searchedCity && (
         <div className="cityOverview-card">
           <Map city={searchedCity.cityName} />
+          
+          <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} />
+          <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} />
           <img src={searchedCity.itineraryPic} alt={searchedCity.cityName} />
           <p>{searchedCity.description}</p>
-          <p>Location: {searchedCity.location}</p>
-          <p>Currency: {searchedCity.currency}</p>
+          <p>País: {searchedCity.country}</p>
           <p>Number of searches: {searchedCity.numSearches}</p>
           <button onClick={handleContinue}>Continue</button>
           <button onClick={handleGoBack}>Go Back</button>

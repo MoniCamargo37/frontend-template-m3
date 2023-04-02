@@ -7,6 +7,11 @@ class TripPlanService {
     });
   }
 
+  createTripPlan(tripPlan){
+    console.log('Moni');
+    return this.api.post('/actividades', tripPlan).then(({ data }) => data).catch(err => console.error(err));
+  }
+
   // Get all trips
   getAllTrips() {
     return this.api.get('/').then(({ data }) => data).catch(err => console.error(err));

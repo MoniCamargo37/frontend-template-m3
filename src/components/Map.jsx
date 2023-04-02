@@ -15,6 +15,7 @@ const Map = (props) => {
         `https://dev.virtualearth.net/REST/v1/Locations?locality=${city}&key=${process.env.REACT_APP_BING_MAPS_KEY}`
       );
       const data = await response.json();
+      console.log('Lo del mapa: ', data.resourceSets[0]);
       setFormattedCity(data.resourceSets[0].resources[0].address.formattedAddress);
       const myCoordinates = data.resourceSets[0].resources[0].geocodePoints[0].coordinates;
       setLocation({latitude: myCoordinates[0], longitude: myCoordinates[1]});

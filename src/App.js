@@ -16,6 +16,7 @@ import MyTrips from './components/MyTrips';
 import Profile from './views/user/Profile';
 import Planning from './views/trippo/Planning';
 import TripPlan from './views/trippo/TripPlan';
+import CityOverviewDetails from './components/CityOverviewDetails';
 import './Search.css';
 import './DestinationCard.css';
 import './PopularDestination.css';
@@ -30,8 +31,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/CityOverview" element= {<CityOverview />}/>
+        <Route path="/CityOverview/:cityParams" element= {<CityOverview />}/>
         <Route path="/plan-de-viaje" element={<TripPlan />} />
         <Route path="/planning" element={<Planning />} />
+        <Route path="/planning/:city" element={<Planning />} />
+        <Route path="/city/:id" element={<CityOverviewDetails />} />
         <Route path="/trip" element={<Trip />}>
         <Route path="/trip/planning" element={<Planning />} />
         <Route path="/trip/mytrips" element={<MyTrips />} />
