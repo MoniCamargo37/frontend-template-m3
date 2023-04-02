@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Map from '../../components/Map';
+import { searchALocation } from '../../components/Map';
 import cityOverviewService from '../../services/cityOverviewService';
 
 export default function CityOverview() {
   const navigate = useNavigate();
   const [searchedCity, setSearchedCity] = useState();
-  const [cityName, setCityName] = useState();
+//  const [cityName, setCityName] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const location = useLocation();
   const { cityParams } = useParams();
   let city;
+
   if( location.state)
     city = location.state.city;
   else
   city = cityParams;
+
+  const checkCity = async () => {
+    searchALocation(city)
+    .then(data => {
+      console.log("Esto es lo devuelto: ", data);
+      console.log(data.estimatedTotal);
+      if(data.estimatedTotal > 0) {
+        console.log(data.resources[0].address.formattedAddress);
+        city = data.resources[0].address.formattedAddress;
+        getCity();
+      }
+    })
+    .catch(error => console.error("No encontrado: ", error));
+  }
 
   const getCity = async () => {
     try {
@@ -31,8 +47,8 @@ export default function CityOverview() {
   };
 
   useEffect(() => {
-    getCity();
-  }, [cityName]);
+    checkCity();
+  }, [checkCity]);
 
   const handleContinue = () => {
     if (searchedCity) {
@@ -49,7 +65,7 @@ export default function CityOverview() {
       const confirmed = window.confirm('Are you sure you want to delete this city?');
       if (confirmed) {
         await cityOverviewService.deleteCity(id);
-        setCityName(null);
+//        setCityName(null);
       }
     } catch (error) {
       console.error(error);
@@ -63,9 +79,11 @@ export default function CityOverview() {
         <div className="cityOverview-card">
           <Map city={searchedCity.cityName} />
           
-          <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} />
-          <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} />
-          <img src={searchedCity.itineraryPic} alt={searchedCity.cityName} />
+          {/* <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} />
+          <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} /> */}
+          <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+          <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+          {/* <img src={searchedCity.itineraryPic} alt={searchedCity.cityName} /> */}
           <p>{searchedCity.description}</p>
           <p>País: {searchedCity.country}</p>
           <p>Number of searches: {searchedCity.numSearches}</p>

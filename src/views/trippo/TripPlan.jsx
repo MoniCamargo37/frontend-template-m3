@@ -16,7 +16,8 @@ function TripPlan() {
     try {
       const openaiResponse = await tripPlanService.createTripPlan(myTrip.tripPlan);
       console.log("Fin del trayecto: ", openaiResponse.res);
-
+      myTrip.activities = openaiResponse.res;
+      console.log('Esto es myTrip: ', myTrip);
       setNewTripPlan(myTrip);      
       setLoading(false);
       setError(false);
@@ -66,17 +67,23 @@ function TripPlan() {
         <div className="tripPlanDetail-card">
           <div className="cityOverview-card">
           <h2>{myTrip.city}</h2>
-          <img src={myTrip.cityOverview.itineraryPic} alt={myTrip.city} />
+          <img src={myTrip.tripPlan.itineraryPic} alt={myTrip.city} />
           </div>
-          <p>Duración del viaje: {myTrip.tripDuration} days</p>
-          <p>Número de viajeros: {myTrip.numTravellers}</p>
-          <p>Mes de viaje: {myTrip.monthOfTrip}</p>
-          <p>Tipo de viaje: {myTrip.tripType}</p>
-          <p>Presupuesto: ${myTrip.budget}</p>
+          <p>Duración del viaje: {myTrip.tripPlan.tripDuration} days</p>
+          <p>Número de viajeros: {myTrip.tripPlan.numTravellers}</p>
+          <p>Mes de viaje: {myTrip.tripPlan.monthOfTrip}</p>
+          <p>Tipo de viaje: {myTrip.tripPlan.tripType}</p>
+          <p>Presupuesto: ${myTrip.tripPlan.budget}</p>
           <ul>
-          {myTrip.activities.map((activity, index) => (
-            <li key={index}>{activity}</li>
-          ))}
+            {myTrip.activities.map((day, index) => (
+              <li key={index}>{day.name}
+                <ul>
+                  {day.activities.map((activity, ind) => (
+                    <li key={ind}>{activity.name}</li>              
+                  ))}
+                </ul>
+              </li>
+            ))}
           </ul>
           <button onClick={handleSave}>Save Trip Plan</button>
           <button onClick={handleDelete}>Delete Trip Plan</button>
