@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Map from '../../components/Map';
 import { searchALocation } from '../../components/Map';
 import cityOverviewService from '../../services/cityOverviewService';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function CityOverview() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const [finishedSearch, setFinishedSearch] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
   const { cityParams } = useParams();
   let city;
 
@@ -77,25 +79,42 @@ const [finishedSearch, setFinishedSearch] = useState(false);
 
   return (
     <>
+    <div className='loading'>
       {loading && <p>Loading...</p>}
+      </div>
       {!loading && searchedCity && (
         <div className="cityOverview-card">
-          <Map city={searchedCity.cityName} />
-          
           {/* <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} />
           <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} /> */}
+            <h1>{searchedCity.cityName}</h1>
+            <h2>País: {searchedCity.country}</h2>
+          <div className='cityOverview-img'>
           <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
           <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+          </div>
           {/* <img src={searchedCity.itineraryPic} alt={searchedCity.cityName} /> */}
           <p>{searchedCity.description}</p>
-          <p>País: {searchedCity.country}</p>
-          <p>Number of searches: {searchedCity.numSearches}</p>
+          <div className='searched-number'>
+          <h3> {searchedCity.numSearches} </h3>
+          <p> búsqueda</p>
+          </div>
+          <div className='map-card'>
+          <Map city={searchedCity.cityName} /> 
+          </div>
+          <div className='cityOverview-btns'>
           <button onClick={handleContinue}>Continue</button>
           <button onClick={handleGoBack}>Go Back</button>
-          <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
+          {user && user.role === 'admin' && (
+  <div className='delete-btn'> 
+    <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
+  </div>
+)}
+      </div>
         </div>
       )}
+      <div className='cityOverview-error'>
       {error && <p>Failed to load city data.</p>}
+      </div>
     </>
   );
 }

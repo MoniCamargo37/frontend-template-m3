@@ -1,0 +1,141 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.cityOverview-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 50%;
+  margin: 0 auto;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.cityOverview-card > * {
+  margin: 20px 0;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.cityOverview-card > h2 {
+  text-align: center;
+}
+
+.cityOverview-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+.cityOverview-img > img {
+    border-radius: 10%;
+    margin: 0 10px;
+    width: 50%;
+    object-fit: cover;
+    height: 300px;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  .cityOverview-img > img:first-child {
+    animation-delay: 0.5s;
+  }
+  
+  .cityOverview-img > img:last-child {
+    animation-delay: 1s;
+  }
+.cityOverview-card > p {
+  text-align: justify;
+  font-size: 18px;
+}
+
+.searched-number {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin: 0px;
+}
+
+.searched-number h3 {
+ color: #ff8c00;
+ font-size: 18px;
+
+}
+
+.map-card {
+  width: 100%;
+  max-width: 50%;
+  margin: 0 auto;
+  animation: zoomIn 1s ease-in-out;
+}
+
+.cityOverview-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cityOverview-error {
+    color: red;
+  }
+.cityOverview-btns > button {
+  margin: 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #ff6347;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 100px;
+}
+
+.cityOverview-btns > button:hover {
+  background-color: #7F8C8D;
+}
+
+.delete-btn {
+  /* display: ${isAdmin ? 'block' : 'none'}; */
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}

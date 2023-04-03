@@ -72,9 +72,8 @@
 
 
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 import { AuthContext } from "../context/AuthContext";
 import CityOverviewService from "../services/cityOverviewService";
 import Map, { searchALocation } from '../components/Map';
@@ -90,6 +89,10 @@ const Home = () => {
   const [formattedCity, setFormattedCity] = useState("");
   const { user, logOutUser } = useContext(AuthContext);
   const [mostSearchedCities, setMostSearchedCities] = useState([]);
+  const [sliderRef, setSliderRef] = useState(null);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+
   const navigate = useNavigate();
 
   const handleCity = () => {
@@ -105,7 +108,7 @@ const Home = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 100,
     slidesToShow: 3,
     slidesToScroll: 3,
     responsive: [
@@ -119,7 +122,7 @@ const Home = () => {
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 100,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1
@@ -145,6 +148,41 @@ const Home = () => {
     const formattedAddress = searchResult.resources[0].address.formattedAddress;
     navigate('/CityOverview', { state: {city: cityName, formattedCity: formattedAddress, coordinates: myCoordinates} });
   }
+  // const handlePrevClick = () => {
+  //   sliderRef.slickPrev();
+  // };
+
+  // const handleNextClick = () => {
+  //   sliderRef.slickNext();
+  // };
+
+
+  // const handlePrevClick = () => {
+  //   const currentIndex = sliderRef.current.innerSlider.state.currentSlide;
+  //   const newSlideIndex = currentIndex - 3;
+  //   sliderRef.current.slickGoTo(newSlideIndex);
+  // };
+  
+  // const handleNextClick = () => {
+  //   const currentIndex = sliderRef.current.innerSlider.state.currentSlide;
+  //   const newSlideIndex = currentIndex + 3;
+  //   sliderRef.current.slickGoTo(newSlideIndex);
+  // };
+  const handlePrevClick = () => {
+    if (currentSlideIndex > 0) {
+      const newIndex = currentSlideIndex - 2;
+      sliderRef.current.slickGoTo(newIndex);
+      setCurrentSlideIndex(newIndex);
+    }
+  }
+
+  const handleNextClick = () => {
+    if (currentSlideIndex < mostSearchedCities.length - 3) {
+      const newIndex = currentSlideIndex + 2;
+      sliderRef.current.slickGoTo(newIndex);
+      setCurrentSlideIndex(newIndex);
+    }
+  }
 
   return (
     <div className="App">
@@ -168,26 +206,28 @@ const Home = () => {
       </div>
       <div className="mostSearchedCities">
         <h1>Most searched cities:</h1>
-        <Slider {...settings}>
-  <div className="slider-arrow-left">
-    <FaArrowLeft />
-  </div>
-  <div className="slider-arrow-right">
-    <FaArrowRight />
-  </div>
-  {mostSearchedCities.map(city => (
-    <Link to={`/CityOverview/${city.cityName}`} key={city._id}>
-      <div className="mostSearchedCity">
-        <h2>{city.cityName}</h2>
-        <img src={city.destinationPics[1]} alt={city.cityName} onError={(e) => e.target.style.display = 'none'} />
-        <p>{city.numSearches} searches</p>
-        <p>{city.description}</p>
+        <Slider {...settings} ref={slider => setSliderRef(slider)}>
+          {mostSearchedCities.map(city => (
+           <div className="mostSearchedCity" key={city._id} onClick={() => handleCityClick(city.cityName)}>
+           <h2>{city.cityName}</h2>
+              <img src={city.destinationPics[1]} alt={city.cityName} onError={(e) => e.target.style.display = 'none'} />
+              <p>{city.numSearches} searches</p>
+              <p>{city.description.slice(0, 100)}{city.description.length > 100 ? '...' : ''}</p>
+            </div>
+          ))}
+        </Slider>
+        <div className="slider-arrows">
+          <button className="slider-arrow" onClick={handlePrevClick}>
+            <FaArrowLeft />
+          </button>
+          <button className="slider-arrow" onClick={handleNextClick}>
+            <FaArrowRight />
+          </button>
+        </div>
       </div>
-    </Link>
-  ))}
-</Slider>
-</div>
-</div>
-);
+    </div>
+  );
 };
- export default Home; 
+
+export default Home;
+

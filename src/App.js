@@ -23,6 +23,7 @@ import './PopularDestination.css';
 import './views/user/profile.css';
 import './views/trippo/planning.css';
 import'./home.css';
+import './cityoverview.css';
 
 function App() {
   return (
