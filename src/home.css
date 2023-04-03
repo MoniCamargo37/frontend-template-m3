@@ -1,4 +1,3 @@
-
   
   .mostSearchedCities {
     margin-top: 3rem;
@@ -48,6 +47,14 @@
   cursor: pointer;
 }
 
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+}
+
 .slider-arrow-left {
   left: 20px;
 }
@@ -56,11 +63,45 @@
   right: 20px;
 }
 
-.slider-arrow-left svg,
-.slider-arrow-right svg {
+.slider-arrow svg {
   width: 24px;
   height: 24px;
+  fill: #fff;
 }
+
+.slider-arrow-background {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.slider-arrow-background:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+  /* Oculta el componente CityOverview por defecto */
+  .city-overview {
+    display: none;
+  }
+  
+  /* Muestra el componente CityOverview cuando se hace clic en el elemento con la clase "open-city-overview" */
+  .open-city-overview {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .open-city-overview:hover + .city-overview {
+    display: block;
+  }
+
+
+
   
   @media only screen and (max-width: 768px) {
     .mostSearchedCities {
@@ -74,4 +115,16 @@
     .mostSearchedCity img {
       height: 150px;
     }
+     .slider-arrow {
+    display: none;
   }
+
+  /* Muestra el componente CityOverview cuando se hace clic en cualquier lugar de la tarjeta */
+  .mostSearchedCity {
+    cursor: pointer;
+  }
+  
+  .mostSearchedCity:hover .city-overview {
+    display: block;
+  }
+}

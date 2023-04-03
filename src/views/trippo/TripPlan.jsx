@@ -8,10 +8,12 @@ function TripPlan() {
   const [newTripPlan, setNewTripPlan] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
   const location = useLocation();
   const myTrip = location.state;
-  
+  const cityName = myTrip.cityName;
+  const itineraryPic = myTrip.itineraryPic;
+
+
   const getTrip = async () => {
     try {
       const openaiResponse = await tripPlanService.createTripPlan(myTrip.tripPlan);
@@ -58,7 +60,20 @@ function TripPlan() {
   const handleGoBack = () => {
     navigate('/');
   };
-
+  const monthNames = {
+    1: 'Enero',
+    2: 'Febrero',
+    3: 'Marzo',
+    4: 'Abril',
+    5: 'Mayo',
+    6: 'Junio',
+    7: 'Julio',
+    8: 'Agosto',
+    9: 'Septiembre',
+    10: 'Octubre',
+    11: 'Noviembre',
+    12: 'Diciembre',
+  };
 
   return (
     <>
@@ -68,14 +83,13 @@ function TripPlan() {
       {!loading && myTrip && (
         <div className="tripPlanDetail-card">
           <div className="cityOverview-card">
-          <h2>{myTrip.city}</h2>
-          {/* <img src={searchedCity.itineraryPic} alt={searchedCity.cityName} /> */}
+         <h2>{cityName}</h2>
+         <img src={itineraryPic} alt={cityName} />
           </div>
-          <p>Duración del viaje: {myTrip.tripPlan.tripDuration} día o días</p>
-          <p>Número de viajeros: {myTrip.tripPlan.numTravellers}</p>
-          <p>Mes de viaje: {myTrip.tripPlan.monthOfTrip}</p>
-          <p>Tipo de viaje: {myTrip.tripPlan.tripType}</p>
-          <p>Presupuesto: €{myTrip.tripPlan.budget}</p>
+          <div className='trip-data'>
+          <p>¡Bienvenido a tu viaje soñado! De acuerdo a tu planificación, el viaje tendrá una duración de {myTrip.tripPlan.tripDuration} día(s), con un total de {myTrip.tripPlan.numTravellers} viajero(s). Estás planeando viajar en {monthNames[myTrip.tripPlan.monthOfTrip]} y disfrutar de un emocionante {myTrip.tripPlan.tripType}. Además, tu presupuesto para este viaje es de €{myTrip.tripPlan.budget}. ¡A disfrutar de las aventuras que te esperan!</p>
+          </div>
+          <div className='activities-plan'>
           <ul>
             {myTrip.activities.map((day, index) => (
               <li key={index}>{day.name}
@@ -87,9 +101,12 @@ function TripPlan() {
               </li>
             ))}
           </ul>
+          </div>
+          <div className='cityOverview-btns'>
           <button onClick={handleSave}>Save Trip Plan</button>
           {/* <button onClick={handleDelete}>Delete Trip Plan</button> */}
           <button onClick={handleGoBack}>Go Back</button>
+          </div>
     </div>
   )}
   <div className='cityOverview-error'>

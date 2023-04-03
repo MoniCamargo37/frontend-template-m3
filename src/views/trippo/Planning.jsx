@@ -15,6 +15,9 @@ export default function Planning() {
   const [selectedCityName, setSelectedCityName] = useState('');
   const location = useLocation();
   const { cityName } = location.state;
+  const [searchedCity, setSearchedCity] = useState(location.state?.searchedCity);
+
+  
 
   useEffect(() => {
     if (location.state && location.state.cityName) {
@@ -43,26 +46,53 @@ export default function Planning() {
   const handleTipoViajeChange = (event) => {
     setTipoViaje(event.target.value);
   };
-
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  
+  //   if (!selectedCityName || !selectedCityName.trim() || numPasajeros <= 0 || diasViaje <= 0 || diasViaje > 7 || presupuesto < 100) {
+  //     return;
+  //     //Show error popup
+  //   }
+    
+  //   const formData = {
+  //     city: selectedCityName,
+  //     tripDuration: diasViaje,
+  //     numTravellers: numPasajeros,
+  //     monthOfTrip: mesViaje,
+  //     tripType: tipoViaje,
+  //     budget: presupuesto,
+  //     cityName: selectedCityName,
+  //     itineraryPic: searchedCity.destinationPics[0]
+  //   };
+  
+  //   navigate('/plan-de-viaje', { state: {tripPlan: formData}});
+  // };
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     if (!selectedCityName || !selectedCityName.trim() || numPasajeros <= 0 || diasViaje <= 0 || diasViaje > 7 || presupuesto < 100) {
       return;
       //Show error popup
     }
-    
+  
     const formData = {
       city: selectedCityName,
       tripDuration: diasViaje,
       numTravellers: numPasajeros,
       monthOfTrip: mesViaje,
       tripType: tipoViaje,
-      budget: presupuesto
+      budget: presupuesto,
+      searchedCity,
     };
-
-    navigate('/plan-de-viaje', { state: {tripPlan: formData}});
+  
+    if (searchedCity && searchedCity.itineraryPic && searchedCity.itineraryPic.length > 0) {
+      navigate('/plan-de-viaje', { state: { tripPlan: formData, cityName: selectedCityName, itineraryPic: searchedCity.itineraryPic} });
+    } else {
+      navigate('/plan-de-viaje', { state: { tripPlan: formData, cityName: selectedCityName } });
+    }
   };
+  
 
   return (
    <div className='planning-card'>

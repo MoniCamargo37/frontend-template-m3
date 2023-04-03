@@ -57,7 +57,7 @@ const [finishedSearch, setFinishedSearch] = useState(false);
 
   const handleContinue = () => {
     if (searchedCity) {
-      navigate(`/planning/${searchedCity.cityName}`, { state: { cityName: searchedCity.cityName }});
+      navigate(`/planning/${searchedCity.cityName}`, { state: { cityName: searchedCity.cityName, searchedCity: searchedCity.itineraryPic }});
     }
   };
 
@@ -79,6 +79,7 @@ const [finishedSearch, setFinishedSearch] = useState(false);
 
   return (
     <>
+    <div className='App'>
     <div className='loading'>
       {loading && <p>Loading...</p>}
       </div>
@@ -114,6 +115,7 @@ const [finishedSearch, setFinishedSearch] = useState(false);
       )}
       <div className='cityOverview-error'>
       {error && <p>Failed to load city data.</p>}
+      </div>
       </div>
     </>
   );
