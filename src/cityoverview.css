@@ -59,10 +59,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  width: 100%;
-  margin: 0px;
+  justify-content:space-around;
+  width: 20%;
 }
 
 .searched-number h3 {
@@ -70,15 +68,31 @@
   font-size: 18px;
 }
 
-.map-card {
+/* .map-card {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 0 auto;
   animation: zoomIn 1s ease-in-out;
-}
 
+} */
+
+.background-map {
+    position: relative;
+    overflow: hidden;
+   
+  }
+  
+  .map-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  
 .cityOverview-btns {
   display: flex;
   justify-content: center;

@@ -70,9 +70,11 @@ const Home = () => {
   };
 
   const handleCityClick = (cityName) => {
-    setFormattedCity(cityName);
-    setSelectedCity(cityName.toLowerCase().split(' ').join('-'));
-    setCityClicked(true);
+    setCityClicked(cityName);
+    if (cityClicked === cityName) {
+      setCityClicked(null);
+      navigate('/CityOverview', { state: { city: cityName } });
+    }
   };
 
   const handlePrevClick = () => {
@@ -95,6 +97,7 @@ const Home = () => {
 
   return (
     <div className="App">
+    
       {user && <h1>¡Hola {user.username}!</h1>}
       <h2>¡Explícame ese lugar que estás pensando!</h2>
       <div className="searchCard">
@@ -117,27 +120,33 @@ const Home = () => {
         <h1>Descubre las ciudades más buscadas</h1>
         <Slider {...settings} ref={slider => setSliderRef(slider)}>
       {mostSearchedCities.map(city => (
+        <div className="mostSearchedCity-card">
         <div
           className="mostSearchedCity"
           key={city._id}
-          onMouseDown={() => handleCityClick(city.cityName)}
+          onClick={() => handleCityClick(city.cityName)}
         >
            <h2>{city.cityName}</h2>
               <img src={city.destinationPics[1]} alt={city.cityName} onError={(e) => e.target.style.display = 'none'} />
-              <p>{city.numSearches} searches</p>
+              <div className="searched-number">
+              <h3>{city.numSearches}</h3>
+              <p>visitas</p>
+              </div>
               <p className="city-description open-city-overview">{city.description.slice(0, 100)}{city.description.length > 100 ? '...' : ''}</p>
+            </div>
             </div>
           ))}
         </Slider>
         <div className="slider-arrows">
-        <button className="slider-arrow" onClick={handlePrevClick}>
+        <button className="slider-arrow-left" onClick={handlePrevClick}>
   <FaArrowLeft />
 </button>
-<button className="slider-arrow" onClick={handleNextClick}>
+<button className="slider-arrow-right" onClick={handleNextClick}>
   <FaArrowRight />
 </button>
         </div>
       </div>
+      
     </div>
   );
 };

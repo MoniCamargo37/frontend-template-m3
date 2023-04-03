@@ -1,4 +1,4 @@
-  
+/*   
   .mostSearchedCities {
     margin-top: 3rem;
     max-width: 1024px;
@@ -53,6 +53,8 @@
   transform: translateY(-50%);
   z-index: 1;
   cursor: pointer;
+  border-radius: 50%;
+  border-color: #818080;
 }
 
 .slider-arrow-left {
@@ -66,7 +68,7 @@
 .slider-arrow svg {
   width: 24px;
   height: 24px;
-  fill: #fff;
+  fill: #818080;
 }
 
 .slider-arrow-background {
@@ -75,34 +77,12 @@
   transform: translateY(-50%);
   z-index: 0;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #818080;
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
 
-.slider-arrow-background:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-  /* Oculta el componente CityOverview por defecto */
-  .city-overview {
-    display: none;
-  }
-  
-  /* Muestra el componente CityOverview cuando se hace clic en el elemento con la clase "open-city-overview" */
-  .open-city-overview {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  
-  .open-city-overview:hover + .city-overview {
-    display: block;
-  }
-
-
-
-  
   @media only screen and (max-width: 768px) {
     .mostSearchedCities {
       margin-top: 2rem;
@@ -115,16 +95,185 @@
     .mostSearchedCity img {
       height: 150px;
     }
-     .slider-arrow {
+     .slider-arrows {
+    display: none;
+  }
+  } */
+  
+  .mostSearchedCities-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mostSearchedCities {
+    margin-top: 2rem;
+    max-width: 1024px;
+    margin: 3rem auto;
+ 
+  }
+  .mostSearchedCity-card {
+    gap: 20px;
+
+  }
+  .mostSearchedCity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 5px;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    text-align: center; /* Agregar este estilo para centrar horizontalmente */
+  }
+  
+  .mostSearchedCity h2 {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .mostSearchedCity img {
+    width: 100%; /* Agregar este estilo para ocupar todo el ancho del contenedor */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .mostSearchedCity p {
+    margin: 0.5rem;
+ 
+  }
+  
+.city-description {
+  margin: 0.5rem;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+.searched-number {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.searched-number h3 {
+  color: #ff8c00;
+  font-size: 18px;
+}
+
+  .mostSearchedCity
+  .slider-arrows {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .slider-arrow-left,
+  .slider-arrow-right {
+    background-color: transparent;
+    border: 2px solid #818080;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    transition: all 0.3s ease;
+  }
+  
+  .slider-arrow-left {
+    left: 20px;
+  }
+  
+  .slider-arrow-right {
+    right: 20px;
+  }
+  
+  .slider-arrow svg {
+    width: 24px;
+    height: 24px;
+    fill: #818080;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .slider-arrow-left:hover,
+  .slider-arrow-right:hover {
+    background-color: #ccc;
+  }
+@media only screen and (max-width: 768px) {
+  .mostSearchedCities-container {
+    margin-top: 1rem;
+  }
+  
+  .mostSearchedCities {
+    margin: 2rem auto;
+    max-width: 600px;
+  }
+
+  .slider-arrows {
     display: none;
   }
 
-  /* Muestra el componente CityOverview cuando se hace clic en cualquier lugar de la tarjeta */
-  .mostSearchedCity {
-    cursor: pointer;
+  .slider-arrow-left {
+    left: 10px;
+  }
+
+  .slider-arrow-right {
+    right: 10px;
+  }
+
+  .mostSearchedCity h2 {
+    font-size: 1.2rem;
   }
   
-  .mostSearchedCity:hover .city-overview {
-    display: block;
+  .mostSearchedCity img {
+    height: 120px;
   }
 }
+
+
+@media only screen and (max-width: 1024px) {
+  .mostSearchedCities {
+    margin: 2rem auto;
+    max-width: 800px;
+  }
+  .mostSearchedCity {
+    width: 50px;
+  }
+  .mostSearchedCity img {
+    height: 150px;
+  }
+  .mostSearchedCities {
+    margin: 3rem auto;
+    max-width: 1200px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .mostSearchedCities-container {
+    margin-top: 2rem;
+  }
+
+  .mostSearchedCities {
+    margin: 3rem auto;
+    max-width: 1024px;
+  }
+
+  .slider-arrows {
+    margin-top: 2rem;
+  }
+
+  .mostSearchedCity h2 {
+    font-size: 1.5rem;
+  }
+
+  .mostSearchedCity img {
+    height: 200px;
+  }
+}
+  

@@ -80,13 +80,12 @@ const [finishedSearch, setFinishedSearch] = useState(false);
   return (
     <>
     <div className='App'>
+    <div className="background-map">
     <div className='loading'>
       {loading && <p>Loading...</p>}
       </div>
       {!loading && searchedCity && (
         <div className="cityOverview-card">
-          {/* <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} />
-          <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} /> */}
             <h1>{searchedCity.cityName}</h1>
             <h2>País: {searchedCity.country}</h2>
           <div className='cityOverview-img'>
@@ -115,6 +114,7 @@ const [finishedSearch, setFinishedSearch] = useState(false);
       )}
       <div className='cityOverview-error'>
       {error && <p>Failed to load city data.</p>}
+      </div>
       </div>
       </div>
     </>

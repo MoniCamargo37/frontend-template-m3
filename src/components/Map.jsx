@@ -39,11 +39,11 @@ data.resourceSets[0].resources[0].geocodePoints[0].coordinates;
   return (
     <BingMapsReact
       bingMapsKey={process.env.REACT_APP_BING_MAPS_KEY}
-      height="500px"
+  
       mapOptions={{
         navigationBarMode: "square",
       }}
-      width="500px"
+
       viewOptions={{
         center: { latitude: location.latitude, longitude: location.longitude },
         mapTypeId: "road",
