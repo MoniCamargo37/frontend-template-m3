@@ -79,46 +79,48 @@ const [finishedSearch, setFinishedSearch] = useState(false);
 
   return (
     <>
-    <div className='App'>
-    <div className="background-map">
-    <div className='loading'>
-      {loading && <p>Loading...</p>}
-      </div>
-      {!loading && searchedCity && (
-        <div className="cityOverview-card">
-            <h1>{searchedCity.cityName}</h1>
-            <h2>País: {searchedCity.country}</h2>
-          <div className='cityOverview-img'>
-          <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
-          <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
-          </div>
-          {/* <img src={searchedCity.itineraryPic} alt={searchedCity.cityName} /> */}
-          <p>{searchedCity.description}</p>
-          <div className='searched-number'>
-          <h3> {searchedCity.numSearches} </h3>
-          <p> búsqueda</p>
-          </div>
-          <div className='map-card'>
-          <Map city={searchedCity.cityName} /> 
-          </div>
-          <div className='cityOverview-btns'>
-          <button onClick={handleContinue}>Continue</button>
-          <button onClick={handleGoBack}>Go Back</button>
-          {user && user.role === 'admin' && (
-  <div className='delete-btn'> 
-    <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
-  </div>
-)}
-      </div>
+      <div className='App'>
+        <div className='loading'>
+          {loading && <p>Loading...</p>}
         </div>
-      )}
-      <div className='cityOverview-error'>
-      {error && <p>Failed to load city data.</p>}
-      </div>
-      </div>
+        {!loading && searchedCity && (
+          <>
+            <div className="cityOverview-card">
+            <div className='header-title'>
+            <h1>{searchedCity.cityName}</h1>
+              <h2>País: {searchedCity.country}</h2>
+              </div>
+              <div className='cityOverview-img'>
+                <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+                <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+              </div>
+              <p>{searchedCity.description}</p>
+              <div className='searched-number'>
+                <h3> {searchedCity.numSearches} </h3>
+                <p>Visitas</p>
+              </div>
+              <div className='cityOverview-btns'>
+                <button onClick={handleContinue}>Continue</button>
+                <button onClick={handleGoBack}>Go Back</button>
+                {user && user.role === 'admin' && (
+                  <div className='delete-btn'> 
+                    <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className='background-map'>
+            <div className='map-card'>
+              <Map city={searchedCity.cityName} /> 
+            </div>
+              </div>
+          </>
+        )}
+     
+        <div className='cityOverview-error'>
+          {error && <p>Failed to load city data.</p>}
+        </div>
       </div>
     </>
   );
-}
-
-
+ }
