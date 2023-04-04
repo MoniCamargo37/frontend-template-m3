@@ -12,7 +12,7 @@ import IsPrivate from './components/IsPrivate';
 import Footer from './components/Footer';
 import CityOverview from './views/trippo/CityOverview';
 import Trip from './views/trippo/Trip';
-import MyTrips from './components/MyTrips';
+import MyTrips from './views/trippo/MyTrips';
 import Profile from './views/user/Profile';
 import Planning from './views/trippo/Planning';
 import TripPlan from './views/trippo/TripPlan';
@@ -24,6 +24,7 @@ import './views/user/profile.css';
 import './views/trippo/planning.css';
 import'./home.css';
 import './cityoverview.css';
+import './MyTrips.css';
 
 function App() {
   return (
@@ -40,7 +41,9 @@ function App() {
         <Route path="/city/:id" element={<CityOverviewDetails />} />
         <Route path="/trip" element={<Trip />}>
         <Route path="/trip/planning" element={<Planning />} />
-        <Route path="/trip/mytrips" element={<MyTrips />} />
+        <Route path="/trip/mis-viajes" element={<MyTrips />} />
+        {/* <Route path="/trip/mis-viajes" element={<MyTrips />} /> */}
+        <Route path="/trip/mis-viajes" element={<MyTrips />} />
       
         </Route>
         <Route path="/signup" element={<Signup />} />

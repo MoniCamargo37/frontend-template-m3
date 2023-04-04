@@ -42,21 +42,6 @@ export default function Navbar() {
     toggleMenu();
   };
 
-//   return (
-//     <div>
-//       {user && <p>Hello {user.username}</p> }
-//       <ul>
-//         <li><NavLink to="/">Home</NavLink></li>
-//         {!isLoggedIn && <li><NavLink to="/signup">Sign up</NavLink></li>}
-//         {!isLoggedIn && <li><NavLink to="/login">Login</NavLink></li>}
-//         {isLoggedIn && <li><NavLink to="/private">Private view</NavLink></li>}
-//         {isLoggedIn && <li><button onClick={() => logOutUser()}>Log out</button></li>}
-//         <li><button onClick={() => navigate(-1)}>Go back</button></li>
-//       </ul>
-//     </div>
-//   )
-// }
-
 
 return (
   <div>
@@ -75,9 +60,7 @@ return (
           <div className="menu-container" style={{ top: navRef.current.offsetHeight }} onMouseLeave={handleMouseLeave}>
             {/* <button className="menu-link" onClick={toggleMenu}>Cerrar</button> */}
             <ul className="menu">
-              {/* <li><NavLink className="menu-link" to="/trip/mytrips">Mis Viajes</NavLink></li>
-              <li><NavLink className="menu-link" to="/trip/planning">Planificar un Viaje</NavLink></li> */}
-              <li><NavLink className="menu-link" to="/trip/mytrips" onClick={handleLinkClick}>Mis Viajes</NavLink></li>
+              <li><NavLink className="menu-link" to="/trip/mis-viajes" onClick={handleLinkClick}>Mis Viajes</NavLink></li>
               <li><NavLink className="menu-link" to="/trip/planning" onClick={handleLinkClick}>Planificar un Viaje</NavLink></li>
             </ul>
             <Outlet />

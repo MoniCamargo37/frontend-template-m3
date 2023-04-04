@@ -11,14 +11,14 @@ function TripPlan() {
   const location = useLocation();
   const myTrip = location.state;
   const cityName = myTrip.cityName;
-  const itineraryPic = myTrip.itineraryPic;
+  const itineraryPic = myTrip.tripPlan.searchedCity;
 
 
   const getTrip = async () => {
     try {
       const openaiResponse = await tripPlanService.createTripPlan(myTrip.tripPlan);
       console.log("Fin del trayecto: ", openaiResponse.res);
-      myTrip.activities = openaiResponse.res;
+      myTrip.days = openaiResponse.res;
       console.log('Esto es myTrip: ', myTrip);
       setNewTripPlan(myTrip);      
       setLoading(false);
@@ -32,30 +32,33 @@ function TripPlan() {
   };
   
   useEffect(() => {
+    if (!myTrip) return; // Si myTrip es nulo, no llamar a getTrip()
     getTrip();
-  }, []);
+  }, []); // Arreglo de dependencias vacío
 
   
-  const handleDelete = async () => {
-    try {
-      const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
-      if (confirmed) {
-        await tripPlanService.deleteTrip(tripId);
-        navigate('/trip-plan');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleDelete = async () => {
+  //   try {
+  //     const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
+  //     if (confirmed) {
+  //       await tripPlanService.deleteTrip(tripId);
+  //       navigate('/trip-plan');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  const handleSave = async () => {
-    try {
-      // Here you can call the API to save the trip plan to the user's account
-      console.log('Trip plan saved!');
-    } catch (error) {
-      console.error(error);
-    }
-  };
+const handleSave = async () => {
+  try {
+    await tripPlanService.createTrip(newTripPlan);
+    console.log('Trip plan saved!');
+    alert('Trip plan saved!');
+  } catch (error) {
+    console.error(error);
+    alert('Error saving trip plan. Please try again later.');
+  }
+};
 
   const handleGoBack = () => {
     navigate('/');
@@ -91,11 +94,11 @@ function TripPlan() {
           </div>
           <div className='activities-plan'>
           <ul>
-            {myTrip.activities.map((day, index) => (
+            {myTrip.days.map((day, index) => (
               <li key={index}>{day.name}
                 <ul>
                   {day.activities.map((activity, ind) => (
-                    <li key={ind}>{activity.name}</li>              
+                    <li key={ind}>{activity.name} {activity.description} {activity.duration} </li>              
                   ))}
                 </ul>
               </li>

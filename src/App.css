@@ -62,3 +62,9 @@ h3 {
 .nav_link:hover {
   color: black;
 }
+.nav-link-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
