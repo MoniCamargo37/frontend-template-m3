@@ -1,10 +1,10 @@
 /*** Footer:   color:#555 ***/
 /**** Navbar:   background-color: #FF6347; *****/
-
+/* 
 .App {
     text-align: center;
     /* padding: 100px; */
-  }
+  /* } */ 
   /*********************** navbar **********************/
   .nav-menu {
     display: flex;
@@ -83,12 +83,12 @@
   .Footer {
     display: none;
   }
-  
+/*   
   .destination {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-  }
+  } */
   .desktop-slider {
     display: flex;
     flex-direction: row;

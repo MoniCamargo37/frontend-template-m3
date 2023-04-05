@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState,useContext, useEffect } from "react";
+import { useNavigate, useLocation, Link} from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 // import tripPlanService from '../services/tripPlanService';
 
 export default function Planning() {
   const [numPasajeros, setNumPasajeros] = useState(1);
-  const [presupuesto, setPresupuesto] = useState(200);
+  const [presupuesto, setPresupuesto] = useState(100);
   const [diasViaje, setDiasViaje] = useState(1);
   const [mesViaje, setMesViaje] = useState("1");
-  const [tipoViaje, setTipoViaje] = useState("amigos");
+  const [tipoViaje, setTipoViaje] = useState("aventurero");
   const [setCityName] = useState("");
   const navigate = useNavigate();
   const [selectedCityName, setSelectedCityName] = useState("");
@@ -17,6 +18,7 @@ export default function Planning() {
   const [searchedCity, setSearchedCity] = useState(
     location.state?.searchedCity
   );
+  const authContext = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
@@ -198,7 +200,13 @@ export default function Planning() {
           />
           {errorMsg && <p className="error-msg">{errorMsg}</p>}
         </label>
-        <button onClick={handleSubmit}>Planificar viaje</button>
+        {authContext.user ? (
+  <button onClick={handleSubmit}>Planificar viaje</button>
+) : (
+  <Link to="/signup">
+  <button>Inicia sesión para planificar un viaje</button>
+</Link>
+)}
       </form>
     </div>
   );

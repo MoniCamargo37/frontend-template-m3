@@ -5,7 +5,14 @@ class CityOverviewService {
     this.api = axios.create({
       baseURL: `${process.env.REACT_APP_BACKEND_URL}/city-overview`,
     });
-  }
+  // this.api.interceptors.request.use(config => {
+  //   const storedToken = localStorage.getItem('authToken');
+  //   if (storedToken) {
+  //     config.headers = { Authorization: `Bearer ${storedToken}` };
+  //   }
+  //   return config;
+  // });
+}
 
   // Get city by name and update numSearches for the selected city
 

@@ -17,14 +17,15 @@ import Profile from './views/user/Profile';
 import Planning from './views/trippo/Planning';
 import TripPlan from './views/trippo/TripPlan';
 import CityOverviewDetails from './components/CityOverviewDetails';
-import './Search.css';
-import './DestinationCard.css';
-import './PopularDestination.css';
+import './components/Search.css';
+import './components/DestinationCard.css';
+import './components/NavbarFooter.css';
 import './views/user/profile.css';
 import './views/trippo/planning.css';
 import'./home.css';
-import './cityoverview.css';
-import './MyTrips.css';
+import './views/trippo/cityoverview.css';
+import './views/trippo/MyTrips.css';
+import './views/trippo/tripPlan.css';
 
 function App() {
   return (

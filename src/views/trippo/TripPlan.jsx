@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import tripPlanService from '../../services/tripPlanService';
+import { AuthContext } from '../../context/AuthContext';
+import { toast } from "react-hot-toast";
 
 function TripPlan() {
   const { tripId } = useParams();
@@ -12,6 +14,7 @@ function TripPlan() {
   const myTrip = location.state;
   const cityName = myTrip.cityName;
   const itineraryPic = myTrip.tripPlan.searchedCity;
+  const { user } = useContext(AuthContext);
 
 
   const getTrip = async () => {
@@ -49,16 +52,23 @@ function TripPlan() {
   //   }
   // };
 
-const handleSave = async () => {
-  try {
-    await tripPlanService.createTrip(newTripPlan);
-    console.log('Trip plan saved!');
-    alert('Trip plan saved!');
-  } catch (error) {
-    console.error(error);
-    alert('Error saving trip plan. Please try again later.');
-  }
-};
+  const handleSave = async () => {
+    try {
+      const tripPlan = {
+        ...newTripPlan,
+        userId: user._id // Agregar ID de usuario al plan de viaje
+      };
+      await tripPlanService.createTrip(tripPlan);
+      console.log('Trip plan saved!');
+      toast.success('Trip plan saved!'); 
+      navigate('/trip/mis-viajes'); // Redireccionar al usuario a la página de "Mis Viajes"
+    } catch (error) {
+      console.error(error);
+      toast.error('Error saving trip plan. Please try again later.'); // Mostrar un mensaje de error usando react-toastify
+    }
+  };
+  
+
 
   const handleGoBack = () => {
     navigate('/');
@@ -88,17 +98,24 @@ const handleSave = async () => {
           <div className="cityOverview-card">
          <h2>{cityName}</h2>
          <img src={itineraryPic} alt={cityName} />
-          </div>
+        
           <div className='trip-data'>
           <p>¡Bienvenido a tu viaje soñado! De acuerdo a tu planificación, el viaje tendrá una duración de {myTrip.tripPlan.tripDuration} día(s), con un total de {myTrip.tripPlan.numTravellers} viajero(s). Estás planeando viajar en {monthNames[myTrip.tripPlan.monthOfTrip]} y disfrutar de un emocionante {myTrip.tripPlan.tripType}. Además, tu presupuesto para este viaje es de €{myTrip.tripPlan.budget}. ¡A disfrutar de las aventuras que te esperan!</p>
           </div>
+          </div>
+          <div className='activityBtn-card'>
           <div className='activities-plan'>
           <ul>
-            {myTrip.days.map((day, index) => (
-              <li key={index}>{day.name}
-                <ul>
-                  {day.activities.map((activity, ind) => (
-                    <li key={ind}>{activity.name} {activity.description} {activity.duration} </li>              
+         {myTrip.days.map((day, index) => (
+        <li key={index} className="day">
+          {`Día ${day.name}`.toUpperCase()}
+          <ul>
+            {day.activities.map((activity, ind) => (
+              <li key={ind} className="activity">
+                <div className="activity-name">{activity.name}</div>
+                <div className="activity-description">{activity.description}</div>
+                <div className="activity-duration">{activity.duration}</div>
+              </li>              
                   ))}
                 </ul>
               </li>
@@ -110,6 +127,7 @@ const handleSave = async () => {
           {/* <button onClick={handleDelete}>Delete Trip Plan</button> */}
           <button onClick={handleGoBack}>Go Back</button>
           </div>
+    </div>
     </div>
   )}
   <div className='cityOverview-error'>
