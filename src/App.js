@@ -16,6 +16,7 @@ import MyTrips from './views/trippo/MyTrips';
 import Profile from './views/user/Profile';
 import Planning from './views/trippo/Planning';
 import TripPlan from './views/trippo/TripPlan';
+import TripDetails from './views/trippo/TripDetails';
 import CityOverviewDetails from './components/CityOverviewDetails';
 import './components/Search.css';
 import './components/DestinationCard.css';
@@ -43,8 +44,8 @@ function App() {
         <Route path="/trip" element={<Trip />}>
         {/* <Route path="/trip/planning" element={<Planning />} /> */}
         <Route path="/trip/mis-viajes" element={<MyTrips />} />
-        <Route path="/trip/mis-viajes/:id" element={<MyTrips />}/>
-        {/* <Route path="/trip/mis-viajes" element={<MyTrips />} /> */}
+        {/* <Route path="/trip/mis-viajes/:id" element={<MyTrips />}/> */}
+        <Route path="/trip/mis-viajes/:planId" element={<TripDetails />} />
         <Route path="/trip/mis-viajes" element={<MyTrips />} />
       
         </Route>

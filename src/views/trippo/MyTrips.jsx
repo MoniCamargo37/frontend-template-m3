@@ -7,7 +7,7 @@ function MyTrips() {
   const navigate = useNavigate();
   const [tripPlans, setTripPlans] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState(null); 
+  const [selectedPlan, setSelectedPlan] = useState({ days: [] }); 
   const { user } = useAuth();
 
 
@@ -29,10 +29,10 @@ function MyTrips() {
 
 
   const handleView = (plan) => {
-    setSelectedPlan(plan); // Establece el plan de viaje seleccionado al hacer clic en el botón "Ver detalles"
+    setSelectedPlan(plan); 
     console.log("El trippo: ", plan);
-    navigate(`/trip/mis-viajes/${plan._id}`); // Navega a la página de detalles del plan de viaje correspondiente
-  };
+    navigate(`/trip/mis-viajes/${plan._id}`);
+  }
 
     const handleDelete = async (tripId) => {
     try {
@@ -62,7 +62,7 @@ function MyTrips() {
 
   return (
     <div className='my-trips'>
-      <h1>Mis itinerarios viajes</h1>
+      <h1>Mis itinerarios de viaje</h1>
       <ul>
         {tripPlans.map((plan) => (
           <li key={plan._id}>
@@ -71,17 +71,27 @@ function MyTrips() {
               <button onClick={() => handleView(plan)}>Ver detalles</button>
               <button onClick={() => handleDelete(plan._id)}>Eliminar</button>
             </div>
-            {selectedPlan && selectedPlan._id === plan._id && (
-              <div>
-                <p>{selectedPlan.days}</p>
-                {/* ...etc. */}
+            {selectedPlan?._id === plan._id &&(
+          <div>
+            {selectedPlan?.days.map(day => (
+              <div key={day.id}>
+                <h2>DÍA {day.id}</h2>
+                {day?.activities.map(activity =>(
+                      <div key={activity.id}>
+                        <p>{activity.name}</p>
+                        <p>{activity.description}</p>
+                        <p>{activity.duration}</p>
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
             )}
           </li>
         ))}
       </ul>
     </div>
-  );
+);
 }
 
 export default MyTrips;
