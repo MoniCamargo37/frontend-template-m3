@@ -41,8 +41,9 @@ function App() {
         <Route path="/planning/:city" element={<Planning />} />
         <Route path="/city/:id" element={<CityOverviewDetails />} />
         <Route path="/trip" element={<Trip />}>
-        <Route path="/trip/planning" element={<Planning />} />
+        {/* <Route path="/trip/planning" element={<Planning />} /> */}
         <Route path="/trip/mis-viajes" element={<MyTrips />} />
+        <Route path="/trip/mis-viajes/:id" element={<MyTrips />}/>
         {/* <Route path="/trip/mis-viajes" element={<MyTrips />} /> */}
         <Route path="/trip/mis-viajes" element={<MyTrips />} />
       

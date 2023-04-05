@@ -3,6 +3,7 @@ import { NavLink, useNavigate, Outlet  } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Logo from '../images/logo-Trippo.png';
 import Picture from '../images/homepic.jpg'
+import MyTrips from './MyTrips';
 import { FaChevronDown, FaMapMarkerAlt, FaChevronUp } from 'react-icons/fa';
 
 export default function Navbar() {
@@ -27,6 +28,7 @@ export default function Navbar() {
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
+    console.log('Se hizo clic en el botón de menú');
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -39,6 +41,7 @@ export default function Navbar() {
   };
 
   const handleLinkClick = () => {
+    console.log('Se hizo clic en el botón de menú',);
     toggleMenu();
   };
 
@@ -58,7 +61,7 @@ return (
         </button>
         {showMenu && (
           <div className="menu-container" style={{ top: navRef.current.offsetHeight }} onMouseLeave={handleMouseLeave}>
-            {/* <button className="menu-link" onClick={toggleMenu}>Cerrar</button> */}
+            <button className="menu-link" onClick={toggleMenu}>Cerrar</button>
             <ul className="menu">
               <li><NavLink className="menu-link" to="/trip/mis-viajes" onClick={handleLinkClick}>Mis Viajes</NavLink></li>
               <li><NavLink className="menu-link" to="/trip/planning" onClick={handleLinkClick}>Planificar un Viaje</NavLink></li>
@@ -71,7 +74,6 @@ return (
       <li><NavLink className="nav_link" to="/acerca">Acerca de Trippo</NavLink></li>
       <li><NavLink className="nav_link" to="/como-funciona">Cómo funciona</NavLink></li>
       <li><NavLink className="nav_link" to="/colaboradores">Empresas Afiliadas</NavLink></li>
-      <li><NavLink className="nav_link" to="/blog">Blog</NavLink></li>
       <li><NavLink className="nav_link" to="/ayuda">Ayuda</NavLink></li>
       {!isLoggedIn && <li><NavLink className="nav_link" to="/signup">Sign up</NavLink></li>}
       {!isLoggedIn && <li><NavLink className="nav_link" to="/login">Login</NavLink></li>}

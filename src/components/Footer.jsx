@@ -11,7 +11,7 @@ function Footer() {
             <span>Inicio</span>
           </div>
         </a>
-        <a href="/trip/mytrips">
+        <a href="/trip/mis-viajes">
           <div className="icon-button">
             <FaSuitcase />
             <span>Mis Viajes</span>

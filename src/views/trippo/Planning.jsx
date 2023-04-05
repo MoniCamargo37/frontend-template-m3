@@ -2,8 +2,6 @@ import { useState,useContext, useEffect } from "react";
 import { useNavigate, useLocation, Link} from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
-// import tripPlanService from '../services/tripPlanService';
-
 export default function Planning() {
   const [numPasajeros, setNumPasajeros] = useState(1);
   const [presupuesto, setPresupuesto] = useState(100);
