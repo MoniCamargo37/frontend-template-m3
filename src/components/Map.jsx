@@ -26,29 +26,33 @@ const Map = (props) => {
     const myCoordinates =
 data.resourceSets[0].resources[0].geocodePoints[0].coordinates;
     setLocation({latitude: myCoordinates[0], longitude: myCoordinates[1]});
+    setFinishedSearch(true);
   }
 
   useEffect(() => {
     if(!finishedSearch){
       getCoordinates();
-      setFinishedSearch(true);
     }
     console.log('Las coordenadas: ', location);
   },[finishedSearch, location]);
 
   return (
-    <BingMapsReact
-      bingMapsKey={process.env.REACT_APP_BING_MAPS_KEY}
-  
-      mapOptions={{
-        navigationBarMode: "square",
-      }}
+    <>
+    { finishedSearch &&
+      <BingMapsReact
+        bingMapsKey={process.env.REACT_APP_BING_MAPS_KEY}
+    
+        mapOptions={{
+          navigationBarMode: "square",
+        }}
 
-      viewOptions={{
-        center: { latitude: location.latitude, longitude: location.longitude },
-        mapTypeId: "road",
-      }}
-    />
+        viewOptions={{
+          center: { latitude: location.latitude, longitude: location.longitude },
+          mapTypeId: "road",
+        }}
+      />
+    }
+    </>
   );
 };
 
