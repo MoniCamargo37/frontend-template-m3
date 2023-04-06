@@ -56,7 +56,7 @@ import Auth from './Auth.css';
           <label>Confirmar contraseña</label>
           <input type="password" name="passwordControl" value={user.passwordControl} onChange={handleChange} />
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <button type="submit">Crear cuenta</button>
+          <button type="submit"class="register-button">Crear cuenta</button>
         </form>
       </div>
     );

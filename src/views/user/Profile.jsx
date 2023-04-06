@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MyTrips from '../../components/MyTrips';
 import userService from '../../services/userService';
+//import
 
 export default function  Profile() {
   const [user, setUser] = useState({});
@@ -119,6 +120,6 @@ export default function  Profile() {
   );
       };
 
-      // asdfghgfdsaASDFDSAK
+    
    
    
