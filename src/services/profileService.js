@@ -16,7 +16,7 @@ class ProfileService {
   }
 
   getProfile() {
-    return this.api.get('/profile').then(({ data }) => data);
+    return this.api.get('/').then(({ data }) => data);
   }
 
   editProfile(user) {

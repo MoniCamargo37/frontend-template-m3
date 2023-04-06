@@ -32,16 +32,15 @@
   .my-trips .cityOverview-btns button {
     margin-right: 10px;
     padding: 10px;
-    background-color: #008cba;
+    background-color: #ff6347;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s;
   }
   
   .my-trips .cityOverview-btns button:hover {
-    background-color: #0077a3;
+    background-color: #7f8c8d;
   }
   
   @media screen and (max-width: 600px) {

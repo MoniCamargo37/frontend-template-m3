@@ -108,7 +108,7 @@ export default function Planning() {
         {/* <input type="text" value={cityName} onChange={(event) => setDestino(event.target.value)} className="destino-input"/> */}
         <input
           type="text"
-          value={cityName}
+          value={cityName.split(' -')[0]}
           onChange={(event) => setCityName(event.target.value)}
           className="destino-input"
         />

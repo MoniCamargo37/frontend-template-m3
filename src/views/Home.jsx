@@ -28,7 +28,7 @@ const Home = () => {
     setSelectedCity(city);
     clearInterval(timeoutId);
     timeoutId = setTimeout(() => {
-    }, 500);
+    }, 100);
   };
 
   const handleSearchedCity = () => {
@@ -60,7 +60,7 @@ result.address.countryRegion+")";
     // eslint-disable-next-line react-hooks/exhaustive-deps
     timeoutId = setTimeout(() => {
       handleSearchedCity();
-    }, 500);
+    }, 100);
 
     // Cancelar el temporizador si el componente se desmonta o la ciudad cambia
     return () => {
