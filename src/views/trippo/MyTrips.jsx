@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate,NavLink, Link, Outlet } from 'react-router-dom';
 import tripPlanService from '../../services/tripPlanService';
+import { toast } from "react-hot-toast";
+import ButtonsCard from '../../components/ButtonsCard';
+
 import { useAuth } from '../../hooks/useAuth';
 
 function MyTrips() {
-  const navigate = useNavigate();
   const [tripPlans, setTripPlans] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState({ days: [] }); 
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const { user } = useAuth();
-
 
   const getAllTrips = async () => {
     try {
-      const plans = await tripPlanService.getAllTrips(); 
+      const plans = await tripPlanService.getAllTrips();
       setTripPlans(plans);
     } catch (error) {
       console.error(error);
@@ -27,25 +28,21 @@ function MyTrips() {
     }
   }, [user]);
 
-
   const handleView = (plan) => {
-    setSelectedPlan(plan); 
-    console.log("El trippo: ", plan);
-    navigate(`/trip/mis-viajes/${plan._id}`);
-  }
+    setSelectedPlan(plan);
+  };
 
-    const handleDelete = async (tripId) => {
+  const handleDelete = async (tripId) => {
     try {
       const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
       if (confirmed) {
         await tripPlanService.deleteTrip(tripId);
-        setTripPlans(tripPlans.filter((plan) => plan._id !== tripId)); 
+        setTripPlans(tripPlans.filter((plan) => plan._id !== tripId));
       }
     } catch (error) {
       console.error(error);
     }
   };
-
 
   if (!isLoggedIn) {
     return (
@@ -60,38 +57,24 @@ function MyTrips() {
     );
   }
 
-  return (
-    <div className='my-trips'>
-      <h1>Mis itinerarios de viaje</h1>
-      <ul>
-        {tripPlans.map((plan) => (
-          <li key={plan._id}>
-            <div>{plan.city}</div>
-            <div className='cityOverview-btns'>
-              <button onClick={() => handleView(plan)}>Ver detalles</button>
-              <button onClick={() => handleDelete(plan._id)}>Eliminar</button>
-            </div>
-            {selectedPlan?._id === plan._id &&(
-          <div>
-            {selectedPlan?.days.map(day => (
-              <div key={day.id}>
-                <h2>DÍA {day.id}</h2>
-                {day?.activities.map(activity =>(
-                      <div key={activity.id}>
-                        <p>{activity.name}</p>
-                        <p>{activity.description}</p>
-                        <p>{activity.duration}</p>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+return (
+  <div className='my-trips'>
+    <h1>Mis itinerarios de viaje</h1>
+    <ul>
+      {tripPlans.map((plan) => (
+        <li key={plan._id}>
+          <div>{plan.city}</div>
+          <div className='cityOverview-btns'>
+            {/* <Link to={`/trip/mis-viajes/${plan._id}`}></Link> */}
+            <NavLink to={`/trip/mis-viajes/${plan._id}`} component="button" type="button">Ver detalles</NavLink>
+            <button onClick={() => handleDelete(plan._id)}>Eliminar</button>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <Outlet />
+    <ButtonsCard/>
+  </div>
 );
 }
-
 export default MyTrips;

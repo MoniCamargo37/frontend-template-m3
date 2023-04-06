@@ -4,6 +4,7 @@ import Map from '../../components/Map';
 import { searchALocation } from '../../components/Map';
 import cityOverviewService from '../../services/cityOverviewService';
 import { useAuth } from '../../hooks/useAuth';
+import ButtonsCard from '../../components/ButtonsCard';
 
 export default function CityOverview() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const [finishedSearch, setFinishedSearch] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const location = useLocation();
+  const [showShare, setShowShare] = useState(false);
   const { user } = useAuth();
   const { cityParams } = useParams();
   let city;
@@ -77,50 +79,68 @@ const [finishedSearch, setFinishedSearch] = useState(false);
     }
   };
 
-  return (
-    <>
-      <div className='App'>
-        <div className='loading'>
-          {loading && <p>Loading...</p>}
-        </div>
-        {!loading && searchedCity && (
-          <>
-            <div className="cityOverview-card">
-            <div className='header-title'>
-            <h1>{searchedCity.cityName}</h1>
-              <h2>País: {searchedCity.country}</h2>
-              </div>
-              <div className='cityOverview-img'>
-                <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
-                <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
-              </div>
-              <p>{searchedCity.description}</p>
-              <div className='searched-number'>
-                <h3> {searchedCity.numSearches} </h3>
-                <p>Visitas</p>
-              </div>
-              <div className='cityOverview-btns'>
-                <button onClick={handleContinue}>Continue</button>
-                <button onClick={handleGoBack}>Go Back</button>
-                {user && user.role === 'admin' && (
-                  <div className='delete-btn'> 
-                    <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className='background-map'>
-            <div className='map-card'>
-              <Map city={searchedCity.cityName} /> 
-            </div>
-              </div>
-          </>
-        )}
-     
-        <div className='cityOverview-error'>
-          {error && <p>Failed to load city data.</p>}
-        </div>
-      </div>
-    </>
-  );
+
+
+  const handleShowShare = () => {
+    setShowShare(!showShare);
+  };
+
+  const handleShareTwitter = () => {
+    const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this city on my travel planner!`;
+     window.open(twitterUrl, '_blank');
+   };
+   
+   return (
+     <>
+       <div className='App'>
+         <div className='loading'>
+           {loading && <p>Loading...</p>}
+         </div>
+         {!loading && searchedCity && (
+           <>
+             <div className="cityOverview-card">
+               <div className='header-title'>
+                 <h1>{searchedCity.cityName}</h1>
+                 <h2>País: {searchedCity.country}</h2>
+               </div>
+               <div className='cityOverview-img'>
+                 <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+                 <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+               </div>
+               <p>{searchedCity.description}</p>
+               <div className='searched-number'>
+                 <h3> {searchedCity.numSearches} </h3>
+                 <p>Visitas</p>
+               </div>
+               <div className='cityOverview-btns'>
+                 <button onClick={handleContinue}>Continue</button>
+                 <button onClick={handleGoBack}>Go Back</button>
+                 {user && user.role === 'admin' && (
+                   <div className='delete-btn'> 
+                     <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
+                   </div>
+                 )}
+                 <button className="btn-text-uppercase" onClick={handleShowShare}>COMPARTIR</button>
+                 {showShare && (
+                   <div className="compartir-container">
+                     <a className="enlace-compartir" href="">CORREO ELECTRÓNICO</a>
+                     <button className="enlace-compartir" onClick={handleShareTwitter}>TWITTER</button>
+                   </div>
+                 )}
+               </div>
+             </div>
+             <div className='background-map'>
+               <div className='map-card'>
+                 <Map city={searchedCity.cityName} /> 
+               </div>
+             </div>
+             <ButtonsCard /> 
+           </>
+         )}
+         <div className='cityOverview-error'>
+           {error && <p>Failed to load city data.</p>}
+         </div>
+       </div>
+     </>
+   );
  }
