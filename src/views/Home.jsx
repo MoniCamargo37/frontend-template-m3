@@ -99,7 +99,7 @@ const Home = () => {
     <div className="App">
     
       {user && <h1>¡Hola {user.username}!</h1>}
-      <h2>¡Explícame ese lugar que estás pensando!</h2>
+      <h2>¿A dónde viajaremos?</h2>
       <div className="searchCard">
         <div className="search-input">
           <FaSearch className="search-icon" />

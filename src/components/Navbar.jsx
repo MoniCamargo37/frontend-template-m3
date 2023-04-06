@@ -75,7 +75,7 @@ return (
       <li><NavLink className="nav_link" to="/como-funciona">Cómo funciona</NavLink></li>
       <li><NavLink className="nav_link" to="/colaboradores">Empresas Afiliadas</NavLink></li>
       <li><NavLink className="nav_link" to="/ayuda">Ayuda</NavLink></li>
-      {!isLoggedIn && <li><NavLink className="nav_link" to="/signup">Sign up</NavLink></li>}
+      {/* {!isLoggedIn && <li><NavLink className="nav_link" to="/signup">Sign up</NavLink></li>} */}
       {!isLoggedIn && <li><NavLink className="nav_link" to="/login">Login</NavLink></li>}
       {isLoggedIn && <li><NavLink className="nav_link" to="/private">Private view</NavLink></li>}
       {isLoggedIn && <li><NavLink className="nav_link" to="/profile">Perfil</NavLink></li>}

@@ -101,6 +101,7 @@ export default function Planning() {
 
   return (
     <div className="planning-card">
+      <h2>¡Dinos cómo quieres vivir tu viaje y te organizamos el mejor plan!</h2>
       <form className="formTrip-card" onSubmit={handleSubmit}>
         <label>¿Ciudad Seleccionada</label>
         {/* <p>Ciudad Seleccionada: {cityName}</p> */}

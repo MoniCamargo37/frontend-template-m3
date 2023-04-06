@@ -29,13 +29,13 @@ export default function Login() {
       if (response.authToken) {
         storeToken(response.authToken);
         authenticateUser();
-        navigate('/profile');
-        toast.success('Welcome back!')
+        navigate('/');
+        toast.success('¡Bienvenido de nuevo!')
       } else {
-        setErrorMessage('Unable to authenticate user')
+        setErrorMessage('¡No se puede autenticar el usuario!')
       }
     } catch (error) {
-      setErrorMessage('Unable to authenticate user');
+      setErrorMessage('¡No se puede autenticar el usuario!');
     }
   }
 
@@ -50,12 +50,13 @@ export default function Login() {
   return (
     <div className='auth-card'>
       <form onSubmit={handleSubmit}>
-        <label>Email</label>
+        <label>Correo electrónico</label>
         <input required type="email" name="email" value={user.email} onChange={handleChange} />
-        <label>Password</label>
+        <label>Contraseña</label>
         <input required type="password" name="password" value={user.password} onChange={handleChange} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit"class="register-button">Log in </button>
+        <button type="submit"class="register-button">Iniciar sesión </button>
+        <a href="/signup">¿AÚN SIN CUENTA? REGISTRATE</a>
       </form>
     </div>
   )
