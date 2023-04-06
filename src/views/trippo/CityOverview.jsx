@@ -1,43 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Map from '../../components/Map';
-import { searchALocation } from '../../components/Map';
 import cityOverviewService from '../../services/cityOverviewService';
 import { useAuth } from '../../hooks/useAuth';
 import ButtonsCard from '../../components/ButtonsCard';
+import Loading from "../../components/Loading";
 
 export default function CityOverview() {
   const navigate = useNavigate();
   const [searchedCity, setSearchedCity] = useState();
-//  const [cityName, setCityName] = useState();
-const [finishedSearch, setFinishedSearch] = useState(false);
+  const [finishedSearch, setFinishedSearch] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const location = useLocation();
   const [showShare, setShowShare] = useState(false);
   const { user } = useAuth();
-  const { cityParams } = useParams();
-  let city;
-
-  if( location.state)
-    city = location.state.city;
-  else
-  city = cityParams;
-
-  const checkCity = async () => {
-    searchALocation(city)
-    .then(data => {
-      console.log("Esto es lo devuelto: ", data);
-      console.log(data.estimatedTotal);
-      if(data.estimatedTotal > 0) {
-        console.log(data.resources[0].address.formattedAddress);
-        city = data.resources[0].address.formattedAddress;
-        getCity();
-      }
-    })
-    .catch(error => console.error("No encontrado: ", error));
-  }
-
+  let city = location.state.city;
+  
   const getCity = async () => {
     try {
       const response = await cityOverviewService.getCity(city);
@@ -54,8 +33,9 @@ const [finishedSearch, setFinishedSearch] = useState(false);
   useEffect(() => {
     if (!finishedSearch) {
       setFinishedSearch(true);
-    checkCity()}
-  });
+      getCity()
+    }
+  },[finishedSearch]);
 
   const handleContinue = () => {
     if (searchedCity) {
@@ -94,13 +74,13 @@ const [finishedSearch, setFinishedSearch] = useState(false);
      <>
        <div className='App'>
          <div className='loading'>
-           {loading && <p>Loading...</p>}
+           {loading && <Loading />}
          </div>
          {!loading && searchedCity && (
            <>
              <div className="cityOverview-card">
                <div className='header-title'>
-                 <h1>{searchedCity.cityName}</h1>
+                <h1>{searchedCity.cityName.split(' -')[0]}</h1> {/*coge solo la primera posicion que es nombre de ciudad */}
                  <h2>País: {searchedCity.country}</h2>
                </div>
                <div className='cityOverview-img'>

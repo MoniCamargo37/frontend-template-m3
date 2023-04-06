@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import MyTrips from '../../components/MyTrips';
-import userService from '../../services/userService';
-//import
+import React, { useState,useContext, useEffect } from 'react';
+import profileService from '../../services/profileService';
+import { toast } from "react-hot-toast";
+import { AuthContext } from '../../context/AuthContext';
 
 export default function  Profile() {
   const [user, setUser] = useState({});
@@ -11,11 +11,12 @@ export default function  Profile() {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const userId = userService.getUserId();
+  const userId = profileService.getUserId();
 
-  const getUserProfile = async () => {
+  console.log('Estoy en profile');
+  const getProfile = async () => {
     try {
-      const response = await userService.getUserProfile(user);
+      const response = await profileService.getProfile(user);
       setLoading(false);
       setUser(response.user);
       setError(false);
@@ -28,7 +29,7 @@ export default function  Profile() {
   }
 
   useEffect(() => {
-    getUserProfile();
+    getProfile();
     // eslint-disable-next-line
   }, []);
 
@@ -47,7 +48,7 @@ export default function  Profile() {
   const handlePasswordSubmit = async e => {
     e.preventDefault();
     try {
-      const userData = await userService.editUserProfile({ currentPassword: user.password, newPassword: password });
+      const userData = await profileService.editUserProfile({ currentPassword: user.password, newPassword: password });
       setUser(userData.user);
       setPassword('');
       setPasswordConfirmation('');
@@ -62,7 +63,7 @@ export default function  Profile() {
     try {
       const formData = new FormData();
       formData.append('avatar', file);
-      const userData = await userService.editUserPhoto(formData);
+      const userData = await profileService.editUserPhoto(formData);
       setUser(userData.user);
       setFile(null);
       setEditMode(false);
@@ -73,7 +74,7 @@ export default function  Profile() {
 
   const handleDeletePhoto = async () => {
     try {
-      const userData = await userService.deleteUserPhoto();
+      const userData = await profileService.deleteUserPhoto();
       setUser(userData.user);
     } catch (error) {
       console.log(error);
@@ -115,7 +116,6 @@ export default function  Profile() {
         </form>
       )}
       {error && <p>Failed to load user data.</p>}
-      <MyTrips />
     </div>
   );
       };

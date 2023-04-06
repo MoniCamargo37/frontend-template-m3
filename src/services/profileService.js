@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-class UserService {
+class ProfileService {
   constructor() {
     this.api = axios.create({
-      baseURL: `${process.env.REACT_APP_BACKEND_URL}/user`
+      baseURL: `${process.env.REACT_APP_BACKEND_URL}/profile`,
     });
 
     this.api.interceptors.request.use(config => {
@@ -15,16 +15,16 @@ class UserService {
     });
   }
 
-  getUserProfile() {
+  getProfile() {
     return this.api.get('/profile').then(({ data }) => data);
   }
 
-  editUserProfile(user) {
-    return this.api.put('/profile/edit', user).then(({ data }) => data);
+  editProfile(user) {
+    return this.api.put('/cambiar-contraseña', user).then(({ data }) => data);
   }
 
   editUserPhoto(photo) {
-    return this.api.put('/profile/editPhoto', photo).then(({ data }) => data);
+    return this.api.put('/editar-foto', photo).then(({ data }) => data);
   }
 
   deleteUserPhoto() {
@@ -32,6 +32,6 @@ class UserService {
   }
 }
 
-const userService = new UserService();
+const profileService = new ProfileService();
 
-export default userService;
+export default profileService;
