@@ -19,12 +19,12 @@ class ProfileService {
     return this.api.get('/').then(({ data }) => data);
   }
 
-  editProfile(user) {
-    return this.api.put('/cambiar-contraseña', user).then(({ data }) => data);
+  editProfile(body) {
+    return this.api.put('/editar-contrasena', body).then(({ data }) => data);
   }
 
-  editUserPhoto(photo) {
-    return this.api.put('/editar-foto', photo).then(({ data }) => data);
+  editProfilePhoto(imageUrl) {
+    return this.api.put('/editar-foto', imageUrl).then(({ data }) => data);
   }
 
   deleteUserPhoto() {

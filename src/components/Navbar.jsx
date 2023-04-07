@@ -3,7 +3,6 @@ import { NavLink, useNavigate, Outlet  } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Logo from '../images/logo-Trippo.png';
 import Picture from '../images/homepic.jpg'
-import MyTrips from './MyTrips';
 import { FaChevronDown, FaMapMarkerAlt, FaChevronUp } from 'react-icons/fa';
 
 export default function Navbar() {

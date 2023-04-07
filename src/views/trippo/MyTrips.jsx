@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate,NavLink, Link, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import tripPlanService from '../../services/tripPlanService';
 import { toast } from "react-hot-toast";
 import ButtonsCard from '../../components/ButtonsCard';
+import TripPlan from '../../components/TripItineraryComponent';
 
 import { useAuth } from '../../hooks/useAuth';
 
 function MyTrips() {
   const [tripPlans, setTripPlans] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState(null);
   const { user } = useAuth();
 
   const getAllTrips = async () => {
@@ -27,10 +27,6 @@ function MyTrips() {
       setIsLoggedIn(true);
     }
   }, [user]);
-
-  const handleView = (plan) => {
-    setSelectedPlan(plan);
-  };
 
   const handleDelete = async (tripId) => {
     try {
@@ -62,14 +58,7 @@ return (
     <h1>Mis itinerarios de viaje</h1>
     <ul>
       {tripPlans.map((plan) => (
-        <li key={plan._id}>
-          <div>{plan.city}</div>
-          <div className='cityOverview-btns'>
-            {/* <Link to={`/trip/mis-viajes/${plan._id}`}></Link> */}
-            <NavLink to={`/trip/mis-viajes/${plan._id}`} component="button" type="button">Ver detalles</NavLink>
-            <button onClick={() => handleDelete(plan._id)}>Eliminar</button>
-          </div>
-        </li>
+        <TripPlan key={plan._id} plan={plan} handleDelete={handleDelete} />
       ))}
     </ul>
     <Outlet />

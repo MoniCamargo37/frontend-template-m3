@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import tripPlanService from '../../services/tripPlanService';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from "react-hot-toast";
+import "../../styles/TripPlanStyle.css";
 
 function TripPlan() {
-  const { tripId } = useParams();
   const navigate = useNavigate();
   const [newTripPlan, setNewTripPlan] = useState();
   const [loading, setLoading] = useState(true);
@@ -68,8 +68,6 @@ function TripPlan() {
     }
   };
   
-
-
   const handleGoBack = () => {
     navigate('/');
   };
@@ -109,6 +107,7 @@ function TripPlan() {
          {myTrip.days.map((day, index) => (
         <li key={index} className="day">
           {`Día ${day.name}`.toUpperCase()}
+          <img className='dayPicture' src={day.picture} alt={day.name} />
           <ul>
             {day.activities.map((activity, ind) => (
               <li key={ind} className="activity">

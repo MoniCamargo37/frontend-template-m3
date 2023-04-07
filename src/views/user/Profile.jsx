@@ -1,127 +1,127 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState,  useEffect } from 'react';
 import profileService from '../../services/profileService';
+import EditPassword from '../../components/EditPassword';
+import EditProfilePhoto from '../../components/EditProfilePhoto';
 import { toast } from "react-hot-toast";
-import { useAuth } from '../../hooks/useAuth';
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
-  const [editMode, setEditMode] = useState(false);
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [editingPassword, setEditingPassword] = useState(false);
+    const [editingPhoto, setEditingPhoto] = useState(false);
+  
+    const getProfile = async () => {
+      setLoading(true);
+      try {
+        const response = await profileService.getProfile();
+        setUser(response.user);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setErrorMessage(
+          "¡Ups! Algo salió mal al recuperar los datos de tu perfil. Por favor, inténtalo de nuevo más tarde."
+        );
+        toast.error(
+          "¡Ups! Algo salió mal al recuperar los datos de tu perfil. Por favor, inténtalo de nuevo más tarde."
+        );
+      }
+    };
+  
+    useEffect(() => {
+      getProfile();
+    }, []);
+  
+    
+      const handleEditPasswordprofile = () => {
+        setEditingPassword(true);
+        setEditingPhoto(false);
+      };
+    
+      const handleEditProfilePhoto = () => {
+        setEditingPhoto(true);
+        setEditingPassword(false);
+      };
+    
+      const handleCancel = () => {
+        setEditingPassword(false);
+        setEditingPhoto(false);
+      };
+    
+    const handleEditPassword = async (passwordData) => {
+      try {
+        await profileService.editProfile(passwordData);
+        toast.success("Contraseña actualizada correctamente.");
+        setEditingPassword(false);
+      } catch (error) {
+        console.error(error);
+        setErrorMessage(
+          "¡Ups! Algo salió mal al actualizar la contraseña. Por favor, inténtalo de nuevo más tarde."
+        );
+        toast.error(
+          "¡Ups! Algo salió mal al actualizar la contraseña. Por favor, inténtalo de nuevo más tarde."
+        );
+      }
+    };
+  
+    const handleDeletePhoto = async (event) => {
+      event.preventDefault();
+      try {
+        await profileService.deleteUserPhoto();
+        setUser((prevUser) => ({ ...prevUser, imageUrl: null }));
+        toast.success("Foto de perfil eliminada correctamente.");
+      } catch (error) {
+        console.error(error);
+        setErrorMessage(
+          "¡Ups! Algo salió mal al eliminar la foto de perfil. Por favor, inténtalo de nuevo más tarde."
+        );
+        toast.error(
+          "¡Ups! Algo salió mal al eliminar la foto de perfil. Por favor, inténtalo de nuevo más tarde."
+        );
+      }
+    };
+  
+    return (
+      <div className="profile-card">
+        {user ? (
+          <>
+            <h2>{user.username}'s Profile</h2>
+            <div className="profile-avatar">
+              {user.imageUrl && (
+                <>
+                  <img
+                    src={user.imageUrl}
+                    alt="Profile"
+                    style={{ maxWidth: "50%", maxHeight: "500px" }}
+                  />
+                </>
+              )}
+  {!editingPassword  && !editingPhoto && (
+  
+  <button onClick={() => handleEditPassword()}>
+    Cambiar contraseña
+  </button>
+)}
 
-  const { currentUser } = useAuth();
-
-  const getProfile = async () => {
-    setLoading(true);
-    try {
-      const response = await profileService.getProfile();
-      setUser(response.user);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setErrorMessage("¡Ups! Algo salió mal al recuperar los datos de tu perfil. Por favor, inténtalo de nuevo más tarde.");
-      toast.error("¡Ups! Algo salió mal al recuperar los datos de tu perfil. Por favor, inténtalo de nuevo más tarde.");
-    }
-  };
-
-  useEffect(() => {
-    getProfile();
-  }, [currentUser]);
-
-  const handleEdit = () => {
-    setEditMode(true);
-  };
-
-  const handleCancel = () => {
-    setEditMode(false);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handlePasswordConfirmationChange = (e) => {
-    setPasswordConfirmation(e.target.value);
-  };
-
-  const handlePasswordSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const userData = await profileService.editUserProfile({
-        currentPassword: user.password,
-        newPassword: password,
-      });
-      setUser(userData.user);
-      setPassword('');
-      setPasswordConfirmation('');
-      setEditMode(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleDeletePhoto = async () => {
-    try {
-      const userData = await profileService.deleteUserPhoto();
-      setUser(userData.user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return (
-    <div className="profile-card">
-      {user ? (
-        <>
-          <h2>{user.username}'s Profile</h2>
-          <div className="profile-avatar">
-  {user.imageUrl && (
-    <>
-      <img src={user.imageUrl} alt="Profile" style={{ maxWidth: "50%", maxHeight: "500px" }} />
-      {currentUser?._id && currentUser.uid === user._id && (
-        <>
-          {editMode ? (
-            <form onSubmit={handleDeletePhoto}>
-              <button type="submit">Delete Profile Picture</button>
-              <button onClick={handleCancel}>Cancel</button>
-            </form>
-          ) : (
-            <>
-              <button onClick={() => setEditMode(true)}>Edit Profile Picture</button>
-              <button onClick={handleEdit}>Change Password</button>
-            </>
-          )}
-        </>
-      )}
-    </>
-  )}
+{!editingPassword && !editingPhoto && (
+  <button onClick={() => handleEditProfilePhoto()}>
+    Cambiar foto de perfil
+  </button>
+)}
+{editingPassword && (
+  <EditPassword edit={handleEditPassword} cancel={handleCancel} />
+)}
+{editingPhoto && (
+  <EditProfilePhoto onPhotoUpdated={handleCancel} onCancel={handleCancel} />
+)}
 </div>
-          {editMode && (
-            <form onSubmit={handlePasswordSubmit}>
-              <input type="password"               value={password}
-              onChange={handlePasswordChange}
-              placeholder="New Password"
-            />
-            <input
-              type="password"
-              value={passwordConfirmation}
-              onChange={handlePasswordConfirmationChange}
-              placeholder="Confirm New Password"
-            />
-            <button type="submit">Save</button>
-            <button onClick={handleCancel}>Cancel</button>
-          </form>
-          )}
-          {errorMessage && <p>{errorMessage}</p>}
-        </>
-      ) : (
-        <>
-          {loading ? <p>Loading...</p> : <p>Failed to load user data.</p>}
-          {errorMessage && toast.error(errorMessage)}
-        </>
-      )}
-    </div>
-  );
-};
+{errorMessage && toast.error(errorMessage)}
+</>
+) : loading ? (
+<p>Loading...</p>
+) : (
+<p>No hay datos de perfil disponibles.</p>
+)}
+</div>
+);
+}

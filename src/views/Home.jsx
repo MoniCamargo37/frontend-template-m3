@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import CityOverviewService from "../services/cityOverviewService";
-import Map, { searchALocation } from '../components/Map';
+import { searchALocation } from '../components/Map';
 import Slider from "react-slick";
 import { FaSearch, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import "slick-carousel/slick/slick.css";
@@ -12,12 +12,12 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedCity, setSelectedCity] = useState("");
   const [ suggestedCities, setSuggestedCities] = useState([]);
-  const [formattedCity, setFormattedCity] = useState("");
   const { user, logOutUser } = useContext(AuthContext);
   const [mostSearchedCities, setMostSearchedCities] = useState([]);
   const [sliderRef, setSliderRef] = useState(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [cityClicked, setCityClicked] = useState(false);
+  const [startX, setStartX] = useState(null);
+  const [isSwiping, setIsSwiping] = useState(false);
   const navigate = useNavigate();
   let timeoutId;
 
@@ -139,6 +139,15 @@ result.address.countryRegion+")";
     }
   };
 
+  const detectSwipe = (e) => {
+    const distance = e.clientX - startX;
+    if (Math.abs(distance) > 50) {
+      setIsSwiping(true);
+    } else {
+      setIsSwiping(false);
+    }
+  };
+
   return (
     <div className="App">
 
@@ -167,27 +176,33 @@ result.address.countryRegion+")";
             </div>
           )}
       </div>
-      <div className="mostSearchedCities">
+      <div className="mostSearchedCities"
+          onMouseDown={(e) => setStartX(e.clientX)}
+          onMouseUp={e => detectSwipe(e)}
+      >
         <h1>Descubre las ciudades más buscadas</h1>
-        <Slider {...settings} ref={slider => setSliderRef(slider)}>
-      {mostSearchedCities.map(city => (
-        <div className="mostSearchedCity-card">
-        <div
-          className="mostSearchedCity"
-          key={city._id}
-          onClick={() => handleCityClick(city.cityName)}
+        <Slider {...settings}
+          
         >
-           <h2>{city.cityName}</h2>
-              <img src={city.destinationPics[1]} alt={city.cityName}
-onError={(e) => e.target.style.display = 'none'} />
-              <div className="searched-number">
-              <h3>{city.numSearches}</h3>
-              <p>visitas</p>
+          {mostSearchedCities.map(city => (
+            <div className="mostSearchedCity-card">
+              <div
+                className="mostSearchedCity"
+                key={city._id}
+                onClick={() => {
+                  if(!isSwiping){
+                    handleCityClick(city.cityName);
+                  }
+                }}
+              >
+                <h2>{city.cityName}</h2>
+                <img src={city.destinationPics[1]} alt={city.cityName} onError={(e) => e.target.style.display = 'none'} />
+                <div className="searched-number">
+                  <h3>{city.numSearches}</h3>
+                  <p>visitas</p>
+                </div>
+                <p className="city-description open-city-overview">{city.description.slice(0, 100)}{city.description.length > 100 ? '...' : ''}</p>
               </div>
-              <p className="city-description
-open-city-overview">{city.description.slice(0,
-100)}{city.description.length > 100 ? '...' : ''}</p>
-            </div>
             </div>
           ))}
         </Slider>
