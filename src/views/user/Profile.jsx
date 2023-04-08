@@ -98,7 +98,7 @@ export default function Profile() {
               )}
   {!editingPassword  && !editingPhoto && (
   
-  <button onClick={() => handleEditPassword()}>
+  <button onClick={() => handleEditPasswordprofile()}>
     Cambiar contraseña
   </button>
 )}

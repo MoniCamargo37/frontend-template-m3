@@ -4,7 +4,6 @@ import tripPlanService from '../../services/tripPlanService';
 import { toast } from "react-hot-toast";
 import ButtonsCard from '../../components/ButtonsCard';
 import TripPlan from '../../components/TripItineraryComponent';
-
 import { useAuth } from '../../hooks/useAuth';
 
 function MyTrips() {
@@ -61,7 +60,6 @@ return (
         <TripPlan key={plan._id} plan={plan} handleDelete={handleDelete} />
       ))}
     </ul>
-    <Outlet />
     <ButtonsCard/>
   </div>
 );

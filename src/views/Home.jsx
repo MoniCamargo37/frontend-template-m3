@@ -69,6 +69,8 @@ result.address.countryRegion+")";
   }, [selectedCity]);
 
   const handleCityClick = (cityName) => {
+    console.log(cityName);
+    
     if(!cityName)
       if(suggestedCities.length > 0)
         cityName = suggestedCities[0];

@@ -15,7 +15,7 @@ export default function EditProfilePhoto({ onPhotoUpdated, onCancel }) {
     setLoading(true);
     try {
       const formData = new FormData();
-      formData.append('file', File);
+      formData.append('file', file);
       await profileService.editProfilePhoto(formData);
       onPhotoUpdated();
     } catch (error) {

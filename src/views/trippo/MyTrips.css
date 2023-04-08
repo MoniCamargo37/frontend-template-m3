@@ -100,3 +100,56 @@
     transform: scaleY(0);
     opacity: 0;
   }
+
+
+  /******************  buttonsCard ******************/
+.botones-container {
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+  .link-card {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+  }
+ 
+  .enlaces-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-text-uppercase {
+    background-color: #ff6347;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    height:40px;
+    border-radius: 10px;
+  }
+  .btn-text-uppercase:hover {
+    background-color: #f97f69;
+  }
+  .enlace-reserva {
+    background-color: #e8eeee;
+    color: rgb(59, 59, 59);
+    font-weight: 600;
+   }
+
+   .compartir-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+   }
+
+   .enlace-compartir {
+    background-color: #e8eeee;
+    color: rgb(59, 59, 59);
+    font-weight: 600;
+   }

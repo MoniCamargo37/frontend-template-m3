@@ -13,7 +13,7 @@ export default function CityOverview() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const location = useLocation();
-  const [showShare, setShowShare] = useState(false);
+  // const [showShare, setShowShare] = useState(false);
   const { user } = useAuth();
   let city = location.state.city;
   
@@ -58,17 +58,15 @@ export default function CityOverview() {
       console.error(error);
     }
   };
+  
+  // const handleShowShare = () => {
+  //   setShowShare(!showShare);
+  // };
 
-
-
-  const handleShowShare = () => {
-    setShowShare(!showShare);
-  };
-
-  const handleShareTwitter = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this city on my travel planner!`;
-     window.open(twitterUrl, '_blank');
-   };
+  // const handleShareTwitter = () => {
+  //   const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this city on my travel planner!`;
+  //    window.open(twitterUrl, '_blank');
+  //  };
    
    return (
      <>
@@ -98,13 +96,6 @@ export default function CityOverview() {
                  {user && user.role === 'admin' && (
                    <div className='delete-btn'> 
                      <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
-                   </div>
-                 )}
-                 <button className="btn-text-uppercase" onClick={handleShowShare}>COMPARTIR</button>
-                 {showShare && (
-                   <div className="compartir-container">
-                     <a className="enlace-compartir" href="">CORREO ELECTRÓNICO</a>
-                     <button className="enlace-compartir" onClick={handleShareTwitter}>TWITTER</button>
                    </div>
                  )}
                </div>
