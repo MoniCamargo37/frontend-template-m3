@@ -2,16 +2,17 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import CityOverviewService from "../services/cityOverviewService";
-import { searchALocation } from '../components/Map';
+import { searchALocation } from "../components/Map";
 import Slider from "react-slick";
-import { FaSearch, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaSearch, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import'../styles/HomeStyles.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedCity, setSelectedCity] = useState("");
-  const [ suggestedCities, setSuggestedCities] = useState([]);
+  const [suggestedCities, setSuggestedCities] = useState([]);
   const { user, logOutUser } = useContext(AuthContext);
   const [mostSearchedCities, setMostSearchedCities] = useState([]);
   const [sliderRef, setSliderRef] = useState(null);
@@ -21,38 +22,39 @@ const Home = () => {
   const navigate = useNavigate();
   let timeoutId;
 
-
   // Section of code to handle the search bar
 
   const handleWriting = (city) => {
     setSelectedCity(city);
     clearInterval(timeoutId);
-    timeoutId = setTimeout(() => {
-    }, 100);
+    timeoutId = setTimeout(() => {}, 100);
   };
 
   const handleSearchedCity = () => {
-    if(selectedCity === ""){
+    if (selectedCity === "") {
       setSuggestedCities([]);
       return;
     }
-    searchALocation(selectedCity)
-    .then(data => {
+    searchALocation(selectedCity).then((data) => {
       let cityList = [];
-      data.resources.forEach(result => {
-        if(result.address.locality && result.entityType === "PopulatedPlace"){
-          let theCity = result.address.locality + " - " +
-result.address.adminDistrict + " (" +
-result.address.countryRegion+")";
+      data.resources.forEach((result) => {
+        if (result.address.locality && result.entityType === "PopulatedPlace") {
+          let theCity =
+            result.address.locality +
+            " - " +
+            result.address.adminDistrict +
+            " (" +
+            result.address.countryRegion +
+            ")";
           console.log(theCity);
           //Si theCity no existe en el array de cityList, lo añadimos
-          if(!cityList.includes(theCity)){
+          if (!cityList.includes(theCity)) {
             cityList.push(theCity);
           }
         }
       });
       setSuggestedCities(cityList);
-    })
+    });
   };
 
   useEffect(() => {
@@ -70,13 +72,11 @@ result.address.countryRegion+")";
 
   const handleCityClick = (cityName) => {
     console.log(cityName);
-    
-    if(!cityName)
-      if(suggestedCities.length > 0)
-        cityName = suggestedCities[0];
-      else
-        cityName = "Error";
-    navigate('/CityOverview', { state: { city: cityName } });
+
+    if (!cityName)
+      if (suggestedCities.length > 0) cityName = suggestedCities[0];
+      else cityName = "Error";
+    navigate("/CityOverview", { state: { city: cityName } });
   };
 
   // End of section of code to handle the search bar
@@ -84,7 +84,7 @@ result.address.countryRegion+")";
   useEffect(() => {
     CityOverviewService.getMostSearchedCities()
       .then(setMostSearchedCities)
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   }, []);
 
   const settings = {
@@ -100,27 +100,27 @@ result.address.countryRegion+")";
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 100,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
+          slidesToScroll: 1,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
+          slidesToScroll: 1,
+        },
+      },
     ],
     beforeChange: (current, next) => {
       setCurrentSlideIndex(next);
-    }
+    },
   };
 
   const handlePrevClick = () => {
@@ -152,72 +152,88 @@ result.address.countryRegion+")";
 
   return (
     <div className="App">
-
-      {user && <h1>¡Hola {user.username}!</h1>}
-      <h2>¡Explícame ese lugar que estás pensando!</h2>
-      <div className="searchCard">
-        <div className="search-input">
-          <FaSearch className="search-icon" />
-          <input
-            type="text"
-            placeholder="Quiero ir..."
-            value={selectedCity}
-            onChange={(event) => { handleWriting(event.target.value); }}
-            onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                handleCityClick();
-              }
-            }}
-          />
-        </div>
-        {suggestedCities.length > 0 && (
-            <div className="suggested-cities">
+      <div className="Home-card">
+        {user && <h1>¡Hola {user.username}!</h1>}
+        <h2>¡Explícame ese lugar que estás pensando!</h2>
+        <div className="searchCard">
+          <div className="search-input">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder="Quiero ir..."
+              value={selectedCity}
+              onChange={(event) => {
+                handleWriting(event.target.value);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  handleCityClick();
+                }
+              }}
+            />
+          </div>
+          {suggestedCities.length > 0 && (
+            <div>
               {suggestedCities.map((city) => (
-                <div key={city} className="suggested-city" onClick={() => {handleCityClick(city);}}>{city}</div>
+                <div
+                  key={city}
+                  // className="suggested-city"
+                  onClick={() => {
+                    handleCityClick(city);
+                  }}
+                >
+                  {city}
+                </div>
               ))}
             </div>
           )}
-      </div>
-      <div className="mostSearchedCities"
+        </div>
+        <div
+          className="mostSearchedCities"
           onMouseDown={(e) => setStartX(e.clientX)}
-          onMouseUp={e => detectSwipe(e)}
-      >
-        <h1>Descubre las ciudades más buscadas</h1>
-        <Slider {...settings}
-          
+          onMouseUp={(e) => detectSwipe(e)}
         >
-          {mostSearchedCities.map(city => (
-            <div className="mostSearchedCity-card">
-              <div
-                className="mostSearchedCity"
-                key={city._id}
-                onClick={() => {
-                  if(!isSwiping){
-                    handleCityClick(city.cityName);
-                  }
-                }}
-              >
-                <h2>{city.cityName}</h2>
-                <img src={city.destinationPics[1]} alt={city.cityName} onError={(e) => e.target.style.display = 'none'} />
-                <div className="searched-number">
-                  <h3>{city.numSearches}</h3>
-                  <p>visitas</p>
+          <h1>Descubre las ciudades más buscadas</h1>
+          <Slider {...settings}>
+            {mostSearchedCities.map((city) => (
+              <div className="mostSearchedCity-card">
+                <div
+                  className="mostSearchedCity"
+                  key={city._id}
+                  onClick={() => {
+                    if (!isSwiping) {
+                      handleCityClick(city.cityName);
+                    }
+                  }}
+                >
+                  <h2>{city.cityName}</h2>
+                  <img
+                    src={city.destinationPics[1]}
+                    alt={city.cityName}
+                    onError={(e) => (e.target.style.display = "none")}
+                  />
+                  <div className="searched-number">
+                    <h3>{city.numSearches}</h3>
+                    <p>visitas</p>
+                  </div>
+                  <p className="city-description">
+                    {city.description.slice(0, 100)}
+                    {city.description.length > 100 ? "..." : ""}
+                  </p>
                 </div>
-                <p className="city-description open-city-overview">{city.description.slice(0, 100)}{city.description.length > 100 ? '...' : ''}</p>
               </div>
-            </div>
-          ))}
-        </Slider>
-        <div className="slider-arrows">
-        <button className="slider-arrow-left" onClick={handlePrevClick}>
-  <FaArrowLeft />
-</button>
-<button className="slider-arrow-right" onClick={handleNextClick}>
-  <FaArrowRight />
-</button>
+            ))}
+          </Slider>
+          <div className="slider-arrows">
+            <button className="slider-arrow-left" onClick={handlePrevClick}>
+              <FaArrowLeft />
+            </button>
+            <button className="slider-arrow-right" onClick={handleNextClick}>
+              <FaArrowRight />
+            </button>
+          </div>
         </div>
       </div>
-
     </div>
   );
 };

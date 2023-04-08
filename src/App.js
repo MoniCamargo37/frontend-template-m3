@@ -21,8 +21,6 @@ import './components/DestinationCard.css';
 import './components/NavbarFooter.css';
 import './views/user/profile.css';
 import './views/trippo/planning.css';
-
-import'./home.css';
 import './views/trippo/cityoverview.css';
 import './views/trippo/MyTrips.css';
 import './views/trippo/tripPlan.css';

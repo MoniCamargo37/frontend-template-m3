@@ -43,10 +43,10 @@ function TripItineraryComponent({ plan, handleDelete }) {
           {plan.days.map((day) => (
             <div key={day._id}>
               <h3>{day.name}</h3>
+              <img src={day.picture} alt={day.name} />
               <ul>
                 {day.activities.map((activity) => (
                   <li key={activity._id}>
-                    <img src={activity.picture} alt={activity.name} />
                     <h4>{activity.name}</h4>
                     <p>{activity.description}</p>
                     <p>{activity.duration}</p>

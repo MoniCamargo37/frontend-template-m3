@@ -25,13 +25,7 @@ export default function Planning() {
     }
   }, [location.state]);
 
-  const handleNumPasajerosChange = (event) => {
-    setNumPasajeros(event.target.value);
-  };
 
-  const handleDiasViajeChange = (event) => {
-    setDiasViaje(event.target.value);
-  };
 
   function handleMesViajeChange(event) {
     const mesSeleccionado = event.target.value.toString();
@@ -113,28 +107,8 @@ export default function Planning() {
           className="destino-input"
         />
         <br />
-        <label>
-          ¿Cuántas viajeros?
-          <input
-            type="number"
-            min="1"
-            value={numPasajeros}
-            onChange={handleNumPasajerosChange}
-            className="daysTrip-input"
-          />
-        </label>
-        <br />
-        <label>
-          ¿Cuántos días quieres viajar?
-          <input
-            type="number"
-            min="1"
-            max="7"
-            value={diasViaje}
-            onChange={handleDiasViajeChange}
-            className="daysTrip-input"
-          />
-        </label>
+
+        
         <br />
         <label>
           ¿En qué mes quieres viajar?

@@ -106,7 +106,7 @@ function TripPlan() {
           <ul>
          {myTrip.days.map((day, index) => (
         <li key={index} className="day">
-          {`Día ${day.name}`.toUpperCase()}
+          {`${day.name}`.toUpperCase()}
           <img className='dayPicture' src={day.picture} alt={day.name} />
           <ul>
             {day.activities.map((activity, ind) => (

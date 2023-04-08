@@ -29,7 +29,7 @@ export default function Login() {
       if (response.authToken) {
         storeToken(response.authToken);
         authenticateUser();
-        navigate('/');
+        navigate(-1);
         toast.success('¡Bienvenido de nuevo!')
       } else {
         setErrorMessage('¡No se puede autenticar el usuario!')
@@ -38,14 +38,6 @@ export default function Login() {
       setErrorMessage('¡No se puede autenticar el usuario!');
     }
   }
-
-  useEffect(() => {
-    // When the component first renders, check if user is already logged in and redirects
-    if (isLoggedIn) {
-      navigate('/user/profile')
-    }
-    // eslint-disable-next-line
-  }, [isLoggedIn])
 
   return (
     <div className='auth-card'>
