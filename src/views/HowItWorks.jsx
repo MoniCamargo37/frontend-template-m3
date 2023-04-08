@@ -9,6 +9,10 @@ function HowItWorks() {
     navigate('/CityOverview', { state: { city: "Barcelona - Cataluña (España)" } });
   }
 
+  const handlePlanningClick = () => {
+    navigate(`/planning/Barcelona`, { state: { cityName: "Barcelona - Cataluña (España)" , searchedCity: ""}});
+  }
+
   return (
     <div className="trippo-guide">
     <div className="title-text">
@@ -29,6 +33,7 @@ function HowItWorks() {
           <h3>Cuéntanos tus preferencias:</h3>
           <p>
             En este paso, nosotros te preguntaremos sobre tus preferencias en cuanto a actividades turísticas. ¿Te gusta la aventura o prefieres un turismo más relajado? ¿Quieres probar la gastronomía local o hacer un recorrido por la historia y la cultura? Cuéntanos todo lo que te gustaría hacer y nosotros te mostraremos un plan personalizado.
+            <a href="#" onClick={(e) => {e.preventDefault(); handlePlanningClick()}}>Planificar viaje</a>.
           </p>
           <h3>Regístrate o accede:</h3>
           <p>
