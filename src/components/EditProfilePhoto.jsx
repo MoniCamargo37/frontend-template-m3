@@ -1,44 +1,80 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import profileService from '../services/profileService';
+import { useNavigate } from 'react-router-dom';
 
-export default function EditProfilePhoto({ onPhotoUpdated, onCancel }) {
-  const [file, setFile] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-  
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      await profileService.editProfilePhoto(formData);
-      onPhotoUpdated();
-    } catch (error) {
-      console.error(error);
-      setErrorMessage('Error al actualizar la foto de perfil');
+export default function ProfileEdit() {
+    
+
+    const [profile, setProfile] = useState({
+        username: '',
+        image: ''
+    })
+    const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
+
+    const getProfilePhoto = async () => {
+        try {
+            const response = await profileService.getProfilePhoto()
+            setProfile(response.user)
+            setIsLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
     }
-    setLoading(false);
-  };
 
-  return (
-    <div className="edit-profile-photo">
-      <h3>Cambiar foto de perfil</h3>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Seleccione una imagen:
-          <input type="file" name="imageUrl" onChange={handleFileChange} />
-        </label>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <div className="form-actions">
-          <button type="submit" disabled={loading}>Guardar cambios</button>
-          <button type="button" onClick={onCancel}>Cancelar</button>
+    useEffect(() => {
+        getProfile()
+    }, []);
+
+    const handleChange = (e) => {
+        setProfile(prev => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value
+            }
+        })
+    };
+
+    const handleImage = (e) => {
+        if (e.target.files[0]) {
+          setProfile((prev) => {
+            return {
+              ...prev,
+              image: e.target.files[0]
+            };
+          });
+        }
+      };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const formData = new FormData();
+        formData.append('username', profile.username);
+        if (profile.image) {
+        formData.append('image', profile.image);
+    }
+        try {
+            await profileService.editProfile(formData)
+            navigate('/profile');
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    return (
+        <>
+        {isLoading && <div>LOADING...</div>}
+        <div>
+            <h2>Editing {profile.username}</h2>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <label>Update username</label>
+                <input type="text" name="username" value={profile.username} onChange={handleChange}/>
+                <label>Update image</label>
+                <input type="file" name="image" onChange={handleImage} accept="image/*"/>
+                <button type="submit">Edit profile</button>
+            </form>
         </div>
-      </form>
-    </div>
-  );
+        </>
+    )
 }

@@ -17,26 +17,49 @@ function ButtonsCard() {
     setShowLinks(false);
   };
 
-  const handleCityClick = () => {
-    const currentUrl = window.location.href;
-    navigate('/CityOverview', {
-      state: {
-        city: "Barcelona - Cataluña (España)",
-        url: currentUrl
-      }
-    });
+  const handleShareEmail = () => {
+    const currentUrl = location?.state?.url;
+    const cityName = location?.state?.city;
+    if (!currentUrl || !cityName) {
+      handleCityClick();
+      return;
+    }
+    const subject = `Check out ${cityName} on my travel planner!`;
+    const body = `Hey, check out ${cityName} on my travel planner! ${currentUrl}`;
+    const mailtoUrl = `mailto:?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoUrl);
   };
 
   const handleShareTwitter = () => {
-    const currentUrl = location.state.url || window.location.href;
-    const cityName = location.state.city;
-    const message = `Check out ${cityName} on my travel planner!`;
+    const currentUrl = location?.state?.url;
+    const cityName = location?.state?.city;
+    if (!currentUrl || !cityName) {
+      handleCityClick();
+      return;
+    }
+
+ 
+    
+    const message = `Check out ${cityName} on my travel planner! ${currentUrl}`;
     const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
       currentUrl
     )}&text=${encodeURIComponent(message)}`;
-    window.open(twitterUrl, '_blank');
+    const link = document.createElement('a');
+    link.href = twitterUrl;
+    link.target = '_blank';
+    link.innerHTML = `Check out ${cityName} on my travel planner!`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
-
+  const handleCityClick = () => {
+    const currentUrl = window.location.href;
+    const city = "Barcelona - Cataluña (España)";
+    const state = { city, url: currentUrl };
+    navigate('/CityOverview', { state });
+  };
   return (
     <div className="botones-container">
       <div className="link-card">
@@ -82,7 +105,7 @@ function ButtonsCard() {
         </button>
         {showShare && (
           <div className="compartir-container">
-            <a className="enlace-compartir" href="">
+         <a href="#" onClick={(e) => { e.preventDefault(); handleShareEmail(); }}>
               CORREO ELECTRÓNICO
             </a>
             <a className="enlace-compartir" href="#" onClick={(e) => { e.preventDefault(); handleShareTwitter(); }}>

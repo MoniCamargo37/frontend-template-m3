@@ -19,13 +19,15 @@ class ProfileService {
     return this.api.get('/').then(({ data }) => data);
   }
 
-  editProfile(body) {
-    return this.api.put('/editar-contrasena', body).then(({ data }) => data);
-  }
 
-  editProfilePhoto(imageUrl) {
-    return this.api.put('/editar-foto', imageUrl).then(({ data }) => data);
-  }
+editProfile(formData) {
+    const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+    return this.api.put(`/editar-foto`, formData, config).then(({ data }) => data).catch(err => console.error(err));
+}
 
   deleteUserPhoto() {
     return this.api.delete('/profile/deletePhoto').then(({ data }) => data);

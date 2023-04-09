@@ -59,15 +59,6 @@ export default function CityOverview() {
     }
   };
   
-  // const handleShowShare = () => {
-  //   setShowShare(!showShare);
-  // };
-
-  // const handleShareTwitter = () => {
-  //   const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this city on my travel planner!`;
-  //    window.open(twitterUrl, '_blank');
-  //  };
-   
    return (
      <>
        <div className='App'>
