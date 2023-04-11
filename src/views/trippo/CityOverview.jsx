@@ -12,10 +12,9 @@ export default function CityOverview() {
   const [finishedSearch, setFinishedSearch] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const location = useLocation();
-  // const [showShare, setShowShare] = useState(false);
   const { user } = useAuth();
-  let city = location.state.city;
+  let searchParam = new URLSearchParams(window.location.search);
+  let city = searchParam.get('city');
   
   const getCity = async () => {
     try {
@@ -61,25 +60,24 @@ export default function CityOverview() {
   
    return (
      <>
-       <div className='App'>
+       <div className='cityoverview-container'>
          <div className='loading'>
            {loading && <Loading />}
          </div>
          {!loading && searchedCity && (
            <>
-             <div className="cityOverview-card">
-               <div className='header-title'>
-                <h1>{searchedCity.cityName.split(' -')[0]}</h1> {/*coge solo la primera posicion que es nombre de ciudad */}
-                 <h2>País: {searchedCity.country}</h2>
+            <div className='header-title'>
+                <h1>{searchedCity.cityName.split(' -')[0]} -</h1> {/*coge solo la primera posicion que es nombre de ciudad */}
+                 <h2>{searchedCity.country}</h2>
                </div>
+               <div className='cityOverview-img-btns'>
                <div className='cityOverview-img'>
                  <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
                  <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
                </div>
-               <p>{searchedCity.description}</p>
-               <div className='searched-number'>
-                 <h3> {searchedCity.numSearches} </h3>
-                 <p>Visitas</p>
+               <div className="cityOverview-sharebtn">
+               <ButtonsCard /> 
+               </div>
                </div>
                <div className='cityOverview-btns'>
                  <button onClick={handleContinue}>Continue</button>
@@ -89,20 +87,28 @@ export default function CityOverview() {
                      <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
                    </div>
                  )}
-               </div>
-             </div>
-             <div className='background-map'>
-               <div className='map-card'>
-                 <Map city={searchedCity.cityName} /> 
-               </div>
-             </div>
-             <ButtonsCard /> 
+               </div> 
            </>
          )}
+             <div class="cityOverview-card">
+  <div class="description-card">
+    <h2>{searchedCity.cityName.split(' -')[0]}</h2>
+    <h3>{searchedCity.country}</h3>
+    <p>{searchedCity.description}</p>
+    <div class="searched-number">
+      <h3>{searchedCity.numSearches}</h3>
+      <p>Visitas</p>
+    </div>
+  </div>
+  <div class="map-card">
+    <Map city={searchedCity.cityName} />
+  </div>
+</div>
          <div className='cityOverview-error'>
            {error && <p>Failed to load city data.</p>}
          </div>
        </div>
+ 
      </>
    );
  }

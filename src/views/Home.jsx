@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import { FaSearch } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import CityOverviewService from "../services/cityOverviewService";
 import { searchALocation } from "../components/Map";
-import Slider from "react-slick";
-import { FaSearch, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import backgroundPic from '../images/backgroundHome.jpg';
 import'../styles/HomeStyles.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { WebFooter} from "../components/WebFooter";
 
 const Home = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedCity, setSelectedCity] = useState("");
   const [suggestedCities, setSuggestedCities] = useState([]);
   const { user, logOutUser } = useContext(AuthContext);
   const [mostSearchedCities, setMostSearchedCities] = useState([]);
-  const [sliderRef, setSliderRef] = useState(null);
+  // const [sliderRef, setSliderRef] = useState(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [startX, setStartX] = useState(null);
   const [isSwiping, setIsSwiping] = useState(false);
@@ -59,7 +60,6 @@ const Home = () => {
 
   useEffect(() => {
     // Ejecutar la función después de que el usuario haya dejado de escribir durante medio segundo
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     timeoutId = setTimeout(() => {
       handleSearchedCity();
     }, 100);
@@ -76,7 +76,7 @@ const Home = () => {
     if (!cityName)
       if (suggestedCities.length > 0) cityName = suggestedCities[0];
       else cityName = "Error";
-    navigate("/CityOverview", { state: { city: cityName } });
+    navigate("/CityOverview?city="+encodeURIComponent(cityName));
   };
 
   // End of section of code to handle the search bar
@@ -123,24 +123,6 @@ const Home = () => {
     },
   };
 
-  const handlePrevClick = () => {
-    if (currentSlideIndex > 0) {
-      const newIndex = currentSlideIndex - 1;
-      setCurrentSlideIndex(newIndex);
-      setCurrentSlide(newIndex);
-      sliderRef.slickGoTo(newIndex); // move the arrows
-    }
-  };
-
-  const handleNextClick = () => {
-    if (currentSlideIndex < mostSearchedCities.length - 1) {
-      const newIndex = currentSlideIndex + 1;
-      setCurrentSlideIndex(newIndex);
-      setCurrentSlide(newIndex);
-      sliderRef.slickGoTo(newIndex); // move the arrows
-    }
-  };
-
   const detectSwipe = (e) => {
     const distance = e.clientX - startX;
     if (Math.abs(distance) > 50) {
@@ -151,10 +133,12 @@ const Home = () => {
   };
 
   return (
-    <div className="App">
+    <div className="Home">
       <div className="Home-card">
-        {user && <h1>¡Hola {user.username}!</h1>}
-        <h2>¡Explícame ese lugar que estás pensando!</h2>
+        <div className="backgroundPic-home">
+        <img src={backgroundPic} alt="backgroundPic" />
+        {user && <h3>¡Nos encanta verte por aquí, {user.username}! 😊</h3>}
+        <h2 >¡Explícame ese lugar que estás pensando!</h2>
         <div className="searchCard">
           <div className="search-input">
             <FaSearch className="search-icon" />
@@ -173,11 +157,10 @@ const Home = () => {
             />
           </div>
           {suggestedCities.length > 0 && (
-            <div>
+            <div className="suggested-city-card">
               {suggestedCities.map((city) => (
                 <div
-                  key={city}
-                  // className="suggested-city"
+                  key={city}  className="suggested-city"
                   onClick={() => {
                     handleCityClick(city);
                   }}
@@ -188,6 +171,7 @@ const Home = () => {
             </div>
           )}
         </div>
+        </div>
         <div
           className="mostSearchedCities"
           onMouseDown={(e) => setStartX(e.clientX)}
@@ -197,8 +181,7 @@ const Home = () => {
           <Slider {...settings}>
             {mostSearchedCities.map((city) => (
               <div className="mostSearchedCity-card">
-                <div
-                  className="mostSearchedCity"
+                <div className="mostSearchedCity"
                   key={city._id}
                   onClick={() => {
                     if (!isSwiping) {
@@ -206,14 +189,14 @@ const Home = () => {
                     }
                   }}
                 >
-                  <h2>{city.cityName}</h2>
+                  <h2 >{city.cityName.split(' -')[0]} ({city.cityName.split('(')[1]}</h2>
                   <img
                     src={city.destinationPics[1]}
                     alt={city.cityName}
                     onError={(e) => (e.target.style.display = "none")}
                   />
-                  <div className="searched-number">
-                    <h3>{city.numSearches}</h3>
+                  <div className="searched-number-home">
+                    <h3 className="h3-home">{city.numSearches}</h3>
                     <p>visitas</p>
                   </div>
                   <p className="city-description">
@@ -224,17 +207,10 @@ const Home = () => {
               </div>
             ))}
           </Slider>
-          <div className="slider-arrows">
-            <button className="slider-arrow-left" onClick={handlePrevClick}>
-              <FaArrowLeft />
-            </button>
-            <button className="slider-arrow-right" onClick={handleNextClick}>
-              <FaArrowRight />
-            </button>
-          </div>
+          {/* <WebFooter /> */}
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 

@@ -59,9 +59,8 @@ return (
       {tripPlans.map((plan) => (
         <TripPlan key={plan._id} plan={plan} handleDelete={handleDelete} />
       ))}
-        <ButtonsCard/>
     </ul>
-  
+    <ButtonsCard/>
   </div>
 );
 }

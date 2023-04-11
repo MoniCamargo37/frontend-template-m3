@@ -11,7 +11,7 @@ import Signup from './views/auth/Signup';
 import Login from './views/auth/Login';
 import CityOverview from './views/trippo/CityOverview';
 import MyTrips from './views/trippo/MyTrips';
-import Profile from './views/user/Profile';
+import Profile from './views/profile/Profile';
 import Planning from './views/trippo/Planning';
 import TripPlan from './views/trippo/TripPlan';
 import HowItWorks from './views/HowItWorks';
@@ -19,7 +19,6 @@ import HowItWorks from './views/HowItWorks';
 import './components/Search.css';
 import './components/DestinationCard.css';
 import './components/NavbarFooter.css';
-import './views/user/profile.css';
 import './views/trippo/planning.css';
 import './views/trippo/cityoverview.css';
 import './views/trippo/MyTrips.css';
@@ -44,7 +43,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />}/>
-        {/* <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} /> */}
         <Route path="/error" element={<ErrorPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

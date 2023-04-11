@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import "../styles/TripItineraryStyle.css";
 
 function TripItineraryComponent({ plan, handleDelete }) {
@@ -20,14 +19,6 @@ function TripItineraryComponent({ plan, handleDelete }) {
             {plan.city}
         </div>
         <div className="cityOverview-btns">
-            <NavLink
-            to={`/trip/mis-viajes/${plan._id}`}
-            component="button"
-            type="button"
-            onClick={handleCollapse}
-            >
-            Ver detalles
-            </NavLink>
             <button
             onClick={() => {
                 handleDelete(plan._id);

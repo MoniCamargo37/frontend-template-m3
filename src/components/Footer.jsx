@@ -3,7 +3,8 @@ import { FaGlobe, FaSuitcase, FaMicrophone, FaQuestion, FaUser } from 'react-ico
 
 function Footer() {
   return (
-    <div className="Footer">
+    <div>
+    <div className="Footer-mobile">
       <div className="Footer-icons">
         <a href="/">
           <div className="icon-button">
@@ -24,10 +25,10 @@ function Footer() {
           </div>
           </div>
         </a>
-        <a href="/help">
+        <a href="/como-funciona">
           <div className="icon-button">
             <FaQuestion />
-            <span>Ayuda</span>
+            <span>Tutorial</span>
           </div>
         </a>
         <a href="/profile">
@@ -36,6 +37,7 @@ function Footer() {
             <span>Perfil</span>
           </div>
         </a>
+      </div>
       </div>
       {/* <div className="Footer-user">
         <img src="https://via.placeholder.com/50x50" alt="profile" />

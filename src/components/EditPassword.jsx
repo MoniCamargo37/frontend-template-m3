@@ -2,11 +2,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 
 function EditPassword({ edit, cancel }) {
-  const [passwordData, setPasswordData] = useState({
-    currentPassword: "",
-    newPassword: "",
-    newPasswordConfirmation: ""
-  });
+  const [passwordData, setPasswordData] = useState({currentPassword: "", newPassword: "",newPasswordConfirmation: ""});
   const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
   const handleInputChange = (e) => {
@@ -44,33 +40,13 @@ function EditPassword({ edit, cancel }) {
     <h3>Cambiar contraseña</h3>
     <form onSubmit={handleSubmit}>
       <label>Contraseña actual</label>
-      <input
-        type="password"
-        value={passwordData.currentPassword}
-        required
-        onChange={handleInputChange}
-        name="currentPassword"
-      />
+      <input type="password" value={passwordData.currentPassword} required onChange={handleInputChange} name="currentPassword"/>
       <label>Nueva contraseña:</label>
-      <input
-        type="password"
-        value={passwordData.newPassword}
-        required
-        onChange={handleInputChange}
-        name="newPassword"
-      />
+      <input type="password" value={passwordData.newPassword} required onChange={handleInputChange} name="newPassword" />
       <label>Confirmar la nueva contraseña:</label>
-      <input
-        type="password"
-        value={passwordData.newPasswordConfirmation}
-        required
-        onChange={handleInputChange}
-        name="newPasswordConfirmation"
-      />
+      <input type="password" value={passwordData.newPasswordConfirmation} required onChange={handleInputChange} name="newPasswordConfirmation"/>
       <button type="submit">Guardar contraseña</button>
-      <button type="button" onClick={cancel}>
-        Cancelar
-      </button>
+      <button type="button" onClick={cancel}>Cancelar</button>
     </form>
     </div>
   );
