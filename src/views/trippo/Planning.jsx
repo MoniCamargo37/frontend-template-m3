@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { FaArrowLeft } from 'react-icons/fa';
 import "./planning.css";
 
 export default function Planning() {
@@ -119,6 +120,10 @@ export default function Planning() {
   };
 
   return (
+    <div>
+    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+    <FaArrowLeft />
+  </span> 
     <div className="planning-card">
       <h2>
         ¡Dinos cómo quieres vivir tu viaje y te organizamos el mejor plan!
@@ -226,6 +231,7 @@ export default function Planning() {
           </Link>
         )}
       </form>
+    </div>
     </div>
   );
 }

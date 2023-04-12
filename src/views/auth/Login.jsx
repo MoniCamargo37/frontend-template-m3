@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 import authService from '../../services/authService';
+import '../../styles/AuthStyles.css';
 
 export default function Login() {
   const { storeToken, authenticateUser, isLoggedIn } = useAuth(); 
@@ -29,7 +31,7 @@ export default function Login() {
       if (response.authToken) {
         storeToken(response.authToken);
         authenticateUser();
-        navigate('/');
+        navigate(-1);
         toast.success('¡Bienvenido de nuevo!')
       } else {
         setErrorMessage('¡No se puede autenticar el usuario!')
@@ -40,6 +42,10 @@ export default function Login() {
   }
 
   return (
+    <div>
+    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+        <FaArrowLeft />
+      </span>   
     <div className='auth-card'>
       <form onSubmit={handleSubmit}>
         <label>Correo electrónico</label>
@@ -50,6 +56,7 @@ export default function Login() {
         <button type="submit"class="register-button">Iniciar sesión </button>
         <a href="/signup">¿AÚN SIN CUENTA? REGISTRATE</a>
       </form>
+    </div>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import Home from './views/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WebFooter from './components/WebFooter';
 import TripDetails from './components/TripDetails';
 import ErrorPage from './views/ErrorPage';
 import NotFound from './views/NotFound';
@@ -18,7 +19,7 @@ import HowItWorks from './views/HowItWorks';
 
 import './components/Search.css';
 import './components/DestinationCard.css';
-import './components/NavbarFooter.css';
+import './styles/NavbarFooterStyles.css';
 import './views/trippo/planning.css';
 import './views/trippo/cityoverview.css';
 import './views/trippo/MyTrips.css';
@@ -46,6 +47,7 @@ function App() {
         <Route path="/error" element={<ErrorPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <WebFooter />
       <Footer />
     </div>
   );

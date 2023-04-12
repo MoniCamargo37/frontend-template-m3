@@ -31,6 +31,9 @@ class ProfileService {
       .catch((err) => console.error(err));
   }
 
+  getProfileFavorite() {
+    return this.api.get('/favorite').then(({ data }) => data).catch(err => console.error(err));
+}
   deleteUserPhoto() {
     return this.api.delete("/deletePhoto").then(({ data }) => data);
   }

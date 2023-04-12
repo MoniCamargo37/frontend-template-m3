@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, {useContext, useState, useEffect } from 'react';
+import { NavLink} from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import profileService from '../../services/profileService';
 import EditPassword from '../../components/EditPassword';
-import EditProfile from '../../components/EditProfile';
+import EditPhoto from '../../components/EditPhoto';
+// import favoriteService from '../../services/favoriteService';
+// import cityOverviewService from '../../services/cityOverviewService';
 import'../../styles/ProfileStyles.css';
 import { toast } from "react-hot-toast";
+import { useAuth } from '../../hooks/useAuth';
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
+  const { user, logOutUser } = useAuth();
   const [profile, setProfile] = useState({ username: '', image: '' });
+//  const { isLoggedIn,  logOutUser } = useContext(AuthContext); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  // const [cityOverview, setCityOverview] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editingPassword, setEditingPassword] = useState(false);
   const [editingProfile, setEditingProfile] = useState(false);
+  const navigate = useNavigate();
+  let change = false;
   
   const getProfile = async () => {
     setLoading(true);
     try {
       const response = await profileService.getProfile();
       setProfile(response.user);
-      setUser(response.user);
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -33,7 +43,9 @@ export default function Profile() {
 
   useEffect(() => {
     getProfile();
-  }, []);
+    if (user)
+      setIsLoggedIn(true);
+  }, [user]);
 
   const handleEditPasswordprofile = () => {
     setEditingPassword(true);
@@ -66,43 +78,56 @@ export default function Profile() {
     }
   };
 
+
+
   return (
     <div className="profile-card">
-       {user ? (
+      <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+        <FaArrowLeft />
+      </span>  
+      {isLoggedIn ? (
         <>
-      <h2>{user.username}'s Profile</h2>
-        <div className="profile-image">
-            {user.image && (
-        <>
-            <img src={user.image} alt="Profile" style={{ maxWidth: "50%", maxHeight: "500px" }} />
-      </>
-              )}
-        {!editingPassword && !editingProfile && (
-          <>
-            <button onClick={() => handleEditPasswordprofile()}>Cambiar contraseña</button>
-            <button onClick={() => setEditingProfile(true)}>Cambiar foto de perfil</button>
-      </>
-              )}
-        {editingPassword && (
-          <EditPassword edit={handleEditPassword} cancel={handleCancel} />
-              )}
-        {editingProfile && (
-          <EditProfile edit={handleEditPhoto} cancel={handleCancel} />
-              )}
-
-        {(editingPassword || editingProfile) && (
-          <button onClick={() => handleCancel()}>Cancelar</button>
-              )}
-      </div>
-           {errorMessage && toast.error(errorMessage)}
-      </>
-            ) : loading ? (
-              <p>Loading...</p>
-            ) : (
-              <p>No hay datos de perfil disponibles.</p>
+          <h2>PERFIL</h2>
+          <div className="profile-image">
+            {profile.image && (
+              <img src={profile.image} alt="Profile" style={{ maxWidth: "50%", maxHeight: "500px" }} />
             )}
-      </div>
+            {!editingPassword && !editingProfile && (
+              <>
+                <button onClick={() => handleEditPasswordprofile()}>Cambiar contraseña</button>
+                <button onClick={() => setEditingProfile(true)}>Cambiar foto de perfil</button>
+              </>
+            )}
+            {editingPassword && (
+              <EditPassword edit={handleEditPassword} cancel={handleCancel} />
+            )}
+            {editingProfile && (
+              <EditPhoto edit={handleEditPhoto} cancel={handleCancel} />
+            )}
+
+            {(editingPassword || editingProfile) && (
+              <button className='cancellation-btn' onClick={() => handleCancel()}>Cancelar</button>
+            )}
+          </div>
+          {isLoggedIn && <li><a className="nav_item"onClick={() => {setIsLoggedIn(false); logOutUser();}}>Cerrar sesión</a></li>}
+          {errorMessage && toast.error(errorMessage)}
+        </>
+      ) : 
+      (
+        <>
+          <div className='errorMsn-profile'>
+            <h1>Perfil</h1>
+            <p>Sin inicio de sesión no hay paraíso... 🌊 🌊</p>
+            <div className='noLoggedProfile-btns'>
+              <NavLink className="btn-login-profile" to="/login">Iniciar sesión</NavLink>
+              <NavLink className="btn-login-profile" to="/signup">Crear cuenta </NavLink>
+            </div> 
+          </div>
+        </>
+      )
+      }
+    </div>
   );
-  }
+}
 
 

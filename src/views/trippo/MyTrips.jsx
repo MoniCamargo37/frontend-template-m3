@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
 import tripPlanService from '../../services/tripPlanService';
 import { toast } from "react-hot-toast";
+import { FaArrowLeft } from 'react-icons/fa';
 import ButtonsCard from '../../components/ButtonsCard';
 import TripPlan from '../../components/TripItineraryComponent';
 import { useAuth } from '../../hooks/useAuth';
@@ -10,6 +11,7 @@ function MyTrips() {
   const [tripPlans, setTripPlans] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const getAllTrips = async () => {
     try {
@@ -22,9 +24,8 @@ function MyTrips() {
 
   useEffect(() => {
     getAllTrips();
-    if (user) {
+    if (user)
       setIsLoggedIn(true);
-    }
   }, [user]);
 
   const handleDelete = async (tripId) => {
@@ -41,6 +42,10 @@ function MyTrips() {
 
   if (!isLoggedIn) {
     return (
+      <div>
+      <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+      <FaArrowLeft />
+    </span> 
       <div className='my-trips'>
         <h1>Mis itinerarios viajes</h1>
         <p>Sin inicio de sesión no hay paraíso...</p>
@@ -49,10 +54,15 @@ function MyTrips() {
           <Link to="/signup"><button>Crear cuenta</button></Link>
         </div>
       </div>
+       </div>
     );
   }
 
 return (
+  <div>
+  <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+  <FaArrowLeft />
+</span> 
   <div className='my-trips'>
     <h1>Mis itinerarios de viaje</h1>
     <ul>
@@ -61,6 +71,7 @@ return (
       ))}
     </ul>
     <ButtonsCard/>
+  </div>
   </div>
 );
 }

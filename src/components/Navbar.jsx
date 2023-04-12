@@ -2,7 +2,6 @@ import React, {useContext, useState, useRef, useEffect } from 'react';
 import { NavLink, useNavigate} from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Logo from '../images/Tripfy (3).png';
-import Picture from '../images/homepic.jpg';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function Navbar() {
@@ -28,8 +27,7 @@ return (
       <div className="nav_btn">
         {!isLoggedIn && <li><NavLink  className="nav_item" to="/login">Iniciar sesión</NavLink></li>}
     
-        {isLoggedIn && <li><a className="nav_item"onClick={() => logOutUser()}>Cerrar sesión</a></li>}
-        {/* <li><button onClick={() => navigate(-1)}>Go back</button></li> PARA MOBILE */}
+        {isLoggedIn && <li><a className="nav_item"onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li>}
       </div>
     </div>
     <div className="navbar-mobile">
@@ -42,7 +40,12 @@ return (
           <span>Barcelona, España</span>
         </div>
         <div className="navbar-mobile-profile">
-          <img src= {Picture} alt="profile" />
+               <div className="nav_btn">
+        {!isLoggedIn && <li><NavLink  className="nav_item" to="/login">Iniciar sesión</NavLink></li>}
+    
+        {isLoggedIn && <li><a className="nav_item"onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li>}
+        {/* <li><button onClick={() => navigate(-1)}>Go back</button></li> PARA MOBILE */}
+      </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,142 @@
+
+.leftArrow-goBack svg {
+  display:none;
+}
+.auth-card {
+  width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+.auth-card h1 {
+  font-size: 14px;
+  text-align: center;
+  color:rgb(60, 59, 59);
+  margin-bottom: 10px;
+  }
+  
+  .auth-card h1::after {
+  content: '';
+  display: block;
+  width: 55%; /* ajusta la longitud de la línea */
+  margin: auto;
+  padding-top: 5px;
+  border-bottom: 1px solid rgb(128, 128, 128);
+  }
+
+.auth-card form {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.auth-card label {
+  font-weight: bold;
+  color: rgb(60, 59, 59);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.auth-card input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card a {
+  text-decoration: none;
+  margin-top:10px;
+  height: 30px;
+  width: 310px;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid rgb(60, 59, 59);
+  border-color: #484848;
+  color:rgb(60, 59, 59);;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.register-button {
+  padding: 10px;
+  width: 313px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  background-color: #ff6347;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.register-button:hover {
+  background-color: gray;
+}
+
+@media (max-width: 768px) {
+  .leftArrow-goBack svg {
+    display:block;
+    margin: 10px;
+    fill: gray; /* set the default color */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    padding-top: 5px;;
+    cursor: pointer;
+    width: 35px; 
+    height: 20px;
+  
+  }
+  
+  .leftArrow-goBack svg:focus {
+    outline: none;
+    stroke-width: 2px; 
+  }
+  
+  
+  .leftArrow-goBack svg:hover {
+     fill: #c74b04; 
+  }
+  
+  .auth-card {
+    width: 80%;
+  }
+  .auth-card h1 {
+    font-size: 11px;
+  }
+ 
+    .auth-card h1::after {
+    width: 45%; 
+    padding-top: 0px;
+    border-bottom: 0.5px solid rgb(128, 128, 128);
+    }
+
+  .auth-card input {
+    width: 90%;
+  }
+  .auth-card label {
+    font-size: 12px;
+  }
+  
+  .register-button {
+    width: 90%;
+    font-size: 12px;
+  }
+
+  .auth-card a {
+    width: 88%;
+  }
+}

@@ -9,7 +9,7 @@ import backgroundPic from '../images/backgroundHome.jpg';
 import'../styles/HomeStyles.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { WebFooter} from "../components/WebFooter";
+import WebFooter from "../components/WebFooter";
 
 const Home = () => {
   const [selectedCity, setSelectedCity] = useState("");
@@ -207,7 +207,7 @@ const Home = () => {
               </div>
             ))}
           </Slider>
-          {/* <WebFooter /> */}
+          <WebFooter />
         </div>
       </div>
       </div>

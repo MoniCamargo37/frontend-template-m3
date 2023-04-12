@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 import authService from '../../services/authService';
 import toast from "react-hot-toast";
-import Auth from './Auth.css';
+import '../../styles/AuthStyles.css';
 
   export default function Signup() {
     const [user, setUser] = useState({
@@ -45,7 +46,13 @@ import Auth from './Auth.css';
     }
   
     return (
+      <div>
+    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+        <FaArrowLeft />
+      </span>   
+ 
       <div className='auth-card'>
+        <h1>CREAR NUEVA CUENTA</h1>
         <form onSubmit={handleSubmit}>
           <label>Nombre</label>
           <input type="text" name="username" value={user.username} onChange={handleChange} />
@@ -59,5 +66,6 @@ import Auth from './Auth.css';
           <button type="submit"class="register-button">Crear cuenta</button>
         </form>
       </div>
+       </div>
     );
   }

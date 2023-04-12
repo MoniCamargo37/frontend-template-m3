@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Map from '../../components/Map';
+import { FaArrowLeft } from 'react-icons/fa';
 import cityOverviewService from '../../services/cityOverviewService';
+import favoriteService from '../../services/favoriteService';
 import { useAuth } from '../../hooks/useAuth';
 import ButtonsCard from '../../components/ButtonsCard';
 import Loading from "../../components/Loading";
@@ -19,6 +21,7 @@ export default function CityOverview() {
   const getCity = async () => {
     try {
       const response = await cityOverviewService.getCity(city);
+      console.log('La city overview: ', response);
       setSearchedCity(response);
       setLoading(false);
       setError(false);
@@ -32,7 +35,7 @@ export default function CityOverview() {
   useEffect(() => {
     if (!finishedSearch) {
       setFinishedSearch(true);
-      getCity()
+      getCity();
     }
   },[finishedSearch]);
 
@@ -57,9 +60,27 @@ export default function CityOverview() {
       console.error(error);
     }
   };
+
+  // const handleCreateFavorite = async (id) => {
+  //   try {
+  //     await favoriteService.createFavorite(id);
+  //     toast.success("Agregado a favoritos correctamente.");
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErrorMessage(
+  //       "¡Ups! Algo salió mal al agregar a favoritos. Por favor, inténtalo de nuevo más tarde."
+  //     );
+  //     toast.error(
+  //       "¡Ups! Algo salió mal al agregar a favoritos. Por favor, inténtalo de nuevo más tarde."
+  //     );
+  //   }
+  // };
   
    return (
-     <>
+     <><div>
+      <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+        <FaArrowLeft />
+      </span>  
        <div className='cityoverview-container'>
          <div className='loading'>
            {loading && <Loading />}
@@ -76,7 +97,7 @@ export default function CityOverview() {
                  <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
                </div>
                <div className="cityOverview-sharebtn">
-               <ButtonsCard /> 
+              
                </div>
                </div>
                <div className='cityOverview-btns'>
@@ -88,27 +109,26 @@ export default function CityOverview() {
                    </div>
                  )}
                </div> 
+               <div class="cityOverview-card">
+                  <div class="description-card">
+                    <p>{searchedCity.description}</p>
+                    <div class="searched-number">
+                      <h3>{searchedCity.numSearches}</h3>
+                      <p>Visitas</p>
+                    </div>
+                  </div>
+                  <div class="map-card">
+                    <Map city={searchedCity.cityName} />
+                  </div>
+                </div>
+                <ButtonsCard /> 
            </>
          )}
-             <div class="cityOverview-card">
-  <div class="description-card">
-    <h2>{searchedCity.cityName.split(' -')[0]}</h2>
-    <h3>{searchedCity.country}</h3>
-    <p>{searchedCity.description}</p>
-    <div class="searched-number">
-      <h3>{searchedCity.numSearches}</h3>
-      <p>Visitas</p>
-    </div>
-  </div>
-  <div class="map-card">
-    <Map city={searchedCity.cityName} />
-  </div>
-</div>
          <div className='cityOverview-error'>
            {error && <p>Failed to load city data.</p>}
          </div>
        </div>
- 
+       </div>
      </>
    );
  }
