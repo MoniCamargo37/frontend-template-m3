@@ -36,22 +36,20 @@ function EditPassword({ edit, cancel }) {
   };
 
   return (
- 
     <div className="password-card">
-    <h3>Cambiar contraseña</h3>
-     <div className="form-editPassword">
-    <form className="password-form" onSubmit={handleSubmit}>
-      <label>Contraseña actual</label>
-      <input type="password" value={passwordData.currentPassword} required onChange={handleInputChange} name="currentPassword"/>
-      <label>Nueva contraseña</label>
-      <input type="password" value={passwordData.newPassword} required onChange={handleInputChange} name="newPassword" />
-      <label>Confirmar la nueva contraseña</label>
-      <input type="password" value={passwordData.newPasswordConfirmation} required onChange={handleInputChange} name="newPasswordConfirmation"/>
-      <button type="submit">Guardar contraseña</button>
-    </form>
+      <h3>Cambiar contraseña</h3>
+      <div className="form-editPassword">
+        <form className="password-form" onSubmit={handleSubmit}>
+          <label>Contraseña actual</label>
+          <input type="password" value={passwordData.currentPassword} required onChange={handleInputChange} name="currentPassword"/>
+          <label>Nueva contraseña</label>
+          <input type="password" value={passwordData.newPassword} required onChange={handleInputChange} name="newPassword" />
+          <label>Confirmar la nueva contraseña</label>
+          <input type="password" value={passwordData.newPasswordConfirmation} required onChange={handleInputChange} name="newPasswordConfirmation"/>
+          <button type="submit">Guardar contraseña</button>
+        </form>
+      </div>
     </div>
-    </div>
-
   );
 }
 export default EditPassword;

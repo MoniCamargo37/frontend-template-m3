@@ -154,16 +154,43 @@
   cursor: pointer;
 }
 
+.logged-btn-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.logged-btn {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 100px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  background-color: #ff6347;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.logged-btn :hover {
+  background-color: #7f8c8d;
+}
 .errorMsn-profile {
   text-align: center;
 }
+
 .errorMsn-profile h1 {
   color: rgb(60, 59, 59);
   font-size: 1.8rem;
 }
+
 .errorMsn-profile p {
   font-size: 1.2rem;
 }
+
 .noLoggedProfile-btns {
   display: flex;
   flex-direction: column;
@@ -238,6 +265,18 @@
     font-size: 14px;
   }
 
+  .profile-image button {
+    margin-top: 10px;
+    padding: 5px;
+    width: 200px;
+    font-size: 12px;
+  }
+
+  .logged-btn {
+    padding: 3px;
+    font-size: 12px;
+  }
+
   .editPhoto-card {
     max-width: 100%;
     border-radius: 0;
@@ -256,6 +295,11 @@
   .cancellation-btn {
     width: 150px;
   }
+
+  .logout-btn {
+    width: 150px;
+  }
+
   .photo-form label {
     font-size: 14px;
   }

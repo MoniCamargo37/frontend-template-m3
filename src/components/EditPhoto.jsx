@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import profileService from '../services/profileService';
 import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-hot-toast";
+import { handleEditPhoto } from '../views/profile/Profile';
 
-export default function EditProfile() {
+export default function EditPhoto({edit}) {
   const [profile, setProfile] = useState({username: '', image: ''});
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState();
   const navigate = useNavigate();
+  const [validFile, setValidFile] = useState(false);
 
   const getProfile = async () => {
     try {
@@ -37,7 +40,20 @@ export default function EditProfile() {
       const url = URL.createObjectURL(e.target.files[0]);
       setImageUrl(url);
      } };
-   
+
+  // const handleImage = (e) => {
+  //   if (e.target.files[0]) {
+  //     const file = e.target.files[0];
+  //     const fileExtension = file.name.split('.').pop().toLowerCase();
+  //     if (fileExtension === "jpg" || fileExtension === "png") {
+  //       toast.success('Upadted photo!');
+  //     } else {
+  //   toast.error('the format must be png or jpg!');
+  //     }
+  //   }
+  // };
+
+
 
     const handleSubmit = async (e) => {
       e.preventDefault()  
@@ -47,7 +63,7 @@ export default function EditProfile() {
       }
       try {
         await profileService.editProfile(formData);
-        navigate('/profile');
+        edit(profile.image);
       } catch (error) {
         console.log(error);
         setError(true);

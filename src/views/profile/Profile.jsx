@@ -22,7 +22,7 @@ export default function Profile() {
   const [editingPassword, setEditingPassword] = useState(false);
   const [editingProfile, setEditingProfile] = useState(false);
   const navigate = useNavigate();
-  let change = false;
+  let loaded = false;
   
   const getProfile = async () => {
     setLoading(true);
@@ -42,19 +42,42 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    getProfile();
-    if (user)
-      setIsLoggedIn(true);
-  }, [user]);
+    if(!loaded)
+    {
+      getProfile();
+      if (user)
+        setIsLoggedIn(true);
+      loaded = true;
+    }
+  }, [user,profile]);
 
   const handleEditPasswordprofile = () => {
     setEditingPassword(true);
     setEditingProfile(false);
   };
 
-  const handleEditPhoto = (e) => {
-    setEditingPassword(true);
-    setEditingProfile(false);
+  // const handleEditPhoto = (image) => {
+  //   console.log(image);
+  //   setProfile({ username: profile.name, image: image });
+  //   toast.success('Photo updated successfully!');
+
+  //   setEditingPassword(false);
+  //   setEditingProfile(false);
+  //   loaded = false;
+  // };
+
+  const handleEditPhoto = (image) => {
+    if (image) {
+      console.log(image);
+      setProfile({ username: profile.name, image: image });
+      toast.success('Photo updated successfully!');
+  
+      setEditingPassword(false);
+      setEditingProfile(false);
+      loaded = false;
+    } else {
+      toast.error('the format must be png or jpg!');
+    }
   };
 
   const handleCancel = () => {
@@ -109,7 +132,9 @@ export default function Profile() {
               <button className='cancellation-btn' onClick={() => handleCancel()}>Cancelar</button>
             )}
           </div>
-          {isLoggedIn && <li><a className="nav_item"onClick={() => {setIsLoggedIn(false); logOutUser();}}>Cerrar sesión</a></li>}
+          <div className='logged-btn-container'>
+          {isLoggedIn && <a className="logged-btn"onClick={() => {setIsLoggedIn(false); logOutUser();}}>Cerrar sesión</a>}
+          </div>
           {errorMessage && toast.error(errorMessage)}
         </>
       ) : 

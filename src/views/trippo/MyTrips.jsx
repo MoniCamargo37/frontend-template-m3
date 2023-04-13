@@ -64,7 +64,7 @@ return (
   <FaArrowLeft />
 </span> 
   <div className='my-trips'>
-    <h1>Mis itinerarios de viaje</h1>
+    <h1>Mis itinerarios de viajes</h1>
     <ul>
       {tripPlans.map((plan) => (
         <TripPlan key={plan._id} plan={plan} handleDelete={handleDelete} />

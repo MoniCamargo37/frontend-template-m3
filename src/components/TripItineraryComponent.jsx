@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../styles/TripItineraryStyle.css";
+import "../styles/MyTripsStyles.css";
+
 
 function TripItineraryComponent({ plan, handleDelete }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,10 +16,11 @@ function TripItineraryComponent({ plan, handleDelete }) {
   return (
     <li key={plan._id} className="listOfTripCards">
       <div className="tripCardHeader" tabIndex="0" onClick={handleToggle} onBlur={handleCollapse}>
-        <div>
+        <div className="cityName-myTrips">
             {plan.city}
         </div>
-        <div className="cityOverview-btns">
+        <p> Ver más detalles</p>
+        <div className="deleteMyTrip-btns">
             <button
             onClick={() => {
                 handleDelete(plan._id);

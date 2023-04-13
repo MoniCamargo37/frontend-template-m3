@@ -5,10 +5,20 @@
   }
   
   .my-trips h1 {
-    font-size: 2rem;
+    font-size: 1.2rem;
     margin-bottom: 20px;
+    text-align: center;
+    color: rgb(82, 81, 81);
   }
-  
+  .my-trips h1::after {
+    content: '';
+    display: block;
+    width: 100%; /* ajusta la longitud de la línea */
+    margin: auto;
+    padding-top: 0px;
+    border-bottom: 0.2px solid rgb(215, 215, 215);
+    }
+
   .my-trips ul {
     list-style: none;
     margin: 0;
@@ -21,39 +31,130 @@
     align-items: center;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
+    background-color: #c1bfbf;
+    border-radius: 20px;
+    height: 30px;
   }
   
   .my-trips li:hover {
     background-color: #ebebeb;
   }
   
-  .my-trips .cityOverview-btns button {
-    margin-right: 10px;
-    padding: 10px;
-    background-color: #ff6347;
-    color: #fff;
+  .tripCardHeader {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    width:100%;
+  }
+  .tripCardHeader p {
+    font-size: 12px;
+    color: rgb(6, 89, 161);
+    margin-left: 300px;
+    width: 25%;
+
+  }
+  .cityName-myTrips {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 20px;
+    font: size 14px;
+    font-weight: 600;
+    color:#313232;
+    width:50%;
+  }
+  .deleteMyTrip-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 25%;
+  }
+
+  .deleteMyTrip-btns > button {
+    margin: 0 10px;
+    padding: 5px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    color: #fff;
+    width:80px;
+    height:30px;
+    font-size: 12px;
+    background-color: #ff6347;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 10px;
   }
   
-  .my-trips .cityOverview-btns button:hover {
+  .deleteMyTrip-btns > button:hover {
     background-color: #7f8c8d;
-  }
-  
-  @media screen and (max-width: 600px) {
-    .my-trips li {
-      flex-direction: column;
-      align-items: flex-start;
+  } 
+
+  @media (max-width: 1020px) {
+    .my-trips {
+      max-width: 95%;
     }
   
-    .my-trips .cityOverview-btns button {
-      margin-top: 10px;
-      margin-right: 0;
+  
+    .tripCardHeader p {
+      margin-left: 0;
+      width: 20%;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+    }
+  
+  
+    .cityName-myTrips {
+      margin-left: 0;
+      width: 60%;
+      justify-content: center;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+    }
+  
+    .deleteMyTrip-btns {
+      width: 20%;
+    }
+  
+  
+    .deleteMyTrip-btns > button {
+      font-size: 10px;
     }
   }
+  @media (max-width: 768px) {
+    .my-trips {
+      max-width: 95%;
+    }
+  
+  
+    .tripCardHeader p {
+      margin-left: 0;
+      width: 50%;
+      text-align: center;
+    }
+  
+  
+    .cityName-myTrips {
+      margin-left: 0;
+      width: 50%;
+      justify-content: center;
+      text-align: center;
+    }
+  
+  
+    .deleteMyTrip-btns > button {
+         width: 70px;
+    }
+  }
+  
+  
+  /* CSS for screens up to 1020px */
+ 
+  
 
   .trip {
     background-color: #E74C3C;
@@ -99,8 +200,7 @@
     transform-origin: top;
     transform: scaleY(0);
     opacity: 0;
-  }
-
+  } 
 
   /******************  buttonsCard ******************/
 .botones-container {
