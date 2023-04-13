@@ -21,11 +21,10 @@ import './components/Search.css';
 import './components/DestinationCard.css';
 import './styles/NavbarFooterStyles.css';
 import './views/trippo/planning.css';
-import './views/trippo/tripPlan.css';
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <Toaster/>
       <Navbar />
       <Routes>

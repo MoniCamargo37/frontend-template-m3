@@ -40,6 +40,7 @@
     background-color: #ebebeb;
   }
   
+
   .tripCardHeader {
     display:flex;
     flex-direction: row;
@@ -47,6 +48,7 @@
     text-align: center;
     align-items: center;
     width:100%;
+    cursor: pointer;
   }
   .tripCardHeader p {
     font-size: 12px;
@@ -91,6 +93,56 @@
   .deleteMyTrip-btns > button:hover {
     background-color: #7f8c8d;
   } 
+
+  /* .listOfTripCards {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+.tripCardDayList {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.day-list {
+  margin-bottom: 20px;
+}
+
+.day-list h3 {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.day-list img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.day-list ul {
+  padding: 0;
+  margin: 0;
+}
+
+ .day-list li {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.day-list h4 {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+ .day-list p {
+  margin-bottom: 5px;
+  font-size: 14px;
+} */
+
 
   @media (max-width: 1020px) {
     .my-trips {
@@ -151,9 +203,7 @@
     }
   }
   
-  
-  /* CSS for screens up to 1020px */
- 
+
   
 
   .trip {
@@ -202,6 +252,33 @@
     opacity: 0;
   } 
 
+  /******************************* MY TRIPS OFFINE MODE *******************/
+
+  .myTrips-OffModebtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .myTrips-OffModebtns  button {
+    margin: 0 10px;
+    padding: 5px;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #ff6347;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 10px;
+  }
+  
+  .myTrips-OffModebtns > button:hover {
+    background-color: #7f8c8d;
+  } 
+
   /******************  buttonsCard ******************/
 .botones-container {
   display:flex;
@@ -209,6 +286,7 @@
   gap: 10px;
   align-items: center;
   width: 100%;
+
 }
   .link-card {
     display:flex;
@@ -216,13 +294,7 @@
     justify-content: center;
     width: 40%;
   }
- 
-  .enlaces-container {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-  }
+
 
   .btn-text-uppercase {
     background-color: #ff6347;
@@ -231,14 +303,27 @@
     font-weight: 700;
     height:40px;
     border-radius: 10px;
+    border-color: transparent;
   }
   .btn-text-uppercase:hover {
     background-color: #f97f69;
+  }
+
+   
+  .enlaces-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
   }
   .enlace-reserva {
     background-color: #e8eeee;
     color: rgb(59, 59, 59);
     font-weight: 600;
+    font-size: 12px;
+    padding-bottom: 5px;
+    
    }
 
    .compartir-container {
@@ -246,6 +331,7 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
+  
    }
 
    .enlace-compartir {
@@ -253,3 +339,35 @@
     color: rgb(59, 59, 59);
     font-weight: 600;
    }
+   @media screen and (max-width: 768px) {
+    .botones-container {
+     margin-top: 20px;
+    }
+    .btn-text-uppercase {
+     font-size: 10px;
+      height:30px;
+    }
+  
+    .link-card {
+      width: 45%;
+    }
+  
+    .enlaces-container {
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+    .enlace-reserva {
+      background-color: #e8eeee;
+      color: rgb(59, 59, 59);
+      font-weight: 600;
+      font-size: 11px;
+      padding-bottom: 5px;
+      
+     }
+  
+  }
+  
+  

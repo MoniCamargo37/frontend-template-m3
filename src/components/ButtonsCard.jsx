@@ -68,41 +68,45 @@ function ButtonsCard() {
         </button>
         {showLinks && (
           <div className="enlaces-container">
-            <a
-              className="enlace-reserva"
-              href="https://www.airbnb.com/"
-              target="_blank"
-            >
-              Reserve en Airbnb
-            </a>
-            <a
-              className="enlace-reserva"
-              href="https://www.booking.com/"
-              target="_blank"
-            >
-              Reserve en Booking
-            </a>
-            <a
-              className="enlace-reserva"
-              href="https://www.skyscanner.es/"
-              target="_blank"
-            >
-              Vuelos en Skyscanner
-            </a>
-            <a
-              className="enlace-reserva"
-              href="https://www.thefork.es/"
-              target="_blank"
-            >
-              Reserve en TheFork
-            </a>
+          <a
+  className="enlace-reserva"
+  href="https://www.airbnb.com/"
+  target="_blank"
+  rel="noreferrer"
+>
+  Reserve en Airbnb
+</a>
+<a
+  className="enlace-reserva"
+  href="https://www.booking.com/"
+  target="_blank"
+  rel="noreferrer"
+>
+  Reserve en Booking
+</a>
+<a
+  className="enlace-reserva"
+  href="https://www.skyscanner.es/"
+  target="_blank"
+  rel="noreferrer"
+>
+  Vuelos en Skyscanner
+</a>
+<a
+  className="enlace-reserva"
+  href="https://www.thefork.es/"
+  target="_blank"
+  rel="noreferrer"
+>
+  Reservas en The Fork
+</a>
           </div>
         )}
       </div>
       <div className="link-card">
-        <button className="btn-text-uppercase" onClick={handleShowShare}>
+        {/* <button className="btn-text-uppercase" onClick={handleShowShare}>
           COMPARTIR
-        </button>
+        </button> */}
         {showShare && (
           <div className="compartir-container">
          <a href="#" onClick={(e) => { e.preventDefault(); handleShareEmail(); }}>

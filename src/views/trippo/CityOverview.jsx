@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import Map from '../../components/Map';
 import { FaArrowLeft } from 'react-icons/fa';
 import cityOverviewService from '../../services/cityOverviewService';
-import favoriteService from '../../services/favoriteService';
 import { useAuth } from '../../hooks/useAuth';
 import ButtonsCard from '../../components/ButtonsCard';
 import Loading from "../../components/Loading";
+import "../../styles/CityoverviewStyles.css";
 
 export default function CityOverview() {
   const navigate = useNavigate();
@@ -77,18 +77,19 @@ export default function CityOverview() {
   // };
   
    return (
-     <><div>
-      <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
-        <FaArrowLeft />
-      </span>  
+    <>
+    <div className='loading'>
+    {loading && <Loading />}
+  </div>
+    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+    <FaArrowLeft />
+  </span>  
+
        <div className='cityoverview-container'>
-         <div className='loading'>
-           {loading && <Loading />}
-         </div>
          {!loading && searchedCity && (
            <>
             <div className='header-title'>
-                <h1>{searchedCity.cityName.split(' -')[0]} -</h1> {/*coge solo la primera posicion que es nombre de ciudad */}
+                <h1>{searchedCity.cityName.split(' -')[0]} -&nbsp;</h1> {/*coge solo la primera posicion que es nombre de ciudad */}
                  <h2>{searchedCity.country}</h2>
                </div>
                <div className='cityOverview-img-btns'>
@@ -102,7 +103,7 @@ export default function CityOverview() {
                </div>
                <div className='cityOverview-btns'>
                  <button onClick={handleContinue}>Continue</button>
-                 <button onClick={handleGoBack}>Go Back</button>
+                 <button onClick={handleGoBack} style={{ display: "inline-block" }}>Go Back</button>
                  {user && user.role === 'admin' && (
                    <div className='delete-btn'> 
                      <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
@@ -111,24 +112,25 @@ export default function CityOverview() {
                </div> 
                <div class="cityOverview-card">
                   <div class="description-card">
-                    <p>{searchedCity.description}</p>
-                    <div class="searched-number">
+                  <div class="searched-number">
                       <h3>{searchedCity.numSearches}</h3>
                       <p>Visitas</p>
                     </div>
+                    <p>{searchedCity.description}</p>
+                    
                   </div>
                   <div class="map-card">
                     <Map city={searchedCity.cityName} />
                   </div>
                 </div>
+        
                 <ButtonsCard /> 
            </>
          )}
          <div className='cityOverview-error'>
            {error && <p>Failed to load city data.</p>}
          </div>
-       </div>
-       </div>
-     </>
+     </div>
+</>
    );
  }

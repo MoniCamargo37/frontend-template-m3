@@ -3,15 +3,12 @@ import profileService from '../services/profileService';
 import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-hot-toast";
-import { handleEditPhoto } from '../views/profile/Profile';
 
 export default function EditPhoto({edit}) {
   const [profile, setProfile] = useState({username: '', image: ''});
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [imageUrl, setImageUrl] = useState();
-  const navigate = useNavigate();
-  const [validFile, setValidFile] = useState(false);
 
   const getProfile = async () => {
     try {

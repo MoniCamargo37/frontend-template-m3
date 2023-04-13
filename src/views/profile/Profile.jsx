@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink} from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -41,44 +41,48 @@ export default function Profile() {
     }
   };
 
-  useEffect(() => {
-    if(!loaded)
-    {
-      getProfile();
-      if (user)
-        setIsLoggedIn(true);
-      loaded = true;
-    }
-  }, [user,profile]);
+ useEffect(() => {
+  if(!loaded)
+  {
+    getProfile();
+    if (user) {
+     setIsLoggedIn(true);
+ }
+   loaded = true;
+   }
+ }, [profile]);  
+
+
+
+  const handleEditPhoto = (image) => {
+    console.log(image);
+    setProfile({ username: profile.name, image: image });
+    toast.success('Photo updated successfully!');
+
+    setEditingPassword(false);
+    setEditingProfile(false);
+    loaded = false;
+  };
+
+  // const handleEditPhoto = (image) => {
+  //   if (image) {
+  //     console.log(image);
+  //     setProfile({ username: profile.name, image: image });
+  //     toast.success('Photo updated successfully!');
+  
+  //     setEditingPassword(false);
+  //     setEditingProfile(false);
+  //     loaded = false;
+  //   } else {
+  //     toast.error('the format must be png or jpg!');
+  //   }
+  // };
 
   const handleEditPasswordprofile = () => {
     setEditingPassword(true);
     setEditingProfile(false);
   };
 
-  // const handleEditPhoto = (image) => {
-  //   console.log(image);
-  //   setProfile({ username: profile.name, image: image });
-  //   toast.success('Photo updated successfully!');
-
-  //   setEditingPassword(false);
-  //   setEditingProfile(false);
-  //   loaded = false;
-  // };
-
-  const handleEditPhoto = (image) => {
-    if (image) {
-      console.log(image);
-      setProfile({ username: profile.name, image: image });
-      toast.success('Photo updated successfully!');
-  
-      setEditingPassword(false);
-      setEditingProfile(false);
-      loaded = false;
-    } else {
-      toast.error('the format must be png or jpg!');
-    }
-  };
 
   const handleCancel = () => {
     setEditingPassword(false);
@@ -133,7 +137,14 @@ export default function Profile() {
             )}
           </div>
           <div className='logged-btn-container'>
-          {isLoggedIn && <a className="logged-btn"onClick={() => {setIsLoggedIn(false); logOutUser();}}>Cerrar sesión</a>}
+          {isLoggedIn && (
+  <a href="/" className="logged-btn" onClick={() => {
+    setIsLoggedIn(false);
+    logOutUser();
+  }}>
+    Cerrar sesión
+  </a>
+)}
           </div>
           {errorMessage && toast.error(errorMessage)}
         </>

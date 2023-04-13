@@ -1,40 +1,149 @@
-/* Estilos para el contenedor del formulario */
 .planning-card {
-    max-width: 768px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box; 
-  }
-  
-  /* Estilos para el formulario */
-  .formTrip-card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;;
-  }
-  
-  /* Estilos para las etiquetas de texto */
-  .formTrip-card label {
-    width: 100%;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 16px;
-    text-align: left;
-  }
-  
-  /* Estilos para los inputs de texto y número */
-  .formTrip-card input[type="text"],
-  .formTrip-card input[type="number"] {
-    width: calc(20% - 5px);
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  /* Estilos para el input de rango */
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.planning-card h2 {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-right: 50px;
+  text-align: center;
+  color: #ff6347;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.formTrip-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 30px;
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+#destino-input {
+  width: 150px;
+  margin-left: 100px;
+  height: 5px;
+}
+
+#presupuesto-input {
+  width: 100%;
+  color: #ff6347;
+}
+
+.incdecControl {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.incdecControlButton {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 80%;
+  width: 20px;
+  height: 20px;
+  font-size: 1rem;
+  display: flex;
+  margin-top: 10px;
+  margin: 15px 6px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.incdecControlButton:hover {
+  background-color: gray;
+}
+
+#num-pasajeros,
+#num-dias {
+  margin: 0 5px;
+  margin-top: 10px;
+}
+
+.travelDaysControl {
+  display: flex;
+  align-items: center;
+}
+
+.month-select,
+.tripType-select {
+  width: 200px;
+}
+
+.slider-input {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.budget-input {
+  width: 60px;
+  margin-left: 10px;
+  height: 5px;
+}
+
+/* Estilos para el formulario */
+.formTrip-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 80%;
+}
+
+.form-group label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Estilos para las etiquetas de texto */
+.formTrip-card label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  width: 80%;
+}
+
+/* Estilos para los inputs de texto y número */
+.formTrip-card input[type="text"],
+.formTrip-card input[type="number"] {
+  width: calc(20% - 5px);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Estilos para el input de rango */
 .formTrip-card input[type="range"] {
   width: 100%;
   height: 10px;
@@ -55,7 +164,7 @@
 }
 
 /* Estilos para el input de texto del presupuesto */
-.budget-input {
+#budget-input {
   width: calc(50% - 5px);
   margin-left: 10px;
   padding: 10px;
@@ -63,131 +172,115 @@
   border-radius: 5px;
   background-color: #fff;
   font-size: 16px;
-  color: rgb(60, 59, 59);
   font-weight: bold;
 }
 
 .budget-input:focus {
-  background-color: #ddd;
+  background-color: #f0eaea;
 }
 
-  
-  /* Estilos para el botón */
+/* Estilos para el botón */
+.formTrip-card button {
+  width: 50%;
+  margin-top: 20px;
+  padding: 10px;
+  background: #ff6347;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  align-self: center;
+}
+
+.formTrip-card select option:checked {
+  background: #ff6347;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .planning-card {
+    padding: 30px;
+  }
+
+  .planning-card h2 {
+    font-size: 14px;
+    margin-right: 0;
+    margin-top: 20px;
+  }
+
+  .formTrip-card {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .form-group {
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+  }
+
+  #destino-input {
+    margin-left: 0;
+    margin-top: 5px;
+    width: 60%;
+    height: 0px;
+    font-size: 12px;
+  }
+
+  #num-pasajeros,
+  #num-dias {
+    margin: 0 05px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  #presupuesto-input {
+    width: 100%;
+  }
+
+  .incdecControl {
+    align-items: center;
+  }
+
+  .incdecControlButton {
+    margin: 10px 0;
+  }
+
+  .month-select,
+  .tripType-select {
+    width: 40%;
+    border-radius: 5px;
+    border-color: #e2e0e0;
+    font-size: 12px;
+  }
+
+  #presupuesto-input {
+    width: 50%;
+  }
+
+  .budget-input {
+    margin-left: 0;
+  }
+
+  #budget-input {
+    width: calc(50% - 5px);
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+  }
   .formTrip-card button {
     width: 50%;
-    margin-top: 20px;
-    padding: 10px;
-    background: #ff6347;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    align-self: center;
-  }
-  
-
-  .formTrip-card select option:checked {
-    background: #ff6347;
-    color: #fff;
+    margin-top: 10px;
+    font-size: 12px;
   }
 
-
-
-  
-  /* .input-group {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    border-radius: 50px;
-    width: 160px;
-    height: 40px;
-    margin-bottom: 20px;
+  .formTrip-card label {
+    margin-bottom: 0px;
+    font-size: 12px;
   }
-  
-  .input-group input {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    border: none;
-    width: 80px;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .input-group button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    padding: 0;
-    width: 40px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .input-group button span {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: #ccc;
-    color: #fff;
-    font-size: 14px;
-    line-height: 1;
-    text-align: center;
-  }
-  
-  .input-group button.decrease-btn span:before {
-    content: "-";
-  }
-  
-  .input-group button.increase-btn span:before {
-    content: "+";
-  }
-  
-  @media (max-width: 768px) {
-    .input-group {
-      width: 120px;
-      height: 32px;
-    }
-  
-    .input-group input {
-      font-size: 14px;
-      width: 60px;
-    }
-  
-    .input-group button {
-      font-size: 18px;
-      width: 32px;
-    }
-  }
-  
-   */
-    
-
-   .incdecControl {
-    display: flex;
-    align-items: center;
-}
-
-.incdecControlButton {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.incdecControlButton:hover {
-  background-color: #3e8e41;
 }

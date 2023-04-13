@@ -49,7 +49,7 @@ function MyTrips() {
       <div className='my-trips'>
         <h1>Mis itinerarios viajes</h1>
         <p>Sin inicio de sesión no hay paraíso...</p>
-        <div className='cityOverview-btns'>
+        <div className='myTrips-OffModebtns'>
           <Link to="/login"><button>Iniciar sesión</button></Link>
           <Link to="/signup"><button>Crear cuenta</button></Link>
         </div>

@@ -34,7 +34,7 @@ function TripItineraryComponent({ plan, handleDelete }) {
       {isOpen && (
         <div className="tripCardDayList">
           {plan.days.map((day) => (
-            <div key={day._id}>
+            <div className="day-list" key={day._id}>
               <h3>{day.name}</h3>
               <img src={day.picture} alt={day.name} />
               <ul>
