@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, } from 'react-router-dom';
 import tripPlanService from '../../services/tripPlanService';
-import { toast } from "react-hot-toast";
 import { FaArrowLeft } from 'react-icons/fa';
 import ButtonsCard from '../../components/ButtonsCard';
 import TripPlan from '../../components/TripItineraryComponent';
 import { useAuth } from '../../hooks/useAuth';
+import "../../styles/MyTripsStyles.css";
 
 function MyTrips() {
   const [tripPlans, setTripPlans] = useState([]);
@@ -60,18 +60,18 @@ function MyTrips() {
 
 return (
   <div>
-  <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
-  <FaArrowLeft />
-</span> 
-  <div className='my-trips'>
-    <h1>Mis itinerarios de viajes</h1>
-    <ul>
-      {tripPlans.map((plan) => (
-        <TripPlan key={plan._id} plan={plan} handleDelete={handleDelete} />
-      ))}
-    </ul>
-    <ButtonsCard/>
-  </div>
+    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+      <FaArrowLeft />
+    </span> 
+    <div className='my-trips'>
+      <h1>Mis itinerarios de viajes</h1>
+      <ul>
+        {tripPlans.map((plan) => (
+          <TripPlan key={plan._id} plan={plan} handleDelete={handleDelete} />
+        ))}
+      </ul>
+      <ButtonsCard/>
+    </div>
   </div>
 );
 }

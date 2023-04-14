@@ -61,10 +61,10 @@ function TripPlan() {
       await tripPlanService.createTrip(tripPlan);
       console.log('Trip plan saved!');
       toast.success('Trip plan saved!'); 
-      navigate('/trip/mis-viajes'); // Redireccionar al usuario a la página de "Mis Viajes"
+      navigate('/trip/mis-viajes');
     } catch (error) {
       console.error(error);
-      toast.error('Error saving trip plan. Please try again later.'); // Mostrar un mensaje de error usando react-toastify
+      toast.error('Error saving trip plan. Please try again later.'); 
     }
   };
   

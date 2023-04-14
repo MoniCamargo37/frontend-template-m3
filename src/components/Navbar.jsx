@@ -1,4 +1,4 @@
-import React, {useContext, useState, useRef, useEffect } from 'react';
+import React, {useContext,  useRef } from 'react';
 import { NavLink, useNavigate} from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Logo from '../images/Tripfy (3).png';
@@ -43,7 +43,7 @@ return (
                <div className="nav_btn">
         {!isLoggedIn && <li><NavLink  className="nav_item" to="/login">Iniciar sesión</NavLink></li>}
     
-        {isLoggedIn && <li><a className="nav_item"onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li>}
+        {/* {isLoggedIn && <li><a className="nav_item" href="/" onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li> */}
         {/* <li><button onClick={() => navigate(-1)}>Go back</button></li> PARA MOBILE */}
       </div>
         </div>

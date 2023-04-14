@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft,FaPlus, FaMinus } from 'react-icons/fa';
 import "./planning.css";
 
 export default function Planning() {
@@ -15,7 +15,7 @@ export default function Planning() {
   const [selectedCityName, setSelectedCityName] = useState("");
   const location = useLocation();
   const { cityName } = location.state;
-  const [searchedCity, setSearchedCity] = useState(
+  const [searchedCity] = useState(
     location.state?.searchedCity
   );
   const authContext = useContext(AuthContext);
@@ -31,10 +31,6 @@ export default function Planning() {
     const mesSeleccionado = event.target.value.toString();
     setMesViaje(mesSeleccionado);
   }
-
-  const handlePresupuestoChange = (event) => {
-    setPresupuesto(event.target.value);
-  };
 
   const handleTipoViajeChange = (event) => {
     setTipoViaje(event.target.value);
@@ -120,10 +116,10 @@ export default function Planning() {
   };
 
   return (
-    <div>
-    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+      <div>
+        <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
     <FaArrowLeft />
-  </span> 
+        </span> 
     <div className="planning-card">
       <h2>
         ¡Dinos cómo quieres vivir tu viaje y te organizamos el mejor plan!
@@ -131,38 +127,12 @@ export default function Planning() {
       <form className="formTrip-card">
         <div className="form-group">
           <label htmlFor="destino-input">¿Ciudad seleccionada?</label>
-          <input
-            id="destino-input"
-            type="text"
-            value={cityName.split(" -")[0]}
-            onChange={(event) => setCityName(event.target.value)}
-            className="destino-input"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="num-pasajeros">¿Cuántos viajeros?</label>
-          <div className="incdecControl">
-            <button type="button" className="incdecControlButton" onClick={decrementNumPasajeros}> - </button>
-            <span id="num-pasajeros">{numPasajeros}</span>
-            <button type="button" className="incdecControlButton" onClick={incrementNumPasajeros}> + </button>
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="num-dias">¿Cuántos días quieres viajar?</label>
-          <div className="travelDaysControl">
-            <button type="button" className="incdecControlButton" onClick={travelDaysDecrement}> - </button>
-            <span id="num-pasajeros">{diasViaje}</span>
-            <button type="button" className="incdecControlButton" onClick={travelDaysIncrement}> + </button>
-          </div>
+          <input id="destino-input" type="text"  value={cityName.split(" -")[0]} onChange={(event) => setCityName(event.target.value)}
+           className="destino-input" />
         </div>
         <div className="form-group">
           <label htmlFor="mes-viaje">¿En qué mes quieres viajar?</label>
-          <select
-            id="mes-viaje"
-            value={mesViaje}
-            onChange={handleMesViajeChange}
-            className="month-select"
-          >
+          <select id="mes-viaje"  value={mesViaje} onChange={handleMesViajeChange}  className="month-select" >
             <option value="1">Enero</option>
             <option value="2">Febrero</option>
             <option value="3">Marzo</option>
@@ -170,7 +140,7 @@ export default function Planning() {
             <option value="5">Mayo</option>
             <option value="6">Junio</option>
             <option value="7">Julio</option>
-            <option value="8\">Agosto</option>
+            <option value="8">Agosto</option>
             <option value="9">Septiembre</option>
             <option value="10">Octubre</option>
             <option value="11">Noviembre</option>
@@ -178,15 +148,8 @@ export default function Planning() {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="tipo-viaje">
-            ¿Qué tipo de viaje deseas realizar?
-          </label>
-          <select
-            id="tipo-viaje"
-            value={tipoViaje}
-            onChange={handleTipoViajeChange}
-            className="tripType-select"
-          >
+          <label htmlFor="tipo-viaje"> ¿Qué tipo de viaje deseas realizar? </label>
+          <select id="tipo-viaje" value={tipoViaje}  onChange={handleTipoViajeChange} className="tripType-select" >
             <option value="aventurero">Aventurero</option>
             <option value="relajado">Relajado</option>
             <option value="romantico">Romántico</option>
@@ -194,41 +157,33 @@ export default function Planning() {
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="presupuesto-input">¿Cuál es tu presupuesto?</label>
-          <input
-            id="presupuesto-input"
-            type="range"
-            min="100"
-            max="10000"
-            value={presupuesto}
-            onChange={handlePresupuestoChange}
-            className="slider-input"
-          />
-          <input
-            type="text"
-            value={presupuesto}
-            onChange={(event) => {
-              const value = parseInt(event.target.value);
-              if (!isNaN(value) && value >= 100 && value <= 10000) {
-                setPresupuesto(value);
-              }
-            }}
-            onBlur={(event) => {
-              const value = parseInt(event.target.value);
-              if (!isNaN(value) && value >= 300 && value <= 20000) {
-                setPresupuesto(value);
-              }
-            }}
-            className="budget-input"
-          />
-          {errorMsg && <p className="error-msg">{errorMsg}</p>}
+           <label htmlFor="num-pasajeros">¿Cuántos viajeros?</label>
+          <div className="incdecControl">
+            <button type="button" onClick={decrementNumPasajeros}><FaMinus /></button>
+            <span id="num-pasajeros">{numPasajeros}</span>
+            <button type="button" onClick={incrementNumPasajeros}><FaPlus /></button>
+          </div>
         </div>
-        {authContext.user ? (
-          <button onClick={handleSubmit}>Planificar viaje</button>
+        <div className="form-group">
+           <label htmlFor="num-dias">¿Cuántos días quieres viajar?</label>
+          <div className="travelDaysControl">
+            <button type="button"  onClick={travelDaysDecrement}><FaMinus /></button>
+            <span id="num-pasajeros">{diasViaje}</span>
+            <button type="button" onClick={travelDaysIncrement}><FaPlus /></button>
+          </div>
+        </div>
+        <div className="form-group">
+            <label htmlFor="presupuesto-input">¿Qué presupuesto?</label>
+            <input id="presupuesto-input" type="range" min="100" max="10000" step="50" value={presupuesto} onChange={(event) => setPresupuesto(parseInt(event.target.value))}
+               className="slider-input"/>
+            <input type="number" value={presupuesto} min="100" max="10000" step="50" onChange={(event) => setPresupuesto(parseInt(event.target.value))}
+               className="budget-input"/>
+             {errorMsg && <p className="error-msg">{errorMsg}</p>}
+        </div>
+            {authContext.user ? (
+            <button onClick={handleSubmit}>Planificar viaje</button>
         ) : (
-          <Link to="/login">
-            <button>Inicia sesión para planificar un viaje</button>
-          </Link>
+          <Link to="/login"><button >Inicia sesión para planificar</button> </Link>
         )}
       </form>
     </div>

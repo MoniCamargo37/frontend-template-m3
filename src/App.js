@@ -21,6 +21,7 @@ import './components/Search.css';
 import './components/DestinationCard.css';
 import './styles/NavbarFooterStyles.css';
 import './views/trippo/planning.css';
+import "./styles/MyTripsStyles.css";
 
 function App() {
   return (

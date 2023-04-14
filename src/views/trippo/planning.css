@@ -10,7 +10,7 @@
 }
 
 .planning-card h2 {
-  font-size: 16px;
+  font-size: 168x;
   margin-top: 10px;
   margin-right: 50px;
   text-align: center;
@@ -23,7 +23,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  width: 80%;
   margin-top: 40px;
 }
 
@@ -33,114 +34,30 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  height: 30px;
+  height: 50px;
   width: 90%;
   margin-bottom: 10px;
 }
 
-#destino-input {
-  width: 150px;
-  margin-left: 100px;
-  height: 5px;
-}
-
-#presupuesto-input {
-  width: 100%;
-  color: #ff6347;
-}
-
-.incdecControl {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.incdecControlButton {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 80%;
-  width: 20px;
-  height: 20px;
-  font-size: 1rem;
-  display: flex;
-  margin-top: 10px;
-  margin: 15px 6px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.incdecControlButton:hover {
-  background-color: gray;
-}
-
-#num-pasajeros,
-#num-dias {
-  margin: 0 5px;
-  margin-top: 10px;
-}
-
-.travelDaysControl {
-  display: flex;
-  align-items: center;
-}
-
-.month-select,
-.tripType-select {
-  width: 200px;
-}
-
-.slider-input {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.budget-input {
-  width: 60px;
-  margin-left: 10px;
-  height: 5px;
-}
-
-/* Estilos para el formulario */
-.formTrip-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 80%;
-}
-
-.form-group label {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* Estilos para las etiquetas de texto */
 .formTrip-card label {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  text-align: center;
+  /* text-align: center; */
   font-weight: bold;
-  font-size: 14px;
+  font-size: 18px;
   width: 80%;
 }
 
-/* Estilos para los inputs de texto y número */
 .formTrip-card input[type="text"],
 .formTrip-card input[type="number"] {
-  width: calc(20% - 5px);
+  width: calc(25% - 5px);
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 /* Estilos para el input de rango */
@@ -150,7 +67,7 @@
   margin-top: 10px;
   background-color: #ddd;
   border-radius: 5px;
-  /* -webkit-appearance: none; */
+  -webkit-appearance: none;
 }
 
 .formTrip-card input[type="range"]::-webkit-slider-thumb {
@@ -163,25 +80,68 @@
   border-radius: 50%;
 }
 
-/* Estilos para el input de texto del presupuesto */
-#budget-input {
-  width: calc(50% - 5px);
+.budget-input {
+  width: 400px;
   margin-left: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
+  height: 5px;
+}
+
+#destino-input {
+  width: 150px;
+  margin-left: 100px;
+  height: 5px;
+  color: #f8320f;
+}
+.travelDaysControl {
+  display: flex;
+  align-items: center;
+}
+.incdecControl button {
+  height: 40px;
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+.travelDaysControl button {
+  height: 40px;
+  width: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.incdecControl Button:hover {
+  background-color: gray;
+}
+.travelDaysControl Button:hover {
+  background-color: gray;
+}
+
+#num-pasajeros,
+#num-dias {
+  margin: 0 5px;
+  margin-top: 10px;
+}
+
+.month-select,
+.tripType-select {
+  width: 210px;
+  height: 30px;
   border-radius: 5px;
-  background-color: #fff;
+  border-color: #e2e0e0;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
+  color: #4d4c4c;
 }
 
-.budget-input:focus {
-  background-color: #f0eaea;
+.incdecControl {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-/* Estilos para el botón */
 .formTrip-card button {
-  width: 50%;
+  max-width: 100%;
   margin-top: 20px;
   padding: 10px;
   background: #ff6347;
@@ -192,6 +152,11 @@
   cursor: pointer;
   align-self: center;
 }
+
+.formTrip-card  Button:hover {
+  background-color: gray;
+}
+
 
 .formTrip-card select option:checked {
   background: #ff6347;
@@ -204,7 +169,7 @@
   }
 
   .planning-card h2 {
-    font-size: 14px;
+    font-size: 16px;
     margin-right: 0;
     margin-top: 20px;
   }
@@ -219,13 +184,10 @@
     height: auto;
     width: 100%;
   }
-
-  #destino-input {
-    margin-left: 0;
-    margin-top: 5px;
-    width: 60%;
-    height: 0px;
-    font-size: 12px;
+  .formTrip-card label {
+    margin-bottom: 0px;
+    font-size: 14px;
+    width: 100%;
   }
 
   #num-pasajeros,
@@ -246,13 +208,19 @@
   .incdecControlButton {
     margin: 10px 0;
   }
-
+  #destino-input {
+    margin-left: 0;
+    margin-top: 5px;
+    width: 130px;
+    height: 10px;
+    font-size: 14px;
+  }
   .month-select,
   .tripType-select {
-    width: 40%;
-    border-radius: 5px;
-    border-color: #e2e0e0;
-    font-size: 12px;
+    width: 100px;
+    height: 30px;
+
+    font-size: 14px;
   }
 
   #presupuesto-input {
@@ -274,13 +242,9 @@
     font-weight: bold;
   }
   .formTrip-card button {
-    width: 50%;
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 18px;
   }
 
-  .formTrip-card label {
-    margin-bottom: 0px;
-    font-size: 12px;
-  }
+ 
 }

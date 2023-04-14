@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import "../styles/MyTripsStyles.css";
+import "../styles/TripItineraryStyle.css";
 
 
 function TripItineraryComponent({ plan, handleDelete }) {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => {
     console.log("Hemos hecho click en el botón");
-    setIsOpen(!isOpen);
+   setIsOpen(!isOpen);
   };
-
+ 
   const handleCollapse = () => {
-    setIsOpen(false);
+   setIsOpen(false);
   };
 
   return (

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import profileService from '../../services/profileService';
 import EditPassword from '../../components/EditPassword';
 import EditPhoto from '../../components/EditPhoto';
+import ImageRio from '../../images/rio-de-janeiro.jpg'
 // import favoriteService from '../../services/favoriteService';
 // import cityOverviewService from '../../services/cityOverviewService';
 import'../../styles/ProfileStyles.css';
@@ -12,20 +13,18 @@ import { toast } from "react-hot-toast";
 import { useAuth } from '../../hooks/useAuth';
 
 export default function Profile() {
-  const { user, logOutUser } = useAuth();
+  const { isLoggedIn, logOutUser } = useAuth();
   const [profile, setProfile] = useState({ username: '', image: '' });
-//  const { isLoggedIn,  logOutUser } = useContext(AuthContext); 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   // const [cityOverview, setCityOverview] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [editingPassword, setEditingPassword] = useState(false);
-  const [editingProfile, setEditingProfile] = useState(false);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
   const navigate = useNavigate();
-  let loaded = false;
+ 
   
   const getProfile = async () => {
-    setLoading(true);
     try {
       const response = await profileService.getProfile();
       setProfile(response.user);
@@ -42,51 +41,31 @@ export default function Profile() {
   };
 
  useEffect(() => {
-  if(!loaded)
-  {
+  if(loading)
     getProfile();
-    if (user) {
-     setIsLoggedIn(true);
- }
-   loaded = true;
-   }
- }, [profile]);  
+ },[loading]);  
 
-
+ const handleEditingProfile = () => {
+  setIsEditingProfile(true);
+};
 
   const handleEditPhoto = (image) => {
-    console.log(image);
     setProfile({ username: profile.name, image: image });
     toast.success('Photo updated successfully!');
-
     setEditingPassword(false);
-    setEditingProfile(false);
-    loaded = false;
+    setIsEditingProfile(false);
+    setLoading(true);
   };
-
-  // const handleEditPhoto = (image) => {
-  //   if (image) {
-  //     console.log(image);
-  //     setProfile({ username: profile.name, image: image });
-  //     toast.success('Photo updated successfully!');
-  
-  //     setEditingPassword(false);
-  //     setEditingProfile(false);
-  //     loaded = false;
-  //   } else {
-  //     toast.error('the format must be png or jpg!');
-  //   }
-  // };
 
   const handleEditPasswordprofile = () => {
     setEditingPassword(true);
-    setEditingProfile(false);
+    setIsEditingProfile(false);
   };
 
 
   const handleCancel = () => {
     setEditingPassword(false);
-    setEditingProfile(false);
+    setIsEditingProfile(false);
   };
 
   const handleEditPassword = async (passwordData) => {
@@ -119,32 +98,27 @@ export default function Profile() {
             {profile.image && (
               <img src={profile.image} alt="Profile" style={{ maxWidth: "50%", maxHeight: "500px" }} />
             )}
-            {!editingPassword && !editingProfile && (
+            {!editingPassword && !isEditingProfile && (
               <>
                 <button onClick={() => handleEditPasswordprofile()}>Cambiar contraseña</button>
-                <button onClick={() => setEditingProfile(true)}>Cambiar foto de perfil</button>
+                <button onClick={() => handleEditingProfile(true)}>Cambiar foto de perfil</button>
               </>
             )}
             {editingPassword && (
               <EditPassword edit={handleEditPassword} cancel={handleCancel} />
             )}
-            {editingProfile && (
+            {isEditingProfile && (
               <EditPhoto edit={handleEditPhoto} cancel={handleCancel} />
             )}
 
-            {(editingPassword || editingProfile) && (
+            {(editingPassword || isEditingProfile) && (
               <button className='cancellation-btn' onClick={() => handleCancel()}>Cancelar</button>
             )}
           </div>
           <div className='logged-btn-container'>
-          {isLoggedIn && (
-  <a href="/" className="logged-btn" onClick={() => {
-    setIsLoggedIn(false);
-    logOutUser();
-  }}>
-    Cerrar sesión
-  </a>
-)}
+          {isLoggedIn && ( 
+               <a className="logged-btn" onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a>
+           )}
           </div>
           {errorMessage && toast.error(errorMessage)}
         </>
@@ -154,6 +128,7 @@ export default function Profile() {
           <div className='errorMsn-profile'>
             <h1>Perfil</h1>
             <p>Sin inicio de sesión no hay paraíso... 🌊 🌊</p>
+            <img src={ImageRio} alt="rio-de-janeiro" />
             <div className='noLoggedProfile-btns'>
               <NavLink className="btn-login-profile" to="/login">Iniciar sesión</NavLink>
               <NavLink className="btn-login-profile" to="/signup">Crear cuenta </NavLink>
@@ -165,5 +140,7 @@ export default function Profile() {
     </div>
   );
 }
+
+
 
 

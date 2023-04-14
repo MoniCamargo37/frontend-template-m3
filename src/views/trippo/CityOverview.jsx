@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Map from '../../components/Map';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import cityOverviewService from '../../services/cityOverviewService';
 import { useAuth } from '../../hooks/useAuth';
 import ButtonsCard from '../../components/ButtonsCard';
@@ -60,7 +60,10 @@ export default function CityOverview() {
       console.error(error);
     }
   };
-
+  const handleArrowClick = (direction) => {
+    // Aquí puedes agregar la lógica para manejar el clic del botón
+    console.log(`Se hizo clic en la flecha ${direction}`);
+  }
   // const handleCreateFavorite = async (id) => {
   //   try {
   //     await favoriteService.createFavorite(id);
@@ -92,15 +95,20 @@ export default function CityOverview() {
                 <h1>{searchedCity.cityName.split(' -')[0]} -&nbsp;</h1> {/*coge solo la primera posicion que es nombre de ciudad */}
                  <h2>{searchedCity.country}</h2>
                </div>
+             
                <div className='cityOverview-img-btns'>
-               <div className='cityOverview-img'>
-                 <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
-                 <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
-               </div>
-               <div className="cityOverview-sharebtn">
-              
-               </div>
-               </div>
+    <div className='cityOverview-img'>
+      <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+      <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+      <div className='leftArrow-goBack' onClick={() => handleArrowClick('izquierda')}>
+        <FaArrowLeft />
+      </div>
+      <div className='rightArrow-goForward' onClick={() => handleArrowClick('derecha')}>
+        <FaArrowRight />
+      </div>
+    </div>
+    {/* Agregar cualquier otro contenido adicional aquí */}
+  </div>
                <div className='cityOverview-btns'>
                  <button onClick={handleContinue}>Continue</button>
                  <button onClick={handleGoBack} style={{ display: "inline-block" }}>Go Back</button>
@@ -131,6 +139,6 @@ export default function CityOverview() {
            {error && <p>Failed to load city data.</p>}
          </div>
      </div>
-</>
+ </>
    );
  }

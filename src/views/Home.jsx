@@ -137,14 +137,17 @@ const Home = () => {
       <div className="Home-card">
         <div className="backgroundPic-home">
         <img src={backgroundPic} alt="backgroundPic" />
-        {user && <h3>¡Nos encanta verte por aquí, {user.username}! 😊</h3>}
+        {user ? (<h3>¡Nos encanta verte por aquí, {user.username}! 😊</h3>
+        ) : (
+    <h3>Hola viajero, ¿A dónde te llevaremos hoy?</h3>
+)}
         <h2 >¡Explícame ese lugar que estás pensando!</h2>
         <div className="searchCard">
           <div className="search-input">
             <FaSearch className="search-icon" />
             <input
               type="text"
-              placeholder="Quiero ir..."
+              placeholder="¿A dónde viajas?"
               value={selectedCity}
               onChange={(event) => {
                 handleWriting(event.target.value);
