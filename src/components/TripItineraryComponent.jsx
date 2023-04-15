@@ -1,38 +1,91 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/MyTripsStyles.css";
 import "../styles/TripItineraryStyle.css";
-
+import tripPlanService from "../services/tripPlanService";
 
 function TripItineraryComponent({ plan, handleDelete }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [name, setName] = useState("Tu plan de viaje");
+  const [numTravellers, setNumTravellers] = useState(plan.numTravellers);
+  const [loading, setLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+
   const handleToggle = () => {
-    console.log("Hemos hecho click en el botón");
-   setIsOpen(!isOpen);
+    setIsOpen(!isOpen);
   };
  
   const handleCollapse = () => {
-   setIsOpen(false);
+    if (!isEditing) {
+      setIsOpen(false);
+    }
   };
+
+  const handleEdit = () => {
+    setName(plan.name);
+    setNumTravellers(plan.numTravellers);
+    setIsEditing(true);
+    setIsOpen(true);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsEditing(false);
+    await tripPlanService.editTrip(plan._id, {name: name, numTravellers: numTravellers});
+  };
+
+  useEffect(() => {
+    if(loading) {
+      if(plan.name && plan.name !== '')
+        setName(plan.name);
+      setLoading(false);
+    }
+    // eslint-disable-next-line
+  }, []);    
 
   return (
     <li key={plan._id} className="listOfTripCards">
       <div className="tripCardHeader" tabIndex="0" onClick={handleToggle} onBlur={handleCollapse}>
         <div className="cityName-myTrips">
-            {plan.city}
+            {plan.city.split(' -')[0]}
+            {isEditing ? (
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Nombre:
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                </label>
+                <br />
+                <label>
+                  Número de viajeros:
+                  <input type="number" value={numTravellers} onChange={(e) => setNumTravellers(e.target.value)} />
+                </label>
+                <br />
+                <button type="submit">Guardar</button>
+              </form>
+            ) : (
+              <>
+                <input type="text" value={name} readOnly />
+                <input type="number" value={numTravellers} readOnly />
+              </>
+            )}
         </div>
-        <p> Ver más detalles</p>
         <div className="deleteMyTrip-btns">
             <button
-            onClick={() => {
-                handleDelete(plan._id);
-                handleCollapse();
-            }}
+              onClick={handleEdit}
+              style={{ marginRight: "10px" }}
             >
-            Eliminar
+              Editar
+            </button>
+            <button
+              onClick={() => {
+                  handleDelete(plan._id);
+                  setIsOpen(false);
+              }}
+            >
+              Eliminar
             </button>
         </div>
       </div>
-      {isOpen && (
+      {isOpen && !isEditing && (
         <div className="tripCardDayList">
           {plan.days.map((day) => (
             <div className="day-list" key={day._id}>
@@ -56,3 +109,4 @@ function TripItineraryComponent({ plan, handleDelete }) {
 }
 
 export default TripItineraryComponent;
+

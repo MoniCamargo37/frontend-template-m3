@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import tripPlanService from '../../services/tripPlanService';
-import { FaArrowLeft } from 'react-icons/fa';
 import ButtonsCard from '../../components/ButtonsCard';
 import TripPlan from '../../components/TripItineraryComponent';
 import { useAuth } from '../../hooks/useAuth';
@@ -12,7 +11,6 @@ function MyTrips() {
   const [tripPlans, setTripPlans] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   const getAllTrips = async () => {
     try {
@@ -33,8 +31,8 @@ function MyTrips() {
     try {
       const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
       if (confirmed) {
-        await tripPlanService.deleteTrip(tripId);
-        setTripPlans(tripPlans.filter((plan) => plan._id !== tripId));
+       await tripPlanService.deleteTrip(tripId);
+       setTripPlans(tripPlans.filter((plan) => plan._id !== tripId));
       }
     } catch (error) {
       console.error(error);
@@ -44,9 +42,6 @@ function MyTrips() {
   if (!isLoggedIn) {
     return (
       <div>
-      <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
-      <FaArrowLeft />
-    </span> 
       <div className='errorMsn-profile'>
         <h1>Mis itinerarios viajes</h1>
         <p>Sin inicio de sesión no hay paraíso... 🌊 🌊</p>
@@ -60,21 +55,20 @@ function MyTrips() {
     );
   }
 
-return (
-  <div>
-    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
-      <FaArrowLeft />
-    </span> 
-    <div className='my-trips'>
-      <h1>Mis itinerarios de viajes</h1>
-      <ul>
-        {tripPlans.map((plan) => (
-          <TripPlan key={plan._id} plan={plan} handleDelete={handleDelete} />
-        ))}
-      </ul>
-      <ButtonsCard/>
+  return (
+    <div>
+      <div className='my-trips'>
+        <h1>Mis itinerarios de viajes</h1>
+        <ul>
+          {tripPlans.map((plan) => (
+            <TripPlan key={plan._id} plan={plan} handleDelete={handleDelete} />
+          ))}
+        </ul>
+        <ButtonsCard/>
+      </div>
     </div>
-  </div>
-);
+  );
 }
+
 export default MyTrips;
+

@@ -36,7 +36,7 @@ function TripPlan() {
       setError(true);
     }
   };
-  
+
   useEffect(() => {
     if (!myTrip) return; // Si myTrip es nulo, no llamar a getTrip()
     getTrip();
@@ -130,4 +130,6 @@ function TripPlan() {
 }
 
 export default TripPlan;
+
+
 

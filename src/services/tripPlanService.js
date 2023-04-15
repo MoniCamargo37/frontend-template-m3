@@ -48,3 +48,4 @@ class TripPlanService {
 const tripPlanService = new TripPlanService();
 
 export default tripPlanService;
+
