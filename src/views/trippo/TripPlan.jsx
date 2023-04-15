@@ -2,8 +2,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import tripPlanService from '../../services/tripPlanService';
 import { AuthContext } from '../../context/AuthContext';
+import Loading from "../../components/Loading";
+import { FaArrowLeft } from 'react-icons/fa';
 import { toast } from "react-hot-toast";
 import "../../styles/TripPlanStyle.css";
+import '../../styles/AllPagesStyles.css'
 
 function TripPlan() {
   const navigate = useNavigate();
@@ -37,20 +40,8 @@ function TripPlan() {
   useEffect(() => {
     if (!myTrip) return; // Si myTrip es nulo, no llamar a getTrip()
     getTrip();
-  }, []); // Arreglo de dependencias vacío
+  }, []); 
 
-  
-  // const handleDelete = async () => {
-  //   try {
-  //     const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
-  //     if (confirmed) {
-  //       await tripPlanService.deleteTrip(tripId);
-  //       navigate('/trip-plan');
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const handleSave = async () => {
     try {
@@ -87,16 +78,18 @@ function TripPlan() {
   };
 
   return (
-    <>
-       <div className='loading'>
-      {loading && <p>Loading...</p>}
-      </div>
+       <div>
+   {loading && <Loading />}
+  {!loading && (
+    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+      <FaArrowLeft />
+    </span>
+  )}
       {!loading && myTrip && (
         <div className="tripPlanDetail-card">
           <div className="cityOverview-card">
          <h2>{cityName}</h2>
-         <img src={itineraryPic} alt={cityName} />
-        
+         <img src={itineraryPic} alt={cityName} />    
           <div className='trip-data'>
           <p>¡Bienvenido a tu viaje soñado! De acuerdo a tu planificación, el viaje tendrá una duración de {myTrip.tripPlan.tripDuration} día(s), con un total de {myTrip.tripPlan.numTravellers} viajero(s). Estás planeando viajar en {monthNames[myTrip.tripPlan.monthOfTrip]} y disfrutar de un emocionante {myTrip.tripPlan.tripType}. Además, tu presupuesto para este viaje es de €{myTrip.tripPlan.budget}. ¡A disfrutar de las aventuras que te esperan!</p>
           </div>
@@ -123,7 +116,6 @@ function TripPlan() {
           </div>
           <div className='cityOverview-btns'>
           <button onClick={handleSave}>Save Trip Plan</button>
-          {/* <button onClick={handleDelete}>Delete Trip Plan</button> */}
           <button onClick={handleGoBack}>Go Back</button>
           </div>
     </div>
@@ -132,7 +124,7 @@ function TripPlan() {
   <div className='cityOverview-error'>
   {error && <p>Error al cargar los datos del plan de viaje.</p>}
   </div>
-</>
+  </div>
   );
 }
 

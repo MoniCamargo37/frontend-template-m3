@@ -5,6 +5,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import ButtonsCard from '../../components/ButtonsCard';
 import TripPlan from '../../components/TripItineraryComponent';
 import { useAuth } from '../../hooks/useAuth';
+import ImageRio from '../../images/rio-de-janeiro.jpg';
 import "../../styles/MyTripsStyles.css";
 
 function MyTrips() {
@@ -46,9 +47,10 @@ function MyTrips() {
       <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
       <FaArrowLeft />
     </span> 
-      <div className='my-trips'>
+      <div className='errorMsn-profile'>
         <h1>Mis itinerarios viajes</h1>
-        <p>Sin inicio de sesión no hay paraíso...</p>
+        <p>Sin inicio de sesión no hay paraíso... 🌊 🌊</p>
+            <img src={ImageRio} alt="rio-de-janeiro" />
         <div className='myTrips-OffModebtns'>
           <Link to="/login"><button>Iniciar sesión</button></Link>
           <Link to="/signup"><button>Crear cuenta</button></Link>

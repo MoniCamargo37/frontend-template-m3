@@ -115,11 +115,11 @@
     width: 80%;
   }
   .auth-card h1 {
-    font-size: 11px;
+    font-size: 14px;
   }
  
     .auth-card h1::after {
-    width: 45%; 
+    width: 52%; 
     padding-top: 0px;
     border-bottom: 0.5px solid rgb(128, 128, 128);
     }
@@ -128,12 +128,12 @@
     width: 90%;
   }
   .auth-card label {
-    font-size: 12px;
+    font-size: 14px;
   }
   
   .register-button {
     width: 90%;
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .auth-card a {

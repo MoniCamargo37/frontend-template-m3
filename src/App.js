@@ -1,13 +1,13 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import Home from './views/Home';
+import Home from './views/trippo/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WebFooter from './components/WebFooter';
 import TripDetails from './components/TripDetails';
-import ErrorPage from './views/ErrorPage';
-import NotFound from './views/NotFound';
+import ErrorPage from './views/trippo/ErrorPage';
+import NotFound from './views/trippo/NotFound';
 import Signup from './views/auth/Signup';
 import Login from './views/auth/Login';
 import CityOverview from './views/trippo/CityOverview';
@@ -15,13 +15,8 @@ import MyTrips from './views/trippo/MyTrips';
 import Profile from './views/profile/Profile';
 import Planning from './views/trippo/Planning';
 import TripPlan from './views/trippo/TripPlan';
-import HowItWorks from './views/HowItWorks';
-
-import './components/Search.css';
-import './components/DestinationCard.css';
-import './styles/NavbarFooterStyles.css';
-import './views/trippo/planning.css';
-import "./styles/MyTripsStyles.css";
+import HowItWorks from './views/trippo/HowItWorks';
+import './styles/AllPagesStyles.css';
 
 function App() {
   return (

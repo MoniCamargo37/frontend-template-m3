@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Map from '../../components/Map';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 import cityOverviewService from '../../services/cityOverviewService';
 import { useAuth } from '../../hooks/useAuth';
 import ButtonsCard from '../../components/ButtonsCard';
@@ -60,10 +60,7 @@ export default function CityOverview() {
       console.error(error);
     }
   };
-  const handleArrowClick = (direction) => {
-    // Aquí puedes agregar la lógica para manejar el clic del botón
-    console.log(`Se hizo clic en la flecha ${direction}`);
-  }
+
   // const handleCreateFavorite = async (id) => {
   //   try {
   //     await favoriteService.createFavorite(id);
@@ -81,64 +78,52 @@ export default function CityOverview() {
   
    return (
     <>
-    <div className='loading'>
-    {loading && <Loading />}
-  </div>
-    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
-    <FaArrowLeft />
-  </span>  
-
-       <div className='cityoverview-container'>
-         {!loading && searchedCity && (
-           <>
-            <div className='header-title'>
-                <h1>{searchedCity.cityName.split(' -')[0]} -&nbsp;</h1> {/*coge solo la primera posicion que es nombre de ciudad */}
-                 <h2>{searchedCity.country}</h2>
-               </div>
-             
-               <div className='cityOverview-img-btns'>
-    <div className='cityOverview-img'>
-      <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
-      <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
-      <div className='leftArrow-goBack' onClick={() => handleArrowClick('izquierda')}>
+      <div className='loading'>
+        {loading && <Loading />}
+      </div>
+      <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
         <FaArrowLeft />
-      </div>
-      <div className='rightArrow-goForward' onClick={() => handleArrowClick('derecha')}>
-        <FaArrowRight />
-      </div>
-    </div>
-    {/* Agregar cualquier otro contenido adicional aquí */}
-  </div>
-               <div className='cityOverview-btns'>
-                 <button onClick={handleContinue}>Continue</button>
-                 <button onClick={handleGoBack} style={{ display: "inline-block" }}>Go Back</button>
-                 {user && user.role === 'admin' && (
-                   <div className='delete-btn'> 
-                     <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
-                   </div>
-                 )}
-               </div> 
-               <div class="cityOverview-card">
-                  <div class="description-card">
-                  <div class="searched-number">
-                      <h3>{searchedCity.numSearches}</h3>
-                      <p>Visitas</p>
-                    </div>
-                    <p>{searchedCity.description}</p>
-                    
-                  </div>
-                  <div class="map-card">
-                    <Map city={searchedCity.cityName} />
-                  </div>
+      </span>  
+
+      <div className='cityoverview-container'>
+        {!loading && searchedCity && (
+          <>
+            <div className='header-title'>
+              <h1>{searchedCity.cityName.split(' -')[0]} -&nbsp;</h1> {/*coge solo la primera posicion que es nombre de ciudad */}
+              <h2>{searchedCity.country}</h2>
+            </div>
+
+            <div className='cityOverview-image-container cityOverview-img'>
+                <img src={searchedCity.destinationPics[0]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+                <img src={searchedCity.destinationPics[1]} alt={searchedCity.cityName} onError={(e) => e.target.style.display = 'none'} />
+              {/* Agregar cualquier otro contenido adicional aquí */}
+            </div>
+            <div className='cityOverview-navigation-btns'>
+              <button onClick={handleContinue}>Continue</button>
+              <button onClick={handleGoBack}>Go Back</button>
+              {user && user.role === 'admin' && (
+                <div className='delete-btn'> 
+                  <button onClick={() => handleDelete(searchedCity.id)}>Delete</button>
                 </div>
-        
-                <ButtonsCard /> 
-           </>
-         )}
-         <div className='cityOverview-error'>
-           {error && <p>Failed to load city data.</p>}
-         </div>
-     </div>
- </>
-   );
- }
+              )}
+            </div>
+            <div class="cityOverview-card">
+              <div class="description-card">
+                <div class="searched-number">
+                  <h3>{searchedCity.numSearches} </h3>
+                  <p>Visitas</p>
+                </div>
+                <p>{searchedCity.description}</p>
+              </div>
+              <Map class="map-card" city={searchedCity.cityName} />
+              <ButtonsCard class="share-buttons"/>
+            </div>
+          </>
+        )}
+        <div className='cityOverview-error'>
+          {error && <p>Failed to load city data.</p>}
+        </div>
+      </div>
+    </>
+  );
+}

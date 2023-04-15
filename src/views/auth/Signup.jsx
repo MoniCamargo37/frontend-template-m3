@@ -41,7 +41,10 @@ import '../../styles/AuthStyles.css';
         toast.success("¡Cuenta creada con éxito!");
       } catch (error) {
         console.error(error);
-        toast.error(error.response.data.message);
+        console.error(error.response);
+        console.error(error.response.data);
+        setErrorMessage(error.response.data.message);
+        toast.error("Se ha producido un error al crear la cuenta. Por favor, inténtalo de nuevo más tarde.");
       }
     }
   

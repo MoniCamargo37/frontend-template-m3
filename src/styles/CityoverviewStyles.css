@@ -1,19 +1,7 @@
-.loading {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-.leftArrow-goBack {
-  position: absolute;
-  /* top: 20px; */
-  left: 20px;
-}
-
 .cityoverview-container {
   max-width: 1200px;
   padding: 20px;
-  height: 100%;
+  height:max-content;
   margin-top: 0px;
   margin: auto;
   margin-bottom: 100px;
@@ -36,17 +24,12 @@
   color: #666;
 }
 
-.cityOverview-img-btns {
+.cityOverview-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 400px;
-}
-
-.cityOverview-img {
-  display: flex;
   flex-direction: row;
+  height: auto;
   gap: 20px;
 }
 
@@ -57,7 +40,7 @@
   object-fit: cover;
 }
 
-.cityOverview-btns {
+.cityOverview-navigation-btns {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -65,7 +48,7 @@
   margin: 15px;
 }
 
-.cityOverview-btns button {
+.cityOverview-navigation-btns button {
   margin: 0 10px;
   padding: 10px 30px;
   border: none;
@@ -76,22 +59,26 @@
   transition: all 0.3s ease-in-out;
 }
 
-.cityOverview-btns button:hover {
+.cityOverview-navigation-btns button:hover {
   background-color: #7f8c8d;
 }
 
-.cityOverview-btns button:first-of-type {
+.cityOverview-navigation-btns button:first-of-type {
   background-color: #2ecc71;
 }
 
-.cityOverview-btns button:last-of-type {
+.cityOverview-navigation-btns button:last-of-type {
   background-color: #ff6347;
 }
 
-.cityOverview-sharebtn {
-  width: 80%;
-  margin-top: 20px;
+.cityOverview-card {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  height: 500px;
 }
+
 
 .searched-number {
   display: flex;
@@ -107,17 +94,12 @@
   margin-top: 18px;
   filter: saturate(150%);
 }
+
 .searched-number p {
   font-weight: 600;
   color: rgb(60, 59, 59);
   margin-left: 5px;
   filter: saturate(150%);
-}
-
-.cityOverview-card {
-  position: relative;
-  height: 300px;
-  margin-bottom: 20px;
 }
 
 .map-card {
@@ -126,7 +108,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 0;
+  flex-basis: 100%;
 }
 
 .description-card {
@@ -135,13 +117,15 @@
   left: 0;
   bottom: 0;
   width: 30%;
-  height: 500px;
   background-color: rgba(255, 255, 255, 1);
   opacity: 0.7;
-  z-index: 1; /* Ponemos la capa más alta para que quede encima */
-  padding: 20px;
+  z-index: 1; 
+  padding: 0 20px 20px 20px;
   overflow-y: scroll;
+  flex: 1;
+  flex-basis: 100%;
 }
+
 .description-card p {
   color: rgb(10, 10, 10);
   font-weight: 600;
@@ -162,18 +146,7 @@
   border-radius: 10px;
 }
 
-.description-card::-webkit-scrollbar {
-  display: contents;
-}
-/* 
 @media screen and (max-width: 768px) {
-  .cityoverview-container {
-    max-width: 100%;
-  }
-
-  .header-title h1 {
-    font-size: 1.2rem;
-  }
 
   .header-title h2 {
     font-size: 1rem;
@@ -184,155 +157,35 @@
     height: auto;
   }
 
-  .cityOverview-img {
-    height: 150px;
-  }
-
   .cityOverview-img img {
-    height: 200px;
-    width: 180px;
+    height: 250px;
+    width: 47%;
   }
 
-  .cityOverview-btns {
-    margin-top: 50px;
-  }
-
-  .cityOverview-card {
-    height: 700px;
-  }
   .description-card {
-    position: absolute;
-    top: 500px;
-    left: 0;
-    transform: translateY(-50%);
-    width: 90%;
-    height: 200px;
-    margin-top: 0px;
-    padding: 20px;
-    overflow-y: scroll;
-    margin-bottom: 100px;
+    position: unset;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    opacity: 1;
+    z-index: 0;
+    overflow-y: auto;
+  }
+  
+  canvas {
+    aspect-ratio: unset;
   }
 
   .map-card {
-    height: 250px;
+    position: unset;
+    top: 0;
     margin-top: 20px;
-    margin-bottom: 0px;
-  }
-
-  .description-card p {
-    font-size: 12px;
-  }
-} */
-@media screen and (max-width: 768px) {
-
-  .cityoverview-container {
-    max-width: 100%;
-  }
-
-  .header-title h1 {
-    font-size: 1.2rem;
-  }
-
-  .header-title h2 {
-    font-size: 1rem;
-    margin-top: 14px;
-  }
-
-  .cityOverview-img-btns {
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .cityOverview-img {
-    height: 250px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cityOverview-img img {
-    border-radius: 10px;
     height: 250px;
     width: 100%;
-    object-fit: cover;
-  }
-
-  .cityOverview-img-btns .leftArrow-goBack,
-  .cityOverview-img-btns .rightArrow-goForward {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 50%;
-    color: white;
-    cursor: pointer;
-  }
-
-  .cityOverview-img-btns .leftArrow-goBack {
-    left: 0;
-  }
-
-  .cityOverview-img-btns .rightArrow-goForward {
-    right: 0;
-  }
-
-  .cityOverview-btns {
-    margin-top: 20px;
-  }
-
-  .searched-number {
-    margin-top: 20px;
-  }
-
-  .searched-number h3 {
-    font-size: 16px;
-  }
-
-  .searched-number p {
-    font-size: 14px;
-  }
-
-  .description-card {
-    position: relative;
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-    overflow-y: scroll;
-    height: 200px;
-  }
-
-  .map-card {
-    height: 250px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: #f2f2f2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .map-card img {
-    max-height: 100%;
-    max-width: 100%;
-  }
-
-  .cityOverview-card {
-    height: auto;
-  }
-
-  .cityOverview-card .btn {
-    position: relative;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
+ }
   .cityOverview-btns button {
     margin: 0 5px;
     padding: 10px 20px;
     font-size: 14px;
-  }
-
+  }  
 }

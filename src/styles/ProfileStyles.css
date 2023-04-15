@@ -211,7 +211,7 @@
   height: 30px;
   width: 150px;
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 600;
   padding-top: 0.7rem;
   border-radius: 5px;
@@ -326,13 +326,19 @@
     padding-top: 0px;
     text-align: center;
   }
+  
+
+.errorMsn-profile img {
+  margin-bottom: 10px;
+}
 
   .errorMsn-profile h1 {
     font-size: 1.5rem;
   }
 
   .errorMsn-profile p {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
+    text-align: center;
   }
 
   .errorMsn-profile .btn-login-profile {
@@ -340,7 +346,7 @@
     font-weight: 400;
     height: 20px;
     width: 100px;
-    margin-top: 0.8rem;
+    margin-top: 1rem;
     padding-top: 0.4rem;
   }
 }
