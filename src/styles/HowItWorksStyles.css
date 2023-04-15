@@ -398,3 +398,15 @@
   }
   
 }
+
+
+
+
+/*************************** MONI*/
+.active-image {
+  border: 3px solid blue;
+}
+
+.active-text {
+  display: block;
+}

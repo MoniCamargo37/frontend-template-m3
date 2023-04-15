@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { FaSearch } from "react-icons/fa";
@@ -17,16 +17,15 @@ const Home = () => {
   const [mostSearchedCities, setMostSearchedCities] = useState([]);
   const [startX, setStartX] = useState(null);
   const [isSwiping, setIsSwiping] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(100);
   const navigate = useNavigate();
-  const timeoutIdRef = useRef(null);
-  let timeoutId;
-
+  
   // Section of code to handle the search bar
 
   const handleWriting = (city) => {
     setSelectedCity(city);
     clearInterval(timeoutId);
-    timeoutId = setTimeout(() => {}, 100);
+    setTimeoutId(100);
   };
 
   const handleSearchedCity = () => {
@@ -59,10 +58,10 @@ const Home = () => {
 
 useEffect(() => {
   // Ejecutar la función después de que el usuario haya dejado de escribir durante medio segundo
-  timeoutIdRef.current = setTimeout(() => { handleSearchedCity();}, 100);
+  setTimeoutId(setTimeout(() => { handleSearchedCity();}, 100));
   // Cancelar el temporizador si el componente se desmonta o la ciudad cambia
   return () => {
-    clearTimeout(timeoutIdRef.current);
+    clearTimeout(timeoutId);
   };
    // eslint-disable-next-line
 }, [selectedCity]);
@@ -70,12 +69,10 @@ useEffect(() => {
 
 
   const handleCityClick = (cityName) => {
-    console.log(cityName);
-
-    if (!cityName)
-      if (suggestedCities.length > 0) cityName = suggestedCities[0];
-      else cityName = "Error";
-    navigate("/CityOverview?city="+encodeURIComponent(cityName));
+    if (suggestedCities.length > 0){
+      cityName = suggestedCities[0];
+      navigate("/CityOverview?city="+encodeURIComponent(cityName));
+    }
   };
 
   // End of section of code to handle the search bar
@@ -196,5 +193,7 @@ useEffect(() => {
 };
 
 export default Home;
+
+
 
 
