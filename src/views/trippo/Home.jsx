@@ -66,15 +66,23 @@ useEffect(() => {
    // eslint-disable-next-line
 }, [selectedCity]);
 
+const handleMostSearchedClick = (cityName) => {
+    navigate("/CityOverview?city="+encodeURIComponent(cityName));
+};
 
-
-  const handleCityClick = (cityName) => {
-    if (suggestedCities.length > 0){
-      cityName = suggestedCities[0];
-      navigate("/CityOverview?city="+encodeURIComponent(cityName));
-    }
-  };
-
+const handleCityListClick = (city) => {
+  let searchedCity = '';
+  if(city) searchedCity = city;
+  else {
+    if(suggestedCities.length > 0) 
+      searchedCity = suggestedCities[0];
+  }
+  if(searchedCity !== '')
+    navigate("/CityOverview?city="+encodeURIComponent(searchedCity));
+  else{
+    //Muestra error
+  }
+};
   // End of section of code to handle the search bar
 
   useEffect(() => {
@@ -149,7 +157,7 @@ useEffect(() => {
                             }}
                             onKeyDown={(event) => {
                               if (event.key === "Enter") {
-                                handleCityClick();
+                                handleCityListClick();
                               }
                             }}
                           />
@@ -157,7 +165,7 @@ useEffect(() => {
                           {suggestedCities.length > 0 && (
                           <div className="suggested-city-card">
                               {suggestedCities.map((city) => (
-                                <div key={city}  className="suggested-city"  onClick={() => { handleCityClick(city); }}>
+                                <div key={city}  className="suggested-city"  onClick={() => { handleCityListClick(city); }}>
                                     {city}
                                 </div>
                                 ))}
@@ -171,7 +179,7 @@ useEffect(() => {
             {mostSearchedCities.map((city) => (
               <div className="mostSearchedCity-card">
                   <div className="mostSearchedCity" key={city._id}  onClick={() => {
-                          if (!isSwiping) { handleCityClick(city.cityName); }}}>
+                          if (!isSwiping) { handleMostSearchedClick(city.cityName); }}}>
                         <h2 >{city.cityName.split(' -')[0]} ({city.cityName.split('(')[1]}</h2>
                         <img  src={city.destinationPics[1]} alt={city.cityName} onError={(e) => (e.target.style.display = "none")}/>
                         <div className="searched-number-home">
