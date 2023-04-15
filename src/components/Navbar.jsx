@@ -14,8 +14,7 @@ return (
     <div className="nav-menu" ref={navRef}>
         <NavLink className="nav_logo" to="/">
           <img src={Logo} alt="logoTipo" />
-        </NavLink>
-  
+        </NavLink> 
       <ul className="nav">
         <li><NavLink className="nav_link" to="/">Inicio</NavLink></li>
         <li><NavLink className="nav_link" to="/trip/mis-viajes" >Mis Viajes</NavLink></li>
@@ -25,9 +24,10 @@ return (
         {isLoggedIn && <li><NavLink className="nav_link" to="/profile">Perfil</NavLink></li>}
       </ul>
       <div className="nav_btn">
-        {!isLoggedIn && <li><NavLink  className="nav_item" to="/login">Iniciar sesión</NavLink></li>}
-    
-        {isLoggedIn && <li><a className="nav_item"onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li>}
+        {!isLoggedIn && <li><NavLink  className="nav_item" to="/login">Iniciar sesión</NavLink></li>}    
+        {isLoggedIn &&  <li><a href="/" className="nav_item" onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li>}
+       
+
       </div>
     </div>
     <div className="navbar-mobile">

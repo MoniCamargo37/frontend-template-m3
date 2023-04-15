@@ -5,9 +5,10 @@ import '../styles/NavbarFooterStyles.css';
 
 const WebFooter = React.memo(() => {
   const [showFooter, setShowFooter] = useState(false);
-  const [distanceFromBottom, setDistanceFromBottom] = useState(0);
+  const [distanceFromBottom,] = useState(0);
 
   const handleScroll = useCallback(() => {
+     // eslint-disable-next-line 
     const footer = document.querySelector('.Footer');
     const pageHeight = document.documentElement.scrollHeight;
     const windowHeight = window.innerHeight;
@@ -17,6 +18,7 @@ const WebFooter = React.memo(() => {
   }, []);
 
   const handleResize = useCallback(() => {
+     // eslint-disable-next-line 
     const footer = document.querySelector('.Footer');
     const pageHeight = document.documentElement.scrollHeight;
     const windowHeight = window.innerHeight;

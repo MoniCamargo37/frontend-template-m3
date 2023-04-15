@@ -5,3 +5,4 @@ export default function ErrorPage() {
     <div>Ooops algo ha ido mal a la hora de obtener la información solicitada. Aquí tiene una alternativa:</div>
   )
 }
+

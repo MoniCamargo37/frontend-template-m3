@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import authService from '../../services/authService';
 import '../../styles/AuthStyles.css';
 
 export default function Login() {
-  const { storeToken, authenticateUser, isLoggedIn } = useAuth(); 
+  const { storeToken, authenticateUser} = useAuth(); 
   const [user, setUser] = useState({
     email: '',
     password: ''

@@ -6,8 +6,6 @@ import profileService from '../../services/profileService';
 import EditPassword from '../../components/EditPassword';
 import EditPhoto from '../../components/EditPhoto';
 import ImageRio from '../../images/rio-de-janeiro.jpg'
-// import favoriteService from '../../services/favoriteService';
-// import cityOverviewService from '../../services/cityOverviewService';
 import'../../styles/ProfileStyles.css';
 import { toast } from "react-hot-toast";
 import { useAuth } from '../../hooks/useAuth';
@@ -117,7 +115,7 @@ export default function Profile() {
           </div>
           <div className='logged-btn-container'>
           {isLoggedIn && ( 
-               <a className="logged-btn" onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a>
+            <li><a href="/" className="logged-btn" onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li>
            )}
           </div>
           {errorMessage && toast.error(errorMessage)}

@@ -37,7 +37,8 @@ export default function CityOverview() {
       setFinishedSearch(true);
       getCity();
     }
-  },[finishedSearch]);
+    // eslint-disable-next-line
+  },[finishedSearch ]);
 
   const handleContinue = () => {
     if (searchedCity) {
@@ -127,3 +128,4 @@ export default function CityOverview() {
     </>
   );
 }
+

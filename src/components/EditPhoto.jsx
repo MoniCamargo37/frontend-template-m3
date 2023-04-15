@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import profileService from '../services/profileService';
 import Loading from './Loading';
-import { useNavigate } from 'react-router-dom';
-import { toast } from "react-hot-toast";
 
 export default function EditPhoto({edit}) {
   const [profile, setProfile] = useState({username: '', image: ''});
-  const [error, setError] = useState(false);
+  const [, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [imageUrl, setImageUrl] = useState();
+  const [, setImageUrl] = useState();
 
   const getProfile = async () => {
     try {
@@ -50,8 +48,6 @@ export default function EditPhoto({edit}) {
   //   }
   // };
 
-
-
     const handleSubmit = async (e) => {
       e.preventDefault()  
       const formData = new FormData();
@@ -66,8 +62,6 @@ export default function EditPhoto({edit}) {
         setError(true);
       }
     };
-
-
 
   return (
     <>

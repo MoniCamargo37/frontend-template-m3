@@ -12,10 +12,10 @@ function ButtonsCard() {
     setShowShare(false);
   };
 
-  const handleShowShare = () => {
-    setShowShare(!showShare);
-    setShowLinks(false);
-  };
+  // const handleShowShare = () => {
+  //   setShowShare(!showShare);
+  //   setShowLinks(false);
+  // };
 
   const handleShareEmail = () => {
     const currentUrl = location?.state?.url;
@@ -109,10 +109,10 @@ function ButtonsCard() {
         </button> */}
         {showShare && (
           <div className="compartir-container">
-         <a href="#" onClick={(e) => { e.preventDefault(); handleShareEmail(); }}>
+         <a href="/" onClick={(e) => { e.preventDefault(); handleShareEmail(); }}>
               CORREO ELECTRÓNICO
             </a>
-            <a className="enlace-compartir" href="#" onClick={(e) => { e.preventDefault(); handleShareTwitter(); }}>
+            <a className="enlace-compartir" href="/" onClick={(e) => { e.preventDefault(); handleShareTwitter(); }}>
               Twitter
             </a>
           </div>
