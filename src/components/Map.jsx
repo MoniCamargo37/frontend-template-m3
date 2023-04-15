@@ -34,6 +34,7 @@ data.resourceSets[0].resources[0].geocodePoints[0].coordinates;
       getCoordinates();
     }
     console.log('Las coordenadas: ', location);
+    // eslint-disable-next-line
   },[finishedSearch, location]);
 
   return (

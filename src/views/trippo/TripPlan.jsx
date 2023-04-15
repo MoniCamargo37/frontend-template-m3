@@ -40,6 +40,7 @@ function TripPlan() {
   useEffect(() => {
     if (!myTrip) return; // Si myTrip es nulo, no llamar a getTrip()
     getTrip();
+    // eslint-disable-next-line
   }, []); 
 
 
@@ -129,3 +130,4 @@ function TripPlan() {
 }
 
 export default TripPlan;
+
