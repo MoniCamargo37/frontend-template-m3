@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 import authService from '../../services/authService';
+import '../../styles/AuthStyles.css';
 
 export default function Login() {
   const { storeToken, authenticateUser, isLoggedIn } = useAuth(); 
@@ -29,34 +31,34 @@ export default function Login() {
       if (response.authToken) {
         storeToken(response.authToken);
         authenticateUser();
-        navigate('/');
-        toast.success('Welcome back!')
+        navigate(-1);
+        toast.success('¡Bienvenido de nuevo!')
       } else {
-        setErrorMessage('Unable to authenticate user')
+        setErrorMessage('¡No se puede autenticar el usuario!')
       }
     } catch (error) {
-      setErrorMessage('Unable to authenticate user');
+      setErrorMessage('¡No se puede autenticar el usuario!');
     }
   }
 
-  useEffect(() => {
-    // When the component first renders, check if user is already logged in and redirects
-    if (isLoggedIn) {
-      navigate('/')
-    }
-    // eslint-disable-next-line
-  }, [isLoggedIn])
-
   return (
     <div>
+    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+        <FaArrowLeft />
+      </span>   
+    <div className='auth-card'>
       <form onSubmit={handleSubmit}>
-        <label>Email</label>
+        <label>Correo electrónico</label>
         <input required type="email" name="email" value={user.email} onChange={handleChange} />
-        <label>Password</label>
+        <label>Contraseña</label>
         <input required type="password" name="password" value={user.password} onChange={handleChange} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Log in </button>
+        <button type="submit"class="register-button">Iniciar sesión </button>
+        <a href="/signup">¿AÚN SIN CUENTA? REGISTRATE</a>
       </form>
+    </div>
     </div>
   )
 }
+
+

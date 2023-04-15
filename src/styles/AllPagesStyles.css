@@ -1,0 +1,20 @@
+.loading-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 5%;
+  left: 35%;
+}
+
+.leftArrow-goBack {
+  position: relative;
+  z-index: 1;
+}

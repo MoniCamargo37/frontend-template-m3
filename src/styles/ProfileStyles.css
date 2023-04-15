@@ -1,0 +1,352 @@
+.profile-card {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 100px;
+  height: 100vh;
+}
+
+.profile-card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: rgb(60, 59, 59);
+}
+
+.profile-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-image img {
+  display: inline-block;
+  margin: 20px;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 40px;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-image button {
+  margin-top: 10px;
+  padding: 10px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #ff6347;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-image button:hover {
+  background-color: #7f8c8d;
+}
+
+/******************************************** EDIT PASSWORD **************************************/
+.password-card {
+  background-color: #fafafa;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.password-card h3 {
+  font-size: 24px;
+  margin-top: 0;
+  text-align: center;
+  color: rgb(60, 59, 59);
+}
+
+.form-editPassword {
+  margin-top: 20px;
+}
+
+.password-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.password-form label {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(60, 59, 59);
+}
+
+.password-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  margin-bottom: 20px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.password-form button {
+  background-color: #9f9d9d;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/********************* EDIT PHOTO ************************/
+
+.editPhoto-card {
+  background-color: #fafafa;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.editPhoto-card h3 {
+  font-size: 24px;
+  margin-top: 0;
+  text-align: center;
+  color: rgb(60, 59, 59);
+}
+
+.form-editPhoto {
+  margin-top: 20px;
+}
+
+.photo-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.photo-form label {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(60, 59, 59);
+}
+
+.photo-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  margin-bottom: 20px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.photo-form button {
+  background-color: #9f9d9d;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.logged-btn-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.logged-btn {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 100px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  background-color: #ff6347;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.logged-btn :hover {
+  background-color: #7f8c8d;
+}
+.errorMsn-profile {
+  text-align: center;
+  padding: 20px;
+}
+
+.errorMsn-profile h1 {
+  margin-top: 20px;
+  color: rgb(60, 59, 59);
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+.errorMsn-profile p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.errorMsn-profile img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.noLoggedProfile-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.errorMsn-profile .btn-login-profile {
+  display: inline-block;
+  height: 30px;
+  width: 150px;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding-top: 0.7rem;
+  border-radius: 5px;
+  background-color: #ff6347;
+  color: white;
+  text-decoration: none;
+}
+.errorMsn-profile .btn-login-profile:hover {
+  background-color: gray;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-card {
+    width: 85vw;
+    border-radius: 0;
+    padding: 10px;
+    height: 100vh;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+
+  .profile-card h2 {
+    font-size: 19px;
+    margin-bottom: 10px;
+    color: rgb(60, 59, 59);
+  }
+
+  .profile-image {
+    margin-bottom: 10px;
+  }
+
+  .profile-image img {
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+  }
+
+  .password-card {
+    max-width: 100%;
+    border-radius: 0;
+    padding: 20px;
+  }
+
+  .password-card h3 {
+    font-size: 18px;
+  }
+
+  .password-form label {
+    font-size: 14px;
+  }
+
+  .password-form input {
+    font-size: 14px;
+  }
+
+  .password-form button {
+    padding: 8px 16px;
+    width: 200px;
+    font-size: 14px;
+  }
+
+  .profile-image button {
+    margin-top: 10px;
+    padding: 5px;
+    width: 200px;
+    font-size: 12px;
+  }
+
+  .logged-btn {
+    padding: 3px;
+    font-size: 12px;
+  }
+
+  .editPhoto-card {
+    max-width: 100%;
+    border-radius: 0;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .editPhoto-card h3 {
+    font-size: 18px;
+  }
+  .photo-form button {
+    width: 200px;
+    border-radius: 10px;
+  }
+
+  .cancellation-btn {
+    width: 150px;
+  }
+
+  .logout-btn {
+    width: 150px;
+  }
+
+  .photo-form label {
+    font-size: 14px;
+  }
+
+  .photo-form input {
+    font-size: 14px;
+  }
+
+  .photo-form button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .errorMsn-profile {
+    padding-top: 0px;
+    text-align: center;
+  }
+  
+
+.errorMsn-profile img {
+  margin-bottom: 10px;
+}
+
+  .errorMsn-profile h1 {
+    font-size: 1.5rem;
+  }
+
+  .errorMsn-profile p {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .errorMsn-profile .btn-login-profile {
+    font-size: 0.7rem;
+    font-weight: 400;
+    height: 20px;
+    width: 100px;
+    margin-top: 1rem;
+    padding-top: 0.4rem;
+  }
+}

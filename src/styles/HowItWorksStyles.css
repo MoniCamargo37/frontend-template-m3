@@ -1,0 +1,400 @@
+/* Styles for Trippo Guide */
+
+.trippo-guide {
+  margin: 0 auto;
+  padding: 40px;
+  text-align: justify;
+  width: 100%;
+}
+.trippo-guide > h2 {
+  width: 100%;
+  text-align: center;
+  color: #ff6347;
+}
+.main-content {
+  margin: 0 auto;
+  padding: 40px;
+  text-align: justify;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.title-text {
+  margin-bottom: 40px;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.title-text h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ff6347;
+}
+
+.title-text h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.text-steps {
+  margin-top: 60px;
+  width: 50%;
+}
+
+.text-steps h3 {
+  font-size: 24px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.text-steps p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.text-steps ol {
+  list-style-type: decimal;
+  margin-bottom: 30px;
+}
+
+.carousel-card {
+  margin-bottom: 60px;
+  width: 35%;
+  height: auto;
+}
+.carousel-card img {
+  width:600px;
+  height: 900px;
+  object-fit: cover;
+  margin-left: 25px;
+
+}
+.arrows {
+  display: none;
+}
+
+.carousel-card .slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  touch-action: pan-y;
+}
+
+.carousel-card .slick-slider .slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-card .slick-slider .slick-list:focus {
+  outline: none;
+}
+
+.carousel-card .slick-slider .slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.carousel-card .slick-slider .slick-slider-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .carousel-card .slick-slider .slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 24px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+} */
+
+.carousel-card .slick-slider .slick-prev {
+  left: 20px;
+  z-index: 1;
+}
+
+.carousel-card .slick-slider .slick-next {
+  right: 20px;
+}
+
+.carousel-card .slick-slider .slick-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  color: #525050;
+}
+
+.carousel-card .slick-slider .slick-dots li {
+  margin: 0 10px;
+}
+
+.carousel-card .slick-slider .slick-dots li button {
+  position: relative;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: none;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.carousel-card .slick-slider .slick-dots li button:before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid;
+}
+
+.carousel-card .slick-slider .slick-dots li.slick-active button:before {
+  opacity: 1;
+}
+
+/* Estilos para la sección "Busca tu destino" */
+
+.text-steps h3:nth-of-type(1) {
+  color: rgb(60, 59, 59);
+}
+
+.text-steps h3:nth-of-type(1)::before {
+  content: "1. ";
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.text-steps p:nth-of-type(1) a {
+  color: rgb(82, 81, 81);
+  text-decoration: underline;
+}
+
+.text-steps p:nth-of-type(1) a:hover {
+  color: #ff8c00;
+}
+
+/* Estilos para la sección "Cuéntanos tus preferencias" */
+
+.text-steps h3:nth-of-type(2) {
+  color: rgb(60, 59, 59);
+}
+
+.text-steps h3:nth-of-type(2)::before {
+  content: "2. ";
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.text-steps p:nth-of-type(2) a {
+  color: rgb(82, 81, 81);
+  text-decoration: underline;
+}
+
+.text-steps p:nth-of-type(2) a:hover {
+  color: #1e90ff;
+}
+
+/* Estilos para la sección "Regístrate o accede" */
+
+.text-steps h3:nth-of-type(3) {
+  color: rgb(60, 59, 59);
+}
+
+.text-steps h3:nth-of-type(3)::before {
+  content: "3. ";
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.text-steps p:nth-of-type(3) a {
+  color: rgb(82, 81, 81);
+  text-decoration: underline;
+}
+
+.text-steps p:nth-of-type(3) a:hover {
+  color: #00ced1;
+}
+
+/* Estilos para la sección "Descubre tu plan de actividades" */
+
+.text-steps h3:nth-of-type(4) {
+  color: rgb(60, 59, 59);
+}
+
+.text-steps h3:nth-of-type(4)::before {
+  content: "4. ";
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+/* Estilos para la sección "Comparte, borra o agrega más detalles" */
+
+.text-steps h3:nth-of-type(5) {
+  color: rgb(60, 59, 59);
+}
+
+.text-steps h3:nth-of-type(5)::before {
+  content: "5. ";
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.text-steps p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  color: rgb(82, 81, 81);
+}
+
+@media screen and (max-width: 768px) {
+  /* Utilizamos medidas relativas y una rejilla flexible */
+  .trippo-guide {
+    margin: 0 auto;
+    padding: 0;
+    width: 95%;
+  }
+  .trippo-guide h2 {
+    text-align: justify;
+    color: #525050;
+  }
+  .main-content {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    align-items: center;
+    width: 90%;
+  }
+  .title-text {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .title-text > h1 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ff6347;
+  }
+
+  .title-text > h2 {
+    font-size: 1em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .title-text > h3 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .text-steps {
+    margin-top: 0px;
+    width: 70%;
+  }
+
+  .text-steps h3 {
+    font-size: 1.2em;
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+
+  .text-steps p {
+    font-size: 1em;
+    /* line-height: 1.5; */
+    margin-bottom: 5px;
+  }
+
+  .text-steps ol {
+    list-style-type: decimal;
+    margin-bottom: 20px;
+  }
+
+  .carousel-card {
+    margin-bottom: 10px;
+    width: 90%;
+    height: 400px;
+  }
+
+  /* Añadimos efectos visuales */
+  .carousel-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+
+  .carousel-card .slick-slider .slick-dots {
+    bottom: 10px;
+  }
+
+  .carousel-card .slick-slider .slick-dots li button {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border: 2px solid #ff6347;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .carousel-card .slick-slider .slick-dots li button:hover {
+    background-color: #ff6347;
+    cursor: pointer;
+  }
+
+  .carousel-card .slick-slider .slick-dots li.slick-active button {
+    background-color: #ff6347;
+  }
+
+  /********************** STEPS GUIDE *********************/
+  .text-steps h3:nth-of-type(5)::before {
+    font-size: 24px;
+    margin-right: 0px;
+  }
+  .text-steps h3:nth-of-type(4)::before {
+    font-size: 24px;
+    margin-right: 0px;
+  }
+  .text-steps h3:nth-of-type(3)::before {
+    font-size: 24px;
+    margin-right: 0px;
+  }
+ 
+  .text-steps h3:nth-of-type(2)::before {
+    font-size: 24px;
+    margin-right: 0px;
+  }
+  .text-steps h3:nth-of-type(1)::before {
+    font-size: 24px;
+    margin-right: 0px;
+  }
+  
+}
