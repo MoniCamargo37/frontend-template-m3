@@ -35,37 +35,81 @@
   cursor: pointer;
 }
 
-.tripCardHeader p {
-  font-size: 14px;
-  color: rgb(6, 89, 161);
-  /* margin-left: 300px; */
-  width: 25%;
-  font-weight: 600;
-  position: relative;
-}
-
 .tripCardHeader p:after {
   content: "";
   position: absolute;
   bottom: -2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60%;
+  width: 100%;
   height: 1px;
   background-color: #ccc;
 }
 .cityName-myTrips {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
   text-align: start;
-  margin-left: 10px;
+  align-items: center;
+  width: 20%;
+  margin: 0px;
+}
+.cityName {
+  font-weight: bold;
+  color: #ff6347;
+  font-size: 24px;
+}
+.planData h2 {
+  display:flex; 
+  flex-direction: row;
+  justify-content:flex-start;
+  gap: 5px;
+  align-items: center;
   font-size: 16px;
-  font-weight: 600;
+  margin: 0px;
   color: rgb(82, 81, 81);
-  width: 50%;
 }
 
+.planData h2 p {
+  color: rgb(34, 34, 34);
+}
+
+.form-tripNamechange {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 200px;
+  height: 250px;
+  width: 350px;
+
+}
+
+.form-tripNamechange label {
+  font-weight: bold;
+  color: #424242;
+}
+
+.form-tripNamechange input {
+  margin-left: 10px;
+  max-width: 100px;
+  border-radius: 5px;
+  border: 2px solid #f07466;
+}
+
+.tripNamechange  {
+  margin: 20px 15px;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  color: #131212;
+  width: 80px;
+  height: 30px;
+  font-size: 16px;
+  background-color: #ff6347;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 10px;
+}
 .deleteMyTrip-btns {
   display: flex;
   justify-content: center;
@@ -75,7 +119,7 @@
 }
 
 .deleteMyTrip-btns > button {
-  margin: 0 10px;
+  margin: 0 15px;
   padding: 5px;
   border: none;
   border-radius: 10px;
@@ -92,6 +136,12 @@
 
 .deleteMyTrip-btns > button:hover {
   background-color: #7f8c8d;
+}
+
+.toggleIcon {
+  font-size: 40px;
+  width: 50px;
+  color: #666;
 }
 .trip {
   background-color: #e74c3c;

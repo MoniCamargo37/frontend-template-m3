@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Map from '../../components/Map';
+import { Map } from '../../components/Map';
 import { FaArrowLeft } from 'react-icons/fa';
 import cityOverviewService from '../../services/cityOverviewService';
 import { useAuth } from '../../hooks/useAuth';

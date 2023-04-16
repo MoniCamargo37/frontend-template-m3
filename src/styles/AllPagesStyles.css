@@ -18,3 +18,19 @@
   position: relative;
   z-index: 1;
 }
+
+.toast-error-myTrips {
+  background-color: #fdcece;
+  margin-top: 300px;
+  font-size: 18px;
+  z-index: 1;
+}
+
+.toast-delete-trip {
+  background-color: #333;
+  margin-top: 300px;
+  color: #fff;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 18px;
+}

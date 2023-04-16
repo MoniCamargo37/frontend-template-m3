@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import tripPlanService from '../../services/tripPlanService';
 import ButtonsCard from '../../components/ButtonsCard';
 import TripPlan from '../../components/TripItineraryComponent';
@@ -27,17 +28,44 @@ function MyTrips() {
       setIsLoggedIn(true);
   }, [user]);
 
+  // const handleDelete = async (tripId) => {
+  //   try {
+  //     const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
+  //     if (confirmed) {
+  //      await tripPlanService.deleteTrip(tripId);
+  //      setTripPlans(tripPlans.filter((plan) => plan._id !== tripId));
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   const handleDelete = async (tripId) => {
     try {
-      const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
+      const confirmed = await toast.promise(
+        // Promesa que se resolverá o rechazará en función de la acción del usuario
+        new Promise((resolve, reject) => {
+          const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
+          if (confirmed) {
+            resolve(tripPlanService.deleteTrip(tripId));
+          } else {
+            reject('User cancelled the operation.');
+          }
+        }),
+        {
+          success: 'Trip plan deleted!',   
+          error: 'An error occurred while deleting the trip plan!',
+          loading: 'Deleting...', 
+        }
+      );
       if (confirmed) {
-       await tripPlanService.deleteTrip(tripId);
-       setTripPlans(tripPlans.filter((plan) => plan._id !== tripId));
+        setTripPlans(tripPlans.filter((plan) => plan._id !== tripId));
       }
     } catch (error) {
       console.error(error);
     }
   };
+  
 
   if (!isLoggedIn) {
     return (
