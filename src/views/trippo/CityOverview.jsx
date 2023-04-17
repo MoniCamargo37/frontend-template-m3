@@ -7,6 +7,7 @@ import { useAuth } from '../../hooks/useAuth';
 import ButtonsCard from '../../components/ButtonsCard';
 import Loading from "../../components/Loading";
 import "../../styles/CityoverviewStyles.css";
+import '../../styles/MyTripsStyles.css'
 
 export default function CityOverview() {
   const navigate = useNavigate();
@@ -117,8 +118,8 @@ export default function CityOverview() {
                 <p>{searchedCity.description}</p>
               </div>
               <Map class="map-card" city={searchedCity.cityName} />
-              <ButtonsCard class="share-buttons"/>
             </div>
+            <ButtonsCard />
           </>
         )}
         <div className='cityOverview-error'>

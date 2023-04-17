@@ -16,6 +16,7 @@ import Profile from './views/profile/Profile';
 import Planning from './views/trippo/Planning';
 import TripPlan from './views/trippo/TripPlan';
 import HowItWorks from './views/trippo/HowItWorks';
+import AboutTrippo from './views/AboutTrippo';
 import './styles/AllPagesStyles.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/planning" element={<Planning />} />
         <Route path="/planning/:city" element={<Planning />} />
         <Route path="/trip/mis-viajes" element={<MyTrips />} />
+        <Route path="/acerca" element={<AboutTrippo />} />
         <Route path="/como-funciona" element=   {<HowItWorks />} />
         <Route path="/trip/mis-viajes/:planId" element={<TripDetails />} />
   
@@ -47,3 +49,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+

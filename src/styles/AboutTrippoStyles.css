@@ -1,0 +1,80 @@
+.about-trippo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-start;
+  text-align: center;
+  padding-top: 20px;
+  width: 50%;
+  margin: 0 auto;
+
+  min-height: 100vh;
+}
+
+.trippo-logo {
+    border: 5px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+      animation: spin 10s infinite linear;
+      width: 250px;
+      height: 250px;
+      margin-bottom: 10px;;
+  }
+.trippo-text {
+    background-color: rgb(253, 254, 255);
+    border-radius: 10px;
+    padding: 5px;
+    
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  color: #4a4b4b;
+  margin-bottom: 1rem;
+  animation: slide 1s ease-in-out;
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+p {
+  font-size: 1.6rem;
+  color: #767878;
+  margin-bottom: 1rem;
+  animation: slide 1s ease-in-out;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .social-icons a {
+    margin: 0 1rem;
+    color: #333;
+    font-size: 1.5rem;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .social-icons a:hover {
+    color: #f43f03;
+  }
+  

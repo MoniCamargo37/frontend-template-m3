@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { FaArrowLeft,FaPlus, FaMinus } from 'react-icons/fa';
-import "./planning.css";
+import "../../styles/PlanningStyles.css";
 
 export default function Planning() {
   const [numPasajeros, setNumPasajeros] = useState(1);
@@ -183,7 +183,8 @@ export default function Planning() {
             {authContext.user ? (
             <button onClick={handleSubmit}>Planificar viaje</button>
         ) : (
-          <Link to="/login"><button >Inicia sesión para planificar</button> </Link>
+
+          <Link className="initSession" to="/login"><button>Inicia sesión para planificar</button> </Link>
         )}
       </form>
     </div>

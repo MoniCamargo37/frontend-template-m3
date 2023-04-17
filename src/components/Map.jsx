@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BingMapsReact from "bingmaps-react";
 import accessService from "../services/accessService";
+import '../styles/mapStyle.css';
 
 const searchALocation = async (citySearched) => {
   let accessKey = await accessService.getAccess();
@@ -44,7 +45,7 @@ const Map = (props) => {
   }
 
   return (
-    <>
+    <div className="mapDimensions">
       <BingMapsReact
         bingMapsKey={accessKey}
         mapOptions={{
@@ -55,9 +56,12 @@ const Map = (props) => {
           mapTypeId: "road",
         }}
       />
-    </>
+    </div>
   );
 };
 
 
 export { Map, searchALocation };
+
+
+

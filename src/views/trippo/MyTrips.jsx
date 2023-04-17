@@ -28,17 +28,6 @@ function MyTrips() {
       setIsLoggedIn(true);
   }, [user]);
 
-  // const handleDelete = async (tripId) => {
-  //   try {
-  //     const confirmed = window.confirm('Are you sure you want to delete this trip plan?');
-  //     if (confirmed) {
-  //      await tripPlanService.deleteTrip(tripId);
-  //      setTripPlans(tripPlans.filter((plan) => plan._id !== tripId));
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const handleDelete = async (tripId) => {
     try {

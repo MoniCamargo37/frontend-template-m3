@@ -23,13 +23,19 @@ function EditPassword({ edit, cancel }) {
       return;
     }
     if (passwordData.newPassword !== passwordData.newPasswordConfirmation) {
-      toast.error("La contraseña no coincide.")
+      toast.error("La contraseña no coincide.", {
+        style: {
+          backgroundColor: "#fdcece",
+          marginTop: "150px", 
+          fontSize: "18px",
+          zIndex: 1,
+        },
+      });
       return;
     }
     if (!passwordRegex.test(passwordData.newPassword)) {
       toast.error(
-        "La contraseña debe tener al menos 6 caracteres y contener como mínimo un número, una minúscula y una mayúscula."
-      );
+        "La contraseña debe tener al menos 6 caracteres y contener como mínimo un número, una minúscula y una mayúscula.");
       return;
     }
     edit(passwordData);
