@@ -92,7 +92,7 @@ function TripPlan() {
          <h2>{cityName}</h2>
          <img src={itineraryPic} alt={cityName} />    
           <div className='trip-data'>
-          <p>¡Bienvenido a tu viaje soñado! De acuerdo a tu planificación, el viaje tendrá una duración de {myTrip.tripPlan.tripDuration} día(s), con un total de {myTrip.tripPlan.numTravellers} viajero(s). Estás planeando viajar en {monthNames[myTrip.tripPlan.monthOfTrip]} y disfrutar de un emocionante {myTrip.tripPlan.tripType}. Además, tu presupuesto para este viaje es de €{myTrip.tripPlan.budget}. ¡A disfrutar de las aventuras que te esperan!</p>
+          <p>¡Bienvenido a tu plan de actividades! De acuerdo a tus preferencias, el viaje tendrá una duración de {myTrip.tripPlan.tripDuration} día(s), con un total de {myTrip.tripPlan.numTravellers} viajero(s). Estás planeando viajar en {monthNames[myTrip.tripPlan.monthOfTrip]} y disfrutar de un viaje {myTrip.tripPlan.tripType}. Además, tu presupuesto para este viaje es de €{myTrip.tripPlan.budget}. ¡A disfrutar de las aventuras que te esperan!</p>
           </div>
           </div>
           <div className='activityBtn-card'>

@@ -39,15 +39,11 @@ function Footer() {
         </a>
       </div>
       </div>
-      {/* <div className="Footer-user">
-        <img src="https://via.placeholder.com/50x50" alt="profile" />
-        <span>Nombre de Usuario</span>
-        <div className="Footer-location">
-          <span>Barcelona, España</span>
-        </div> */}
-      {/* </div> */}
     </div>
   );
 }
 
 export default Footer;
+
+
+

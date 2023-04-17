@@ -122,15 +122,16 @@
 }
 .mostSearchedCities {
   width: 100%;
-  height: 600px;
+  height: 700px;
   margin: 0px;
 }
 
 .mostSearchedCities h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-top: 0;
-  color: rgb(60, 59, 59);
+  margin-bottom: 30px;
+  color: #ff6347;
 }
 
 .mostSearchedCity-card {
@@ -138,12 +139,13 @@
 }
 .mostSearchedCity {
   display: flex;
-  height: 500px;
+  height: 600px;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   justify-content: center;
   margin-right: 15px;
+  margin-left: 25px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -171,7 +173,7 @@
 }
 
 .mostSearchedCity h2 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: rgb(60, 59, 59);
   font-weight: 900;
   margin: 1rem;
@@ -194,19 +196,22 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  text-align: center;
+  justify-content: center;
   width: 20%;
 }
 
 .searched-number-home h3 {
   color: #ff6347;
   font-size: 18px;
-  align-self: auto;
+  align-self: center;
+  margin:0px;
 }
 
 .searched-number-home p {
   margin-left: 5px;
   font-weight: 600;
+  font-size: 16px;
   color: rgb(60, 59, 59);
 }
 
@@ -376,7 +381,7 @@
     width: 100%;
     height: 110vh;
     background-color: white;
-    margin-top: -20px;
+  
   }
 
   .Home-card {

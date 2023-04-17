@@ -65,7 +65,7 @@
   justify-content: center;
   margin-left: 200px;
   height: 250px;
-  width: 350px;
+  width: 450px;
 
 }
 
@@ -76,7 +76,7 @@
 
 .form-tripNamechange input {
   margin-left: 10px;
-  max-width: 100px;
+  max-width: 200px;
   border-radius: 5px;
   border: 2px solid #f07466;
 }
@@ -182,18 +182,13 @@
 }
 
 @media (max-width: 1500px) {
-  /*
-  .tripCardHeader p {
-    text-align: center;
-    font-size: 12px;
-  }
-  */
-
 
 }
 @media (max-width: 768px) {
   .my-trips {
     max-width: 95%;
+    min-height: 100vh;
+    margin-bottom: 100px;
   }  
 
   .tripCardHeader {
@@ -236,6 +231,81 @@
   .deleteMyTrip-btns > button {
     font-size: 12px;
   }
+
+  
+.form-tripNamechange {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  margin-left: 0px;
+  height: 40%;
+  width: 100%;
+
+}
+
+.form-tripNamechange label {
+  font-weight: bold;
+  color: #424242;
+  margin-top: 20PX;
+
+}
+
+.form-tripNamechange input {
+  margin-left: 0px;
+  max-width: 150px;
+  border-radius: 5px;
+  border: 2px solid #f07466;
+}
+
+.tripNamechange-btn  {
+  border: none;
+  margin-left: 10px;
+  border-radius: 10px;
+  color: #131212;
+  width: 65px;
+  height: 30px;
+  font-size: 14px;
+  background-color: #ff6347;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+.deleteMyTrip-btns {
+  display: flex;
+  align-self: center;
+  margin-top: 10px;
+  width: 25%;
+  height: 100%;
+}
+
+.deleteMyTrip-btns > button {
+  margin: 0 15px;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  width: 80px;
+  height: 30px;
+  font-weight: 800;
+  font-size: 14px;
+  background-color: #ff6347;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 10px;
+}
+
+.deleteMyTrip-btns > button:hover {
+  background-color: #7f8c8d;
+}
+
+.toggleIcon {
+  align-self: flex-end;
+  font-size: 30px;
+  width: 40px;
+  color: #666;
+}
+
 
 }
 

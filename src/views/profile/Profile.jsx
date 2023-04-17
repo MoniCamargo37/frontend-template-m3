@@ -15,7 +15,6 @@ export default function Profile() {
   const [profile, setProfile] = useState({ username: '', image: '' });
   // const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  // const [cityOverview, setCityOverview] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingPassword, setEditingPassword] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -98,7 +97,7 @@ export default function Profile() {
       {isLoggedIn ? (
         <>
           <h2>PERFIL</h2>
-          <h3>¡Hola,{profile.username}! 😊</h3>
+          <h1>¡Hola,{profile.username}! 😊</h1>
           <div className="profile-image">
             {profile.image && (
               <img src={profile.image} alt="Profile" style={{ maxWidth: "50%", maxHeight: "500px" }} />
@@ -145,6 +144,12 @@ export default function Profile() {
     </div>
   );
 }
+
+
+
+
+
+
 
 
 
