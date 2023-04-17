@@ -33,8 +33,7 @@ export default function Profile() {
         "¡Ups! Algo salió mal al recuperar los datos de tu perfil. Por favor, inténtalo de nuevo más tarde."
       );
       toast.error(
-        "¡Ups! Algo salió mal al recuperar los datos de tu perfil. Por favor, inténtalo de nuevo más tarde."
-      );
+        "¡Ups! Algo salió mal al recuperar los datos de tu perfil. Por favor, inténtalo de nuevo más tarde.");
     }
   };
 
@@ -46,6 +45,7 @@ export default function Profile() {
  const handleEditingProfile = () => {
   setIsEditingProfile(true);
 };
+
 
   const handleEditPhoto = (image) => {
     setProfile({ username: profile.name, image: image });
@@ -69,7 +69,7 @@ export default function Profile() {
   const handleEditPassword = async (passwordData) => {
     try {
       await profileService.editProfile(passwordData);
-      toast.success("Contraseña actualizada correctamente.");
+      toast.success("Contraseña actualizada correctamente.")
       setEditingPassword(false);
     } catch (error) {
       console.error(error);
@@ -77,8 +77,14 @@ export default function Profile() {
         "¡Ups! Algo salió mal al actualizar la contraseña. Por favor, inténtalo de nuevo más tarde."
       );
       toast.error(
-        "¡Ups! Algo salió mal al actualizar la contraseña. Por favor, inténtalo de nuevo más tarde."
-      );
+        "¡Ups! Algo salió mal al actualizar la contraseña. Por favor, inténtalo de nuevo más tarde.", {
+          style: {
+            backgroundColor: "#fdcece",
+            marginTop: "calc(90vh - 90px)", 
+            fontSize: "18px",
+            zIndex: 1,
+          },
+        });
     }
   };
 
@@ -92,6 +98,7 @@ export default function Profile() {
       {isLoggedIn ? (
         <>
           <h2>PERFIL</h2>
+          <h3>¡Hola,{profile.username}! 😊</h3>
           <div className="profile-image">
             {profile.image && (
               <img src={profile.image} alt="Profile" style={{ maxWidth: "50%", maxHeight: "500px" }} />

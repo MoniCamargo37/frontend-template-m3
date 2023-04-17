@@ -1,5 +1,5 @@
 .my-trips {
-  max-width: 800px;
+  max-width: 50vw;
   margin: 0 auto;
   padding: 20px;
 }
@@ -29,9 +29,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  text-align: center;
-  align-items: center;
+  align-items:flex-start;
   width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 
@@ -49,29 +49,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: start;
-  align-items: center;
-  width: 20%;
+  align-items: flex-start;
   margin: 0px;
+  padding-left: 20px;
 }
 .cityName {
   font-weight: bold;
   color: #ff6347;
   font-size: 24px;
-}
-.planData h2 {
-  display:flex; 
-  flex-direction: row;
-  justify-content:flex-start;
-  gap: 5px;
-  align-items: center;
-  font-size: 16px;
-  margin: 0px;
-  color: rgb(82, 81, 81);
-}
-
-.planData h2 p {
-  color: rgb(34, 34, 34);
 }
 
 .form-tripNamechange {
@@ -112,10 +97,10 @@
 }
 .deleteMyTrip-btns {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-self: center;
   margin-top: 10px;
   width: 25%;
+  height: 100%;
 }
 
 .deleteMyTrip-btns > button {
@@ -139,10 +124,17 @@
 }
 
 .toggleIcon {
+  align-self: flex-end;
   font-size: 40px;
-  width: 50px;
+  width: 30px;
   color: #666;
 }
+
+.toggleIconRotate {
+  transform: rotate(180deg);
+  transition: transform 0.5s ease;
+}
+
 .trip {
   background-color: #e74c3c;
   width: 100%;
@@ -189,63 +181,62 @@
   opacity: 0;
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1500px) {
+  /*
   .tripCardHeader p {
     text-align: center;
     font-size: 12px;
   }
+  */
+
+
+}
+@media (max-width: 768px) {
+  .my-trips {
+    max-width: 95%;
+  }  
+
   .tripCardHeader {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     text-align: start;
     width: 100%;
     cursor: pointer;
   }
 
-  .cityName-myTrips {
+  .deleteMyTrip-btns > button {
+    font-size: 12px;
+
+  }
+  .deleteMyTrip-btns {
+    width: 40%;
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .cityName {
     font-size: 16px;
-    font-weight: 600;
-    color: rgb(82, 81, 81);
-    width: 30%;
   }
 
   .cityName-myTrips {
     margin-left: 0;
-    width: 40%;
-    justify-content: flex-start;
+    justify-content:center;
     text-align: left;
-    font-size: 14px;
+    align-items:flex-start;
+    font-size: 12px;
     font-weight: 600;
-  }
-
-  .deleteMyTrip-btns {
-    width: 20%;
+    width: 40%;
   }
 
   .deleteMyTrip-btns > button {
     font-size: 12px;
   }
-}
-@media (max-width: 768px) {
-  .my-trips {
-    max-width: 95%;
-  }
 
-  .tripCardHeader p {
-    margin-left: 0;
-    width: 50%;
-    text-align: center;
-  }
-
-  .cityName-myTrips {
-    font-size: 14px;
-    width: 60%;
-  }
-
-  .deleteMyTrip-btns > button {
-    width: 70px;
-  }
 }
 
 /******************************* MY TRIPS OFFINE MODE *******************/
@@ -287,7 +278,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 40%;
+  width: 60%;
 }
 
 .btn-text-uppercase {
@@ -295,6 +286,7 @@
   color: #fff;
   font-size: 16px;
   font-weight: 700;
+  width: 100%;
   height: 40px;
   border-radius: 10px;
   border-color: transparent;
@@ -310,14 +302,35 @@
   width: 100%;
   text-align: center;
 }
+.enlace-reserva img {
+  width: 100px;
+  object-fit: cover;
+  border-radius:20px;
+  height: 3em;
+  margin-right: 0.5em;
+  filter: brightness(100%);
+  transition: filter 0.2s ease-in-out;
+}
 .enlace-reserva {
   background-color: #e8eeee;
   color: rgb(59, 59, 59);
-  font-weight: 600;
-  font-size: 12px;
-  padding-bottom: 5px;
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
 }
 
+.enlace-reserva:hover {
+  text-decoration: underline;
+  color: #e74c3c;
+  cursor: pointer;
+}
 .compartir-container {
   display: flex;
   flex-direction: column;
@@ -331,36 +344,22 @@
   font-weight: 600;
 }
 @media screen and (max-width: 768px) {
-  .botones-container {
-    margin-top: 20px;
-  }
-  .btn-text-uppercase {
-    font-size: 10px;
-    height: 30px;
-  }
-
   .link-card {
-    width: 45%;
+    width: 80%;
   }
 
-  .enlaces-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
+  .enlace-reserva img {
+    border-radius:10px;
+    height: 6vh;
+    width: 12vw;
   }
   .enlace-reserva {
-    background-color: #e8eeee;
-    color: rgb(59, 59, 59);
     font-weight: 600;
-    font-size: 11px;
-    padding-bottom: 5px;
+    font-size: 14px;
+    padding-top: 20px;
+    gap: 5px;
   }
-
-  
 .myTrips-OffModebtns button {
-
   width: 150px;
   font-size: 16px;
 }

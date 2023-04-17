@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGlobe, FaSuitcase, FaMicrophone, FaQuestion, FaUser } from 'react-icons/fa';
+import { FaGlobe, FaSuitcase, FaMicrophone, FaInfoCircle, FaUser } from 'react-icons/fa';
 
 function Footer() {
   return (
@@ -26,11 +26,11 @@ function Footer() {
           </div>
         </a>
         <a href="/como-funciona">
-          <div className="icon-button">
-            <FaQuestion />
-            <span>Tutorial</span>
-          </div>
-        </a>
+  <div className="icon-button">
+    <FaInfoCircle />
+    <span>Tutorial</span>
+  </div>
+</a>
         <a href="/profile">
           <div className="icon-button">
             <FaUser />

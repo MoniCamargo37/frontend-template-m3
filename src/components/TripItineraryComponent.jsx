@@ -11,16 +11,13 @@ function TripItineraryComponent({ plan, handleDelete }) {
   const [numTravellers, setNumTravellers] = useState(plan.numTravellers);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-  const [isCancelling, setIsCancelling] = useState(false); // nuevo estado para cancelar
-  const [planCopy, setPlanCopy] = useState(null); // nuevo estado para guardar la copia del plan original
-
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
  
   const handleCollapse = () => {
-    if (!isEditing && !isCancelling) { // actualiza el estado sólo si no está cancelando
+    if (!isEditing) { // actualiza el estado sólo si no está cancelando
       setIsOpen(false);
     }
   };
@@ -30,34 +27,18 @@ function TripItineraryComponent({ plan, handleDelete }) {
     setNumTravellers(plan.numTravellers);
     setIsEditing(true);
     setIsOpen(true);
-    setPlanCopy({...plan}); // guarda una copia del plan original
   };
-
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!name || name.trim() === '') {
-  //     toast.error('El nombre del plan no puede estar vacío');
-  //     return;
-  //   }
-  //   if (numTravellers < 1) {
-  //     toast.error('El número de viajeros debe ser mayor o igual a 1');
-  //     return;
-  //   }
-  //   setIsEditing(false);
-  //   await tripPlanService.editTrip(plan._id, {name: name, numTravellers: numTravellers});
-  //   setIsOpen(false); // cierra la ventana después de guardar
-  // };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || name.trim() === '') {
+      setName(plan.name);
       toast.error('El nombre del plan no puede estar vacío', {
         className: 'toast-error-myTrips'});
       return;
     }
     if (numTravellers < 1) {
+      setNumTravellers(plan.numTravellers);
       toast.error('El número de viajeros debe ser mayor o igual a 1', {
         className: 'toast-error-myTrips'
       });
@@ -66,19 +47,18 @@ function TripItineraryComponent({ plan, handleDelete }) {
     setIsEditing(false);
     const updatedPlan = {name: name, numTravellers: numTravellers};
     await tripPlanService.editTrip(plan._id, updatedPlan);
-    setPlanCopy(updatedPlan); // actualiza la copia del plan con los datos actualizados
+    plan.name = name;
+    plan.numTravellers = numTravellers;
     setIsOpen(false); // cierra la ventana después de guardar
   };
-  
+
 
   const handleCancel = () => {
     setIsEditing(false);
-    setIsCancelling(true); // actualiza el estado para cancelar
-    setName(planCopy.name); // restaura el nombre del plan original
-    setNumTravellers(planCopy.numTravellers); // restaura el número de viajeros del plan original
+    setName(plan.name);
+    setNumTravellers(plan.numTravellers);
     setIsOpen(false); // cierra la ventana después de cancelar
   };
-  
 
   useEffect(() => {
     if(loading) {
@@ -115,15 +95,18 @@ function TripItineraryComponent({ plan, handleDelete }) {
               ) : (
                 <>
                   <div className="planData">
-                  <h2>Plan: <p> {name}</p></h2>
-                  <h2> Viajeros: <p>{numTravellers}</p></h2>
-               </div>
-             
+                    <div className="infoPlanData">
+                      Plan: <strong> {name}</strong>
+                    </div>
+                    <div className="infoPlanData">
+                      Viajeros: <strong>{numTravellers}</strong>
+                    </div>
+                  </div>
                 </>
               )}
             </div>
           </div>
-          {!isEditing && <FaAngleDown className="toggleIcon" />}
+          {!isEditing && <FaAngleDown className={`toggleIcon ${isOpen ? 'toggleIconRotate' : ''}`} />}
           <div className="deleteMyTrip-btns">
             <button onClick={handleEdit}>
               Editar

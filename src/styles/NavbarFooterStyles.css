@@ -126,7 +126,7 @@
   .nav-container {
     position:sticky;
     width: 100%;
-    height: 100px;
+    height: 75px;
   }
   .nav-menu {
     height: 100px;
@@ -291,10 +291,10 @@
     flex-direction: row;
     justify-content: space-between;
     background-color: #fff;
-    padding: 5px 0 0px 5px;
-    width: 100%;
-    height: 85px;
-    position: sticky;
+    padding: 5px 5px 0px 5px;
+    width: 98%;
+    height: 70px;
+    position: fixed;
     top: 0;
   }
   .navbar-mobile + * {
@@ -316,7 +316,7 @@
   .navbar-mobile-location {
     display: flex;
     align-items: center;
-    margin-right: 40px;
+    margin-right: 20px;
     color: #ff6347;
   }
   .navbar-mobile-location svg {
@@ -347,7 +347,7 @@
   .Footer-mobile {
     position: fixed;
     bottom: 0;
-    width: 98vw;
+    min-width: 98vw;
     height: 50px;
     padding: 5px;
     background-color: #fff;

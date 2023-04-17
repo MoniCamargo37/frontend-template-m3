@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import LogoAirbnb from '../images/logo-de-airbnb.png';
+import LogoSkyscanner from '../images/logo-de-skyscanner.png';
+import LogoBooking from '../images/logo-de-booking.png';
+import LogoThefork from '../images/logo-de-thefork.png';
 
 function ButtonsCard() {
   const [showLinks, setShowLinks] = useState(false);
@@ -40,8 +44,6 @@ function ButtonsCard() {
       return;
     }
 
- 
-    
     const message = `Check out ${cityName} on my travel planner! ${currentUrl}`;
     const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
       currentUrl
@@ -54,6 +56,7 @@ function ButtonsCard() {
     link.click();
     document.body.removeChild(link);
   };
+
   const handleCityClick = () => {
     const currentUrl = window.location.href;
     const city = "Barcelona - Cataluña (España)";
@@ -73,7 +76,9 @@ function ButtonsCard() {
   href="https://www.airbnb.com/"
   target="_blank"
   rel="noreferrer"
->
+>  
+<img src= {LogoAirbnb} alt="Airbnb"/>
+
   Reserve en Airbnb
 </a>
 <a
@@ -82,6 +87,7 @@ function ButtonsCard() {
   target="_blank"
   rel="noreferrer"
 >
+<img src= {LogoBooking} alt="Booking"/>
   Reserve en Booking
 </a>
 <a
@@ -90,6 +96,7 @@ function ButtonsCard() {
   target="_blank"
   rel="noreferrer"
 >
+<img src= {LogoSkyscanner} alt="Skyscanner"/>
   Vuelos en Skyscanner
 </a>
 <a
@@ -98,6 +105,7 @@ function ButtonsCard() {
   target="_blank"
   rel="noreferrer"
 >
+<img src= {LogoThefork} alt="Thefork"/>
   Reservas en The Fork
 </a>
           </div>
