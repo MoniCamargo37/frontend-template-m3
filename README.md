@@ -50,8 +50,8 @@ npm run start
 
 ## Useful links
 
-- [Presentation slides]()
-- [Backend repository]()
+- [Presentation slides](https://1drv.ms/p/s!Akm3TPUfj8PLhnREb--vgYQ0EYuP?e=iSMs09)
+- [Backend repository](https://github.com/MoniCamargo37/BACKEND_TRIPPO)
 - [Backend deploy]()
 - [Deployed app](https://trippo.netlify.app/)
 
