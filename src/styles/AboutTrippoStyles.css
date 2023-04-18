@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:flex-start;
+  justify-content: flex-start;
   text-align: center;
   padding-top: 20px;
   width: 50%;
@@ -12,19 +12,18 @@
 }
 
 .trippo-logo {
-    border: 5px solid #fff;
-    border-radius: 50%;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
-      animation: spin 10s infinite linear;
-      width: 250px;
-      height: 250px;
-      margin-bottom: 10px;;
-  }
+  border: 5px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  animation: spin 10s infinite linear;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
+}
 .trippo-text {
-    background-color: rgb(253, 254, 255);
-    border-radius: 10px;
-    padding: 5px;
-    
+  background-color: rgb(253, 254, 255);
+  border-radius: 10px;
+  padding: 5px;
 }
 
 @keyframes spin {
@@ -62,19 +61,18 @@ p {
 }
 
 .social-icons {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-  
-  .social-icons a {
-    margin: 0 1rem;
-    color: #333;
-    font-size: 1.5rem;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .social-icons a:hover {
-    color: #f43f03;
-  }
-  
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.social-icons a {
+  margin: 0 1rem;
+  color: #333;
+  font-size: 1.5rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+  color: #f43f03;
+}

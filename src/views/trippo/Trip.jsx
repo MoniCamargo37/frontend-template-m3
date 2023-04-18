@@ -11,9 +11,9 @@ export default function Trip() {
       </ul>
       </div>
       <Outlet />
-   
     </div>
   )
 }
+
 
 

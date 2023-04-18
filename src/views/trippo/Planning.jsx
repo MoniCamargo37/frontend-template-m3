@@ -60,8 +60,6 @@ export default function Planning() {
     }
   };
 
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (
@@ -191,4 +189,5 @@ export default function Planning() {
     </div>
   );
 }
+
 

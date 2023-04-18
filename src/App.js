@@ -17,6 +17,7 @@ import Planning from './views/trippo/Planning';
 import TripPlan from './views/trippo/TripPlan';
 import HowItWorks from './views/trippo/HowItWorks';
 import AboutTrippo from './views/AboutTrippo';
+import VoiceMotor from './views/trippo/VoiceMotor';
 import './styles/AllPagesStyles.css';
 
 function App() {
@@ -29,9 +30,9 @@ function App() {
         <Route path="/CityOverview" element= {<CityOverview />}/>
         <Route path="/CityOverview/:cityParams" element= {<CityOverview />}/>
         <Route path="/plan-de-viaje" element={<TripPlan />} />
-        <Route path="/planning" element={<Planning />} />
+        <Route path="/novedad" element={<VoiceMotor />} />
         <Route path="/planning/:city" element={<Planning />} />
-        <Route path="/trip/mis-viajes" element={<MyTrips />} />
+        <Route path="/trip/mis-planes" element={<MyTrips />} />
         <Route path="/acerca" element={<AboutTrippo />} />
         <Route path="/como-funciona" element=   {<HowItWorks />} />
         <Route path="/trip/mis-viajes/:planId" element={<TripDetails />} />
@@ -49,6 +50,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 

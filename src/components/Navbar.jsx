@@ -17,7 +17,7 @@ return (
         </NavLink> 
       <ul className="nav">
         <li><NavLink className="nav_link" to="/">Inicio</NavLink></li>
-        <li><NavLink className="nav_link" to="/trip/mis-viajes" >Mis Viajes</NavLink></li>
+        <li><NavLink className="nav_link" to="/trip/mis-planes" >Mis Planes</NavLink></li>
         {/* {user && <p>Hello {user.username}</p> } */}
         <li><NavLink className="nav_link" to="/acerca">Acerca de Trippo</NavLink></li>
         <li><NavLink className="nav_link" to="/como-funciona">Cómo funciona</NavLink></li>
@@ -25,9 +25,7 @@ return (
       </ul>
       <div className="nav_btn">
         {!isLoggedIn && <li><NavLink  className="nav_item" to="/login">Iniciar sesión</NavLink></li>}    
-        {isLoggedIn &&  <li><a href="/" className="nav_item" onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li>}
-       
-
+        {isLoggedIn &&  <li><a href="/" className="nav_item" onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li>} 
       </div>
     </div>
     <div className="navbar-mobile">
@@ -42,7 +40,6 @@ return (
         <div className="navbar-mobile-profile">
                <div className="nav_btn">
         {!isLoggedIn && <li><NavLink  className="nav_item" to="/login">Iniciar sesión</NavLink></li>}
-    
         {/* {isLoggedIn && <li><a className="nav_item" href="/" onClick={() => {logOutUser(); navigate('/');}}>Cerrar sesión</a></li> */}
         {/* <li><button onClick={() => navigate(-1)}>Go back</button></li> PARA MOBILE */}
       </div>
@@ -52,6 +49,7 @@ return (
   </div>
 );
 }
+
 
 
 

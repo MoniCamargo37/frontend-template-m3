@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import LogoAirbnb from '../images/logo-de-airbnb.png';
-import LogoSkyscanner from '../images/logo-de-skyscanner.png';
-import LogoBooking from '../images/logo-de-booking.png';
-import LogoThefork from '../images/logo-de-thefork.png';
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import LogoAirbnb from "../images/logo-de-airbnb.png";
+import LogoSkyscanner from "../images/logo-de-skyscanner.png";
+import LogoBooking from "../images/logo-de-booking.png";
+import LogoThefork from "../images/logo-de-thefork.png";
 
 function ButtonsCard() {
   const [showLinks, setShowLinks] = useState(false);
@@ -15,11 +15,6 @@ function ButtonsCard() {
     setShowLinks(!showLinks);
     setShowShare(false);
   };
-
-  // const handleShowShare = () => {
-  //   setShowShare(!showShare);
-  //   setShowLinks(false);
-  // };
 
   const handleShareEmail = () => {
     const currentUrl = location?.state?.url;
@@ -48,9 +43,9 @@ function ButtonsCard() {
     const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
       currentUrl
     )}&text=${encodeURIComponent(message)}`;
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = twitterUrl;
-    link.target = '_blank';
+    link.target = "_blank";
     link.innerHTML = `Check out ${cityName} on my travel planner!`;
     document.body.appendChild(link);
     link.click();
@@ -61,7 +56,7 @@ function ButtonsCard() {
     const currentUrl = window.location.href;
     const city = "Barcelona - Cataluña (España)";
     const state = { city, url: currentUrl };
-    navigate('/CityOverview', { state });
+    navigate("/CityOverview", { state });
   };
   return (
     <div className="botones-container">
@@ -71,43 +66,42 @@ function ButtonsCard() {
         </button>
         {showLinks && (
           <div className="enlaces-container">
-          <a
-  className="enlace-reserva"
-  href="https://www.airbnb.com/"
-  target="_blank"
-  rel="noreferrer"
->  
-<img src= {LogoAirbnb} alt="Airbnb"/>
-
-  Reserve en Airbnb
-</a>
-<a
-  className="enlace-reserva"
-  href="https://www.booking.com/"
-  target="_blank"
-  rel="noreferrer"
->
-<img src= {LogoBooking} alt="Booking"/>
-  Reserve en Booking
-</a>
-<a
-  className="enlace-reserva"
-  href="https://www.skyscanner.es/"
-  target="_blank"
-  rel="noreferrer"
->
-<img src= {LogoSkyscanner} alt="Skyscanner"/>
-  Vuelos en Skyscanner
-</a>
-<a
-  className="enlace-reserva"
-  href="https://www.thefork.es/"
-  target="_blank"
-  rel="noreferrer"
->
-<img src= {LogoThefork} alt="Thefork"/>
-  Reservas en The Fork
-</a>
+            <a
+              className="enlace-reserva"
+              href="https://www.airbnb.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={LogoAirbnb} alt="Airbnb" />
+              Reserve en Airbnb
+            </a>
+            <a
+              className="enlace-reserva"
+              href="https://www.booking.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={LogoBooking} alt="Booking" />
+              Reserve en Booking
+            </a>
+            <a
+              className="enlace-reserva"
+              href="https://www.skyscanner.es/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={LogoSkyscanner} alt="Skyscanner" />
+              Vuelos en Skyscanner
+            </a>
+            <a
+              className="enlace-reserva"
+              href="https://www.thefork.es/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={LogoThefork} alt="Thefork" />
+              Reservas en The Fork
+            </a>
           </div>
         )}
       </div>
@@ -117,10 +111,23 @@ function ButtonsCard() {
         </button> */}
         {showShare && (
           <div className="compartir-container">
-         <a href="/" onClick={(e) => { e.preventDefault(); handleShareEmail(); }}>
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                handleShareEmail();
+              }}
+            >
               CORREO ELECTRÓNICO
             </a>
-            <a className="enlace-compartir" href="/" onClick={(e) => { e.preventDefault(); handleShareTwitter(); }}>
+            <a
+              className="enlace-compartir"
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                handleShareTwitter();
+              }}
+            >
               Twitter
             </a>
           </div>

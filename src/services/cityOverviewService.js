@@ -8,12 +8,10 @@ class CityOverviewService {
 }
 
   // Get city by name and update numSearches for the selected city
-
   getCity(cityName) {
     return this.api.get(`/${cityName}`).then(({ data }) => data).catch(err => console.error(err));
   }
 
-  // Get most searched cities
   getMostSearchedCities() {
     return this.api.get('/mostSearched').then(({ data }) => data).catch(err => console.error(err));
   }

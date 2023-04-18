@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
-import Home from '../images/home-image.png';
-import Cityoverview from '../images/cityoverview-image.png';
-import Form from '../images/form-image.png';
-import Login from '../images/login-image.png';
-import Plan from '../images/plan-image.png';
+import Home from "../images/home-image.png";
+import Cityoverview from "../images/cityoverview-image.png";
+import Form from "../images/form-image.png";
+import Login from "../images/login-image.png";
+import Plan from "../images/plan-image.png";
 
 function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -55,6 +55,4 @@ function Carousel() {
   );
 }
 export default Carousel;
-
-
 

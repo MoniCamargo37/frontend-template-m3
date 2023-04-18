@@ -1,11 +1,11 @@
 .mapDimensions {
-    width: 100%;
-    height: 800px;
-    margin-bottom: 20px;
+  width: 100%;
+  height: 500px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
-    .mapDimensions {
-        height: 200px;
-    }
+  .mapDimensions {
+    height: 200px;
+  }
 }

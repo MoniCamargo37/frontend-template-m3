@@ -53,7 +53,7 @@ function TripPlan() {
       await tripPlanService.createTrip(tripPlan);
       console.log('Trip plan saved!');
       toast.success('Trip plan saved!'); 
-      navigate('/trip/mis-viajes');
+      navigate('/trip/mis-planes');
     } catch (error) {
       console.error(error);
       toast.error('Error saving trip plan. Please try again later.'); 
@@ -82,44 +82,40 @@ function TripPlan() {
        <div>
    {loading && <Loading />}
   {!loading && (
-    <span className="leftArrow-goBack" onClick={() => navigate(-1)}>
+    <span className="leftArrow-goBack" onClick={() => navigate(-2)}>
       <FaArrowLeft />
     </span>
   )}
       {!loading && myTrip && (
         <div className="tripPlanDetail-card">
-          <div className="cityOverview-card">
-         <h2>{cityName}</h2>
-         <img src={itineraryPic} alt={cityName} />    
-          <div className='trip-data'>
-          <p>¡Bienvenido a tu plan de actividades! De acuerdo a tus preferencias, el viaje tendrá una duración de {myTrip.tripPlan.tripDuration} día(s), con un total de {myTrip.tripPlan.numTravellers} viajero(s). Estás planeando viajar en {monthNames[myTrip.tripPlan.monthOfTrip]} y disfrutar de un viaje {myTrip.tripPlan.tripType}. Además, tu presupuesto para este viaje es de €{myTrip.tripPlan.budget}. ¡A disfrutar de las aventuras que te esperan!</p>
+          <div className="tripPlan-card">
+            <h2>{cityName}</h2>
+            <img src={itineraryPic} alt={cityName} />    
+            <div className='trip-data'>
+              <p>¡Bienvenido a tu plan de actividades! De acuerdo a tus preferencias, el viaje tendrá una duración de {myTrip.tripPlan.tripDuration} día(s), con un total de {myTrip.tripPlan.numTravellers} viajero(s). Estás planeando viajar en {monthNames[myTrip.tripPlan.monthOfTrip]} y disfrutar de un viaje {myTrip.tripPlan.tripType}. Además, tu presupuesto para este viaje es de €{myTrip.tripPlan.budget}. ¡A disfrutar de las aventuras que te esperan!</p>
+            </div>
           </div>
-          </div>
-          <div className='activityBtn-card'>
           <div className='activities-plan'>
-          <ul>
-         {myTrip.days.map((day, index) => (
-        <li key={index} className="day">
-          {`${day.name}`.toUpperCase()}
-          <img className='dayPicture' src={day.picture} alt={day.name} />
-          <ul>
-            {day.activities.map((activity, ind) => (
-              <li key={ind} className="activity">
-                <div className="activity-name">{activity.name}</div>
-                <div className="activity-description">{activity.description}</div>
-                <div className="activity-duration">{activity.duration}</div>
-              </li>              
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
+              {myTrip.days.map((day, index) => (
+                <div key={index} className="day">
+                  {`${day.name}`.toUpperCase()}
+                  <img className='dayPicture' src={day.picture} alt={day.name} />
+                  <ul className='activityDayList'>
+                    {day.activities.map((activity, ind) => (
+                      <li key={ind} className="activity">
+                        <div className="activity-name">{activity.name}</div>
+                        <div className="activity-description">{activity.description}</div>
+                        <div className="activity-duration">{activity.duration}</div>
+                      </li>              
+                    ))}
+                  </ul>
+                </div>
+              ))}
           </div>
-          <div className='cityOverview-btns'>
-          <button onClick={handleSave}>Save Trip Plan</button>
-          <button onClick={handleGoBack}>Go Back</button>
+    <div className='cityOverview-btns'>
+          <button onClick={handleSave}>Guardar Plan</button>
+          <button onClick={handleGoBack}>Volver</button>
           </div>
-    </div>
     </div>
   )}
   <div className='cityOverview-error'>
@@ -130,6 +126,7 @@ function TripPlan() {
 }
 
 export default TripPlan;
+
 
 
 

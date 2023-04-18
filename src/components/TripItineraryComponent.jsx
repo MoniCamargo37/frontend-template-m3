@@ -6,9 +6,25 @@ import { FaAngleDown } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 function TripItineraryComponent({ plan, handleDelete }) {
+  const months = [
+    { number: '1', name: 'Enero' },
+    { number: '2', name: 'Febrero' },
+    { number: '3', name: 'Marzo' },
+    { number: '4', name: 'Abril' },
+    { number: '5', name: 'Mayo' },
+    { number: '6', name: 'Junio' },
+    { number: '7', name: 'Julio' },
+    { number: '8', name: 'Agosto' },
+    { number: '9', name: 'Septiembre' },
+    { number: '10', name: 'Octubre' },
+    { number: '11', name: 'Noviembre' },
+    { number: '12', name: 'Diciembre' },
+  ];
+
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("Tu plan de viaje");
   const [numTravellers, setNumTravellers] = useState(plan.numTravellers);
+  const [monthName, ] = useState(months.find(m => m.number === plan.monthOfTrip).name);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [showButtons,] = useState(true);
@@ -68,14 +84,14 @@ function TripItineraryComponent({ plan, handleDelete }) {
       setLoading(false);
     }
     // eslint-disable-next-line
-  }, []);    
-
+  }, []); 
 
 return (
   <li key={plan._id} className="listOfTripCards">
     <div className="tripCardHeader" tabIndex="0" onClick={handleToggle} onBlur={handleCollapse}>
       <div className="cityName-myTrips">
         <div className="cityName">{plan.city.split(' -')[0]}</div>
+        <div className="monthName">{monthName}</div> 
         <div className="planDatachange">
           {isEditing ? (
             <div className="form-tripNamechange">
@@ -144,8 +160,10 @@ return (
     )}
   </li>
 );
-              }
+}
 export default TripItineraryComponent;
+
+
 
 
 
