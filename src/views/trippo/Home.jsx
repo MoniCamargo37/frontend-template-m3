@@ -5,8 +5,8 @@ import { FaSearch } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 import CityOverviewService from "../../services/cityOverviewService";
 import { searchALocation } from "../../components/Map";
-import backgroundPic from '../../images/backgroundHome.jpg';
-import '../../styles/HomeStyles.css'
+import backgroundPic from "../../images/backgroundHome.jpg";
+import "../../styles/HomeStyles.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -19,7 +19,7 @@ const Home = () => {
   const [isSwiping, setIsSwiping] = useState(false);
   const [timeoutId, setTimeoutId] = useState(100);
   const navigate = useNavigate();
-  
+
   // Section of code to handle the search bar
 
   const handleWriting = (city) => {
@@ -55,34 +55,36 @@ const Home = () => {
     });
   };
 
+  useEffect(() => {
+    // Ejecutar la función después de que el usuario haya dejado de escribir durante medio segundo
+    setTimeoutId(
+      setTimeout(() => {
+        handleSearchedCity();
+      }, 100)
+    );
+    // Cancelar el temporizador si el componente se desmonta o la ciudad cambia
+    return () => {
+      clearTimeout(timeoutId);
+    };
+    // eslint-disable-next-line
+  }, [selectedCity]);
 
-useEffect(() => {
-  // Ejecutar la función después de que el usuario haya dejado de escribir durante medio segundo
-  setTimeoutId(setTimeout(() => { handleSearchedCity();}, 100));
-  // Cancelar el temporizador si el componente se desmonta o la ciudad cambia
-  return () => {
-    clearTimeout(timeoutId);
+  const handleMostSearchedClick = (cityName) => {
+    navigate("/CityOverview?city=" + encodeURIComponent(cityName));
   };
-   // eslint-disable-next-line
-}, [selectedCity]);
 
-const handleMostSearchedClick = (cityName) => {
-    navigate("/CityOverview?city="+encodeURIComponent(cityName));
-};
-
-const handleCityListClick = (city) => {
-  let searchedCity = '';
-  if(city) searchedCity = city;
-  else {
-    if(suggestedCities.length > 0) 
-      searchedCity = suggestedCities[0];
-  }
-  if(searchedCity !== '')
-    navigate("/CityOverview?city="+encodeURIComponent(searchedCity));
-  else{
-    //Muestra error
-  }
-};
+  const handleCityListClick = (city) => {
+    let searchedCity = "";
+    if (city) searchedCity = city;
+    else {
+      if (suggestedCities.length > 0) searchedCity = suggestedCities[0];
+    }
+    if (searchedCity !== "")
+      navigate("/CityOverview?city=" + encodeURIComponent(searchedCity));
+    else {
+      //Muestra error
+    }
+  };
   // End of section of code to handle the search bar
 
   useEffect(() => {
@@ -122,9 +124,7 @@ const handleCityListClick = (city) => {
         },
       },
     ],
-    beforeChange: (current, next) => {
-  
-    },
+    beforeChange: (current, next) => {},
   };
 
   const detectSwipe = (e) => {
@@ -139,72 +139,92 @@ const handleCityListClick = (city) => {
   return (
     <div className="Home">
       <div className="Home-card">
-          <div className="backgroundPic-home">
-              <img src={backgroundPic} alt="backgroundPic" />
-              {user ? (<h3>¡Nos encanta verte por aquí, {user.username}! 😊</h3>
-              ) : (
-                    <h3>Hola viajero, ¿A dónde te llevaremos hoy?</h3> )}
-                    <h2 >¡Explícame ese lugar que estás pensando!</h2>
-                <div className="searchCard">
-                        <div className="search-input">
-                          <FaSearch className="search-icon" />
-                          <input
-                            type="text"
-                            placeholder="¿A dónde viajas?"
-                            value={selectedCity}
-                            onChange={(event) => {
-                              handleWriting(event.target.value);
-                            }}
-                            onKeyDown={(event) => {
-                              if (event.key === "Enter") {
-                                handleCityListClick();
-                              }
-                            }}
-                          />
-                        </div>
-                          {suggestedCities.length > 0 && (
-                          <div className="suggested-city-card">
-                              {suggestedCities.map((city) => (
-                                <div key={city}  className="suggested-city"  onClick={() => { handleCityListClick(city); }}>
-                                    {city}
-                                </div>
-                                ))}
-                        </div>
-                        )}
-                </div>
+        <div className="backgroundPic-home">
+          <img src={backgroundPic} alt="backgroundPic" />
+          {user ? (
+            <h3>¡Nos encanta verte por aquí, {user.username}! 😊</h3>
+          ) : (
+            <h3>Hola viajero, ¿A dónde te llevaremos hoy?</h3>
+          )}
+          <h2>¡Explícame ese lugar que estás pensando!</h2>
+          <div className="searchCard">
+            <div className="search-input">
+              <FaSearch className="search-icon" />
+              <input
+                type="text"
+                placeholder="¿A dónde viajas?"
+                value={selectedCity}
+                onChange={(event) => {
+                  handleWriting(event.target.value);
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    handleCityListClick();
+                  }
+                }}
+              />
+            </div>
+            {suggestedCities.length > 0 && (
+              <div className="suggested-city-card">
+                {suggestedCities.map((city) => (
+                  <div
+                    key={city}
+                    className="suggested-city"
+                    onClick={() => {
+                      handleCityListClick(city);
+                    }}
+                  >
+                    {city}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        <div className="mostSearchedCities"  onMouseDown={(e) => setStartX(e.clientX)}  onMouseUp={(e) => detectSwipe(e)}>
+        </div>
+        <div
+          className="mostSearchedCities"
+          onMouseDown={(e) => setStartX(e.clientX)}
+          onMouseUp={(e) => detectSwipe(e)}
+        >
           <h1>Descubre las ciudades más buscadas</h1>
           <Slider {...settings}>
             {mostSearchedCities.map((city) => (
               <div className="mostSearchedCity-card">
-                  <div className="mostSearchedCity" key={city._id}  onClick={() => {
-                          if (!isSwiping) { handleMostSearchedClick(city.cityName); }}}>
-                        <h2 >{city.cityName.split(' -')[0]} ({city.cityName.split('(')[1]}</h2>
-                        <img  src={city.destinationPics[1]} alt={city.cityName} onError={(e) => (e.target.style.display = "none")}/>
-                        <div className="searched-number-home">
-                          <h3 className="h3-home">{city.numSearches}</h3>
-                          <p>visitas</p>
-                        </div>
-                        <p className="city-description">
-                          {city.description.slice(0, 100)}
-                          {city.description.length > 100 ? "..." : ""}
-                        </p>
+                <div
+                  className="mostSearchedCity"
+                  key={city._id}
+                  onClick={() => {
+                    if (!isSwiping) {
+                      handleMostSearchedClick(city.cityName);
+                    }
+                  }}
+                >
+                  <h2>
+                    {city.cityName.split(" -")[0]} (
+                    {city.cityName.split("(")[1]}
+                  </h2>
+                  <img
+                    src={city.destinationPics[1]}
+                    alt={city.cityName}
+                    onError={(e) => (e.target.style.display = "none")}
+                  />
+                  <div className="searched-number-home">
+                    <h3 className="h3-home">{city.numSearches}</h3>
+                    <p>visitas</p>
                   </div>
+                  <p className="city-description">
+                    {city.description.slice(0, 100)}
+                    {city.description.length > 100 ? "..." : ""}
+                  </p>
+                </div>
               </div>
             ))}
           </Slider>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
 export default Home;
-
-
-
-
-
-
 

@@ -1,8 +1,7 @@
-
 .trippo-guide {
- min-height: 100vh;
-margin-top: 20px;
-margin-bottom: 100px;
+  min-height: 100vh;
+  margin-top: 20px;
+  margin-bottom: 100px;
 }
 .carousel-container {
   gap: 2rem;
@@ -21,10 +20,8 @@ margin-bottom: 100px;
 }
 
 .arrows {
-  display: none
-
+  display: none;
 }
-
 
 .title-text {
   text-align: center;
@@ -50,7 +47,6 @@ margin-bottom: 100px;
   margin: auto;
   width: 70%;
 }
-
 
 .text-steps {
   grid-column: 2 / 3;
@@ -92,13 +88,12 @@ margin-bottom: 100px;
   object-fit: cover !important;
 }
 
-
 @media screen and (max-width: 768px) {
   .title-text {
     text-align: center;
     margin: 5px;
   }
-  
+
   .title-text h1 {
     font-size: 1.2rem;
   }

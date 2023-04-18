@@ -7,11 +7,11 @@
 }
 
 .loading {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   position: absolute;
-  top: 5%;
-  left: 35%;
+  top: 30%;
+  left: 40%;
 }
 
 .leftArrow-goBack {
@@ -33,4 +33,47 @@
   border-radius: 4px;
   padding: 12px;
   font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .loading-cityOverview {
+    top: 20%;
+    left: 35%;
+  }
+  .loading-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loading {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+  }
+
+  .leftArrow-goBack {
+    position: relative;
+    z-index: 1;
+  }
+
+  .toast-error-myTrips {
+    background-color: #fdcece;
+    margin-top: 300px;
+    font-size: 18px;
+    z-index: 1;
+  }
+
+  .toast-delete-trip {
+    background-color: #333;
+    margin-top: 300px;
+    color: #fff;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 18px;
+  }
 }

@@ -1,10 +1,10 @@
 .cityoverview-container {
   max-width: 1200px;
   padding: 20px;
-  height:max-content;
+  min-height: 100vh;
   margin-top: 0px;
   margin: auto;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 }
 
 .header-title {
@@ -76,9 +76,8 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 20px;
-  height: 500px;
+  height: 600px;
 }
-
 
 .searched-number {
   display: flex;
@@ -119,17 +118,18 @@
   width: 30%;
   background-color: rgba(255, 255, 255, 1);
   opacity: 0.7;
-  z-index: 1; 
+  z-index: 1;
   padding: 0 20px 20px 20px;
   overflow-y: scroll;
   flex: 1;
   flex-basis: 100%;
+  height: 480px;
 }
 
 .description-card p {
   color: rgb(10, 10, 10);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
   text-align: justify;
 }
 
@@ -147,10 +147,17 @@
 }
 
 @media screen and (max-width: 768px) {
+  .cityoverview-container {
+    margin-bottom: 100px;
+  }
 
   .header-title h2 {
     font-size: 1rem;
     margin-top: 14px;
+  }
+
+  .cityOverview-card {
+    height: auto;
   }
 
   .cityOverview-img-btns {
@@ -171,7 +178,7 @@
     z-index: 0;
     overflow-y: auto;
   }
-  
+
   canvas {
     aspect-ratio: unset;
   }
@@ -182,10 +189,10 @@
     margin-top: 20px;
     height: 250px;
     width: 100%;
- }
+  }
   .cityOverview-btns button {
     margin: 0 5px;
     padding: 10px 20px;
     font-size: 14px;
-  }  
+  }
 }

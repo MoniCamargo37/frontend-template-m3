@@ -12,13 +12,13 @@ function Footer() {
             <span>Inicio</span>
           </div>
         </a>
-        <a href="/trip/mis-viajes">
+        <a href="/trip/mis-planes">
           <div className="icon-button">
             <FaSuitcase />
-            <span>Mis Viajes</span>
+            <span>Mis Planes</span>
           </div>
         </a>
-        <a href="/trip/planning">
+        <a href="/novedad">
         <div className="icon-button-circle">
           <div className="icon-button-micro">
             <FaMicrophone />

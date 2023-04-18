@@ -1,33 +1,40 @@
-/* Estilos para la vista de planificación de viajes */
 .tripPlanDetail-card {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   justify-content: center;
 }
 
-.cityOverview-card {
-  height: 800px;
+.activityDayList {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.cityOverview-card h2 {
+.tripPlan-card {
+  height: 700px;
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tripPlan-card h2 {
   font-size: 32px;
   margin-top: 50px;
-  margin-right: 50px;
   text-align: center;
   color: #ff6347;
 }
 
-.cityOverview-card img {
+.tripPlan-card img {
   max-width: 100%;
-  height: 500px;
+  height: 400px;
   margin: auto;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .trip-data {
@@ -40,102 +47,94 @@
 }
 
 .trip-data p {
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 20px;
   text-align: justify;
   color: rgb(56, 56, 56);
 }
 
-.activityBtn-card {
-  margin-top: 0px;
+/********************** lis of activities ************************/
+
+.activities-plan {
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-around;
   width: 100%;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(82, 81, 81);
+  text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 30%;
 }
 
-.activities-plan {
-  width: 100%;
-  max-width: 768px;
-  margin-bottom: 40px;
+.activities-plan .dayPicture {
+  width: 500px;
+  height: 400px;
+  margin: 20px 0;
+  border-radius: 20px;
+  object-fit: contain;
 }
 
 .activities-plan ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
+  height: 700px;
   width: 100%;
 }
-
-.activities-plan li.day {
-  margin-top: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: rgb(82, 81, 81);
-  text-transform: uppercase;
+.activity {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-
-.activities-plan li.day .dayPicture {
-  width: 300px;
-  height: 200px;
-  margin: 20px 0;
-  object-fit: cover;
-}
-
-.activities-plan li.activity {
-  margin-top: 20px;
-  height: 40px;
-  font-weight: lighter;
-  font-size: 14px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  color: rgb(82, 81, 81);
-  text-transform: lowercase;
-  width: 100%;
-  text-align: left;
-}
-
-.activities-plan li.activity .activity-name {
-  flex-basis: 30%;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 12px;
-  margin-right: 5px;
-  text-align: center;
-}
-.activities-plan li.activity .activity-name:before {
-  content: "\2022"; /* Agrega un punto con el código Unicode correspondiente */
-  margin-right: 10px; /* Agrega un pequeño espacio entre el punto y el texto */
-}
-
-.activities-plan li.activity .activity-duration {
-  flex-basis: 20%;
-  text-align: right;
-  font-weight: 600;
-  font-size: 14px;
-  text-align: left;
-}
-
-.activities-plan li.activity .activity-description {
-  flex-basis: 50%;
-  text-align: left;
-  font-size: 14px;
-  margin-right: 10px;
-}
-
-.cityOverview-btns {
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
+  height: 25%;
+  padding: 20px;
+  width: 400px;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(82, 81, 81);
+  border: 0.5px solid rgba(147, 145, 145, 0.5);
+  text-transform: lowercase;
+  border-radius: 10px;
+  gap: 10px;
+  text-align: left;
+}
+
+.activity-name {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 5px;
+  text-align: center;
+  width: 100%;
+  color: #ff6347;
+}
+
+.activity-duration {
+  display: flex;
+  justify-content: center;
+  text-align: right;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+  color: #08045a;
+}
+
+.activity-description {
+  text-align: justify;
+  font-size: 18px;
+  margin-right: 10px;
 }
 
 .cityOverview-btns button {
@@ -155,117 +154,54 @@
   color: #ff6347;
 }
 
-.dayPicture {
-  width: 300px;
-  height: 200px;
-  border-radius: 10px;
-}
-
-/* Estilos para dispositivos con ancho máximo de 768px */
-@media only screen and (max-width: 768px) {
+@media (max-width: 1200px) {
   .tripPlanDetail-card {
-    padding: 20px;
+    padding-top: 0px;
   }
-
-  .cityOverview-card {
+  .tripPlan-card {
+    width: 100%;
+    max-width: 100%;
     height: auto;
   }
 
-  .cityOverview-card h2 {
-    font-size: 24px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    margin: 20px;
-  }
-
-  .cityOverview-card img {
-    width: 100%;
-    height: 250px;
-  }
   .trip-data {
-    padding: 10px;
     margin-left: 0px;
-    margin-right: 0px;
   }
 
-  .trip-data p {
-    font-size: 14px;
+  .day {
+    width: 95%;
   }
 
-  .activityBtn-card {
-    display: flex;
+  .activities-plan {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
   }
-  .activities-plan li.activity {
-    margin-top: 0px;
-    height: 100px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+  .activities-plan ul {
+    height: auto;
+  }
+
+  .activity {
     width: 100%;
-    text-align: center;
-  }
-
-  .activityBtn-card .activities-plan {
-    width: 90%;
-  }
-
-  .activityBtn-card .activities-plan ul {
-    padding-left: 0;
-  }
-
-  .activityBtn-card .activities-plan .day {
-    margin-bottom: 20px;
-  }
-
-  .activityBtn-card .activities-plan .day .activity {
-    padding: 10px;
-  }
-
-  .activityBtn-card .activities-plan .day .activity .activity-name {
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 5px;
-    align-items: flex-start;
-  }
-
-  .activityBtn-card .activities-plan .day .activity .activity-description {
-    font-size: 14px;
-    margin-bottom: 5px;
-    text-align: justify;
-  }
-
-  .activityBtn-card .activities-plan .day .activity .activity-duration {
-    font-size: 14px;
-    color: #ff6347;
-    font-weight: bold;
-    padding-top: 5px;
+    max-width: 400px;
   }
 
   .cityOverview-btns {
-    margin-top: 0px;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .activity-description {
+    font-size: 14px;
+  }
+
+  .activity-name {
+    font-size: 16px;
+  }
+
+  .activity {
     width: 100%;
-  }
-
-  .cityOverview-btns button {
-    margin-top: 0;
-    width: 45%;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .cityOverview-error {
-    font-size: 14px;
-    margin-top: 20px;
+    max-width: 400px;
+    max-height: 150px;
   }
 }
