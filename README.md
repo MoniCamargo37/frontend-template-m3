@@ -3,11 +3,8 @@
 ## Description
 
 Trippo is an activity planner app designed by Monica that lets users choose a travel destination and specify their preferences. By utilizing OpenAI's AI technology and Bing tools, Trippo creates a personalized activity plan for the user. Bing Image Search helps to provide visually appealing images of recommended tourist spots and activities. Trippo offers a unique and personalized travel planning experience that simplifies the process for users.
-
----
-## Wireframes
-
 <img src="../frontend-template-m3/src/images/readme-pic.png">
+
 ---
 ## Instructions
 
