@@ -44,7 +44,7 @@ const Home = () => {
             " (" +
             result.address.countryRegion +
             ")";
-          console.log(theCity);
+          // console.log(theCity);
           //Si theCity no existe en el array de cityList, lo añadimos
           if (!cityList.includes(theCity)) {
             cityList.push(theCity);

@@ -23,9 +23,7 @@ function TripPlan() {
   const getTrip = async () => {
     try {
       const openaiResponse = await tripPlanService.createTripPlan(myTrip.tripPlan);
-      console.log("Fin del trayecto: ", openaiResponse.res);
       myTrip.days = openaiResponse.res;
-      console.log('Esto es myTrip: ', myTrip);
       setNewTripPlan(myTrip);      
       setLoading(false);
       setError(false);
@@ -51,7 +49,6 @@ function TripPlan() {
         userId: user._id // Agregar ID de usuario al plan de viaje
       };
       await tripPlanService.createTrip(tripPlan);
-      console.log('Trip plan saved!');
       toast.success('Trip plan saved!'); 
       navigate('/trip/mis-planes');
     } catch (error) {

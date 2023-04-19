@@ -181,7 +181,6 @@ export default function Planning() {
             {authContext.user ? (
             <button onClick={handleSubmit}>Planificar viaje</button>
         ) : (
-
           <Link className="initSession" to="/login"><button>Inicia sesión para planificar</button> </Link>
         )}
       </form>
