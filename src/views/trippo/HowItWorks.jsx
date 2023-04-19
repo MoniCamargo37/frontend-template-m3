@@ -1,13 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import Carousel from "../../components/CarouselHowItWorks";
 import '../../styles/HowItWorksStyles.css';
 
 function HowItWorks() {
-  const navigate = useNavigate();
-  const handleCityClick = () => {
-    navigate('/CityOverview', { state: { city: "Barcelona - Cataluña (España)" } });
-  }
 
   return (
     <div className="trippo-guide">
@@ -24,7 +20,7 @@ function HowItWorks() {
                   <p>
                     Escribe el nombre de la ciudad o selecciona una de las ciudades más buscadas  {" "}
                     <a href="/"> En este Enlace.</a> Nosotros te mostraremos dos fotos del destino y una breve descripción para que puedas conocer un poco más sobre el lugar. Si te interesa, haz clic en {" "}
-                    <a href="/cityOverview" onClick={(e) => {e.preventDefault(); handleCityClick()}}>Continuar</a>.
+                    <Link to="/CityOverview?city=Río%20de%20Janeiro%20-%20RJ%20(Brasil)" >Continuar</Link>
                   </p>
                   <h3>2- Regístrate o accede:</h3>
                   <p>
