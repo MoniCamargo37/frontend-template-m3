@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-hot-toast";
 import { FaArrowLeft,FaPlus, FaMinus } from 'react-icons/fa';
 import "../../styles/PlanningStyles.css";
 
@@ -19,7 +20,7 @@ export default function Planning() {
     location.state?.searchedCity
   );
   const authContext = useContext(AuthContext);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, ] = useState("");
 
   useEffect(() => {
     if (location.state && location.state.cityName) {
@@ -60,29 +61,21 @@ export default function Planning() {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (
-      !selectedCityName ||
-      !selectedCityName.trim() ||
-      numPasajeros <= 0 ||
-      diasViaje <= 0 ||
-      diasViaje > 7 ||
-      presupuesto < 100
-    ) {
-      setErrorMsg("Por favor, completa todos los campos correctamente.");
-      return;
-    }
 
-    if (
-      (tipoViaje === "romantico" || tipoViaje === "familiar") &&
-      numPasajeros < 2
-    ) {
-      setErrorMsg(
-        "El número de viajeros debe ser igual o mayor a 2 para este tipo de viaje."
-      );
-      return;
-    }
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      if (!selectedCityName || !selectedCityName.trim() || numPasajeros <= 0 || diasViaje <= 0 || diasViaje > 7 || presupuesto < 100) {
+        toast.error("Por favor, completa todos los campos correctamente.", {
+          className: 'toast-error-myTrips'});
+        return;
+      }
+    
+      if ((tipoViaje === "romantico" || tipoViaje === "familiar") && numPasajeros < 2) {
+        toast.error("El número de viajeros debe ser igual o mayor a 2 para este tipo de viaje.", {
+          className: 'toast-error-myTrips'});
+        return;
+      }
 
     const formData = {
       city: selectedCityName,

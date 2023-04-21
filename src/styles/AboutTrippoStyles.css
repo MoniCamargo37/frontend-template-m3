@@ -1,29 +1,46 @@
+:root {
+  --color-primary: #0C62FB;
+  --color-secondary: #FF6633;
+  --color-tertiary: #E5E5E5;
+  --color-text: #333333;
+  --color-text-secondary: #767676;
+  --font-size-large: 2rem;
+  --font-size-medium: 1.2rem;
+  --font-size-small: 1.4rem;
+  --border-radius: 10px;
+  --box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  --padding: 15px;
+  --margin: 1rem;
+}
+
 .about-trippo {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
   text-align: center;
   padding-top: 20px;
-  width: 50%;
+  width: 90vw;
   margin: 0 auto;
-
   min-height: 100vh;
 }
 
 .trippo-logo {
-  border: 5px solid #fff;
+  border: 5px solid var(--color-tertiary);
   border-radius: 50%;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--box-shadow);
   animation: spin 10s infinite linear;
   width: 250px;
   height: 250px;
-  margin-bottom: 10px;
+  margin-bottom: var(--margin);
 }
+
 .trippo-text {
-  background-color: rgb(253, 254, 255);
-  border-radius: 10px;
-  padding: 5px;
+  background-color: var(--color-tertiary);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+  text-align: justify;
+  width: 60%;
 }
 
 @keyframes spin {
@@ -36,9 +53,10 @@
 }
 
 h1 {
-  font-size: 2rem;
-  color: #4a4b4b;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-large);
+  color: var(--color-text);
+  margin-bottom: var(--margin);
+  text-align: center;
   animation: slide 1s ease-in-out;
 }
 
@@ -54,9 +72,9 @@ h1 {
 }
 
 p {
-  font-size: 1.6rem;
-  color: #767878;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--margin);
   animation: slide 1s ease-in-out;
 }
 
@@ -67,12 +85,12 @@ p {
 }
 
 .social-icons a {
-  margin: 0 1rem;
-  color: #333;
-  font-size: 1.5rem;
+  margin: 0 var(--margin);
+  color: var(--color-text);
+  font-size: var(--font-size-small);
   transition: color 0.3s ease-in-out;
 }
 
 .social-icons a:hover {
-  color: #f43f03;
+  color: var(--color-secondary);
 }
