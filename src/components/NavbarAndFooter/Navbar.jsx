@@ -1,7 +1,7 @@
 import React, {useContext,  useRef } from 'react';
 import { NavLink, useNavigate} from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import Logo from '../images/Tripfy (3).png';
+import { AuthContext } from '../../context/AuthContext';
+import Logo from '../../images/Tripfy (3).png';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function Navbar() {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FaFacebook, FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
-import Logo from '../images/logoName.png';
-import '../styles/NavbarFooterStyles.css';
+import Logo from '../../images/logoName.png';
+import '../NavbarAndFooter/NavbarFooterStyles.css';
 
 const WebFooter = React.memo(() => {
   const [showFooter, setShowFooter] = useState(false);

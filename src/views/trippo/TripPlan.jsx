@@ -123,7 +123,3 @@ function TripPlan() {
 }
 
 export default TripPlan;
-
-
-
-
